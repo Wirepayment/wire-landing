@@ -1,0 +1,207 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/*
+  Wire — "clear sky" redesign (billow-style layout, brandbook palette).
+  Warm-white paper, charcoal ink, Mint Pulse (#10b981) as the single accent
+  carried by gradient pill buttons and glowing mint-cloud imagery. Display
+  voice is a high-contrast serif (Playfair Display, Cyrillic); UI voice is
+  Rubik. Screenshots float in soft-shadow "screen cards" over the clouds.
+*/
+
+@theme {
+  --font-display: var(--font-serif-display), ui-serif, Georgia, serif;
+  --font-sans: var(--font-rubik), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+  /* header voice — rounded geometric (logo wordmark + nav) */
+  --font-round: var(--font-comfortaa), ui-sans-serif, system-ui, sans-serif;
+
+  /* paper (brandbook: warm white) */
+  --color-background: #fdfdfc;
+  --color-surface: #f5f7f4;
+  --color-elevated: #ecf0eb;
+  --color-border: #e5e9e3;
+  --color-border-strong: #cfd6cd;
+
+  /* charcoal ink text (brandbook) */
+  --color-foreground: #0a0a0a;
+  --color-muted: #50504a;
+  --color-faint: #82827a;
+
+  /* Mint Pulse — the brandbook accent */
+  --color-primary: #10b981;
+  --color-primary-hover: #0ea371;
+  --color-primary-foreground: #ffffff;
+  --color-primary-deep: #067a57;
+  --color-primary-soft: #dcf3e8;
+  --color-mint-wash: #ecf8f2;
+  --color-mint-wash-line: #cdeadd;
+  --color-sky: #4ff0c0;
+
+  /* accents */
+  --color-gold: #f0b429;
+  --color-coral: #fb7185;
+
+  /* ink bands (legacy sections on subpages) */
+  --color-ink: #0a0a0a;
+  --color-ink-soft: #161614;
+  --color-ink-line: #2c2c29;
+  --color-ink-muted: #a9a9a1;
+  --color-ink-faint: #6e6e67;
+
+  /* semantic status */
+  --color-success: #10b981;
+  --color-warning: #f0b429;
+  --color-danger: #fb7185;
+  --color-info: #50504a;
+
+  --radius-card: 16px;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.035em;
+  }
+  .tabular {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+  ::selection {
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+  }
+}
+
+@layer utilities {
+  /* serif display line — headings are medium-weight high-contrast serif */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.04;
+    text-wrap: balance;
+  }
+  /* the quiet second line of a two-line serif heading */
+  .display-dim {
+    color: #6f7a6f;
+  }
+
+  /* small pill badge above headings ("Getting started" style) */
+  .badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    background: rgba(255, 255, 255, 0.72);
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-muted);
+    box-shadow: 0 1px 2px rgba(10, 10, 10, 0.05);
+    backdrop-filter: blur(8px);
+  }
+
+  /* floating app-screenshot card */
+  .screen-card {
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow:
+      0 1px 2px rgba(10, 10, 10, 0.06),
+      0 12px 32px -12px rgba(10, 10, 10, 0.14),
+      0 40px 90px -30px rgba(6, 122, 87, 0.22);
+    backdrop-filter: blur(6px);
+  }
+
+  /* the layered mint glow under gradient pill CTAs */
+  .pill-glow {
+    box-shadow:
+      0 1px 3px rgba(16, 185, 129, 0.25),
+      0 3px 10px rgba(16, 185, 129, 0.2),
+      0 12px 46px -4px rgba(16, 185, 129, 0.32);
+  }
+
+}
+
+/* ── Motion system (every animation is gated on prefers-reduced-motion) ── */
+
+/* page-load rise for hero lines */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.rise-in {
+  animation: rise-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* hero cloud slowly breathes */
+@keyframes cloud-drift {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-14px) scale(1.03);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .cloud-drift {
+    animation: cloud-drift 12s ease-in-out infinite;
+  }
+}
+
+/* Scroll-reveal — components/reveal.tsx adds .is-visible on first intersect.
+   Headings de-blur as they rise (the reference's signature reveal).
+   Reduced-motion or no-JS visitors see content immediately. */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  filter: blur(10px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+@media (prefers-reduced-motion: reduce), (scripting: none) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}
+
+/* FAQ accordion — answer rises in on open */
+@media (prefers-reduced-motion: no-preference) {
+  details[open] .faq-a {
+    animation: rise-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
