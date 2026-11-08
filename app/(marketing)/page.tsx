@@ -1,5 +1,6 @@
 import { Hero } from "@/components/home/hero";
 import { GetStarted } from "@/components/home/get-started";
+import { Connectors } from "@/components/home/connectors";
 import { FeatureBlocks } from "@/components/home/feature-blocks";
 import {
   RoutingCard,
@@ -15,14 +16,15 @@ export const metadata = pageMetadata("/");
 
 /** Home — the "clear sky" storyboard (billow-style reference): centered
  *  serif hero over a glowing cloud + dashboard screenshot, the five-minute
- *  start trio, the platform feature blocks, two closing panels, FAQ and the
- *  cloud-band CTA. */
+ *  start trio, the payment connectors grid, the platform feature blocks,
+ *  two closing panels, FAQ and the cloud-band CTA. */
 export default function LandingPage() {
   return (
     <>
       <JsonLd data={homeJsonLd()} />
       <Hero />
       <GetStarted />
+      <Connectors />
       <FeatureBlocks />
       <RoutingCard />
       <ConsolidationCard />

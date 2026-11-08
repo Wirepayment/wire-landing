@@ -2,6 +2,7 @@ import Image from "next/image";
 import {
   ArrowRight,
   Check,
+  Coins,
   CreditCard,
   Landmark,
   QrCode,
@@ -16,7 +17,7 @@ import { DASHBOARD_URL } from "@/lib/links";
 
 /* ClosingCards — the reference's two big rounded panels:
  * 1) "Smart Insights"-style coming-soon split card → Wire's auto-routing;
- * 2) "Finally sorted" consolidation card → many contracts vs one connection. */
+ * 2) "Finally sorted" consolidation card → many integrations vs one connection. */
 
 export function RoutingCard() {
   return (
@@ -99,10 +100,11 @@ const CHECKS = [
 ] as const;
 
 const RAILS = [
-  { icon: Landmark, label: "Банкны апп" },
-  { icon: Wallet, label: "Цахим хэтэвч" },
   { icon: QrCode, label: "QR төлбөр" },
-  { icon: CreditCard, label: "Зээлийн суваг" },
+  { icon: Landmark, label: "Банкны апп" },
+  { icon: CreditCard, label: "Карт" },
+  { icon: Wallet, label: "Цахим хэтэвч" },
+  { icon: Coins, label: "Хуваан төлөх" },
 ] as const;
 
 export function ConsolidationCard() {
@@ -112,13 +114,13 @@ export function ConsolidationCard() {
         <Reveal className="grid overflow-hidden rounded-[28px] border border-[var(--color-border)] bg-white shadow-[0_2px_6px_rgba(10,10,10,0.04),0_32px_80px_-40px_rgba(16,185,129,0.2)] lg:grid-cols-[1fr_1.1fr]">
           <div className="flex flex-col items-start justify-center p-8 sm:p-12">
             <h3 className="display text-[clamp(30px,4vw,44px)]">
-              Олон гэрээ биш.
+              Олон интеграц биш.
               <br />
               <span className="display-dim">Нэг холболт.</span>
             </h3>
             <p className="mt-4 max-w-md text-[15px] leading-relaxed text-[var(--color-muted)]">
-              Оператор бүртэй тусдаа гэрээ байгуулж, тусдаа интеграц барьж
-              байсныг Wire <Hl>нэг холболтоор орлуулна</Hl>.
+              Оператор бүрд тусдаа интеграц барьж байсныг Wire{" "}
+              <Hl>нэг холболтоор орлуулна</Hl>.
             </p>
             <div className="mt-6 flex items-center gap-3">
               <span className="font-display text-[15px] font-semibold">

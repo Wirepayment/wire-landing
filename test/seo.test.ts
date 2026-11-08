@@ -120,7 +120,7 @@ describe("llms.txt", () => {
     }
   });
 
-  it("names no operator or competitor brand", () => {
+  it("names no competitor or non-connector brand", () => {
     expect(brandNames(txt)).toEqual([]);
   });
 });
@@ -148,7 +148,7 @@ describe("home JSON-LD", () => {
     );
   });
 
-  it("invents no ratings or reviews and names no operator", () => {
+  it("invents no ratings or reviews and names no competitor", () => {
     expect(json).not.toMatch(/aggregateRating|"review"/i);
     expect(brandNames(json)).toEqual([]);
   });
