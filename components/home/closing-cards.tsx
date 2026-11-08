@@ -16,7 +16,10 @@ import { LogoMark } from "@/components/logo";
 import { DASHBOARD_URL } from "@/lib/links";
 
 /* ClosingCards — the reference's two big rounded panels:
- * 1) "Smart Insights"-style coming-soon split card → Wire's auto-routing;
+ * 1) "Smart Insights"-style coming-soon split card → automatic failover (a
+ *    payment whose channel stalls moves to the next one). Choosing the channel
+ *    (auto-routing) is live and listed on /features; failover is not yet, so
+ *    this card keeps its "Удахгүй" pill;
  * 2) "Finally sorted" consolidation card → many integrations vs one connection. */
 
 export function RoutingCard() {
@@ -30,14 +33,14 @@ export function RoutingCard() {
               Удахгүй
             </span>
             <h3 className="display mt-5 text-[clamp(30px,4vw,44px)]">
-              Авто-routing.
+              Автомат шилжилт.
               <br />
-              <span className="display-dim">Ухаалаг чиглүүлэлт.</span>
+              <span className="display-dim">Гүйлгээ тасрахгүй.</span>
             </h3>
             <p className="mt-4 max-w-md text-[15px] leading-relaxed text-[var(--color-muted)]">
-              Гүйлгээ бүр хамгийн найдвартай суваг руу автоматаар чиглэнэ. Суваг
-              саатвал дараагийн суваг руу шилжээд <Hl>гүйлгээ тасрахгүй</Hl> —
-              зөвхөн холбогдсон систем л үүнийг хийж чадна.
+              Сонгосон суваг саатвал төлбөр дараагийн идэвхтэй суваг руу өөрөө
+              шилжиж, <Hl>гүйлгээ тасрахгүй</Hl> — олон сувгийг нэг дор холбосон
+              систем л үүнийг хийж чадна.
             </p>
             <Button asChild size="lg" className="mt-7">
               <a href={DASHBOARD_URL}>
@@ -61,7 +64,7 @@ export function RoutingCard() {
                 <div className="flex items-center justify-between">
                   <span className="flex items-center gap-1.5 rounded-full bg-[var(--color-primary-soft)] px-2.5 py-1 text-[10px] font-semibold text-[var(--color-primary)]">
                     <Zap className="size-3" />
-                    Авто-routing
+                    Автомат шилжилт
                   </span>
                   <span className="text-[10px] text-[var(--color-faint)]">
                     5с өмнө
