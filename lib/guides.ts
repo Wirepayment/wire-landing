@@ -6,8 +6,9 @@ import { DASHBOARD_URL, DOCS_URL } from "@/lib/links";
 // JSON-LD and the llms.txt entry at once — one source, so they never drift.
 //
 // Facts only from what wire.mn, docs.wire.mn and the checkout already say in
-// public. No operator or competitor brand names (CLAUDE.md rule #9), no
-// invented numbers: the only fee fact is the home FAQ's "1%-иас эхэлнэ".
+// public. Connector names (lib/connectors.ts) are allowed on wire.mn since the
+// owner's 2026-11-08 decision; competitor brand names are not. No invented
+// numbers: the only fee fact is the home FAQ's "1%-иас эхэлнэ".
 
 export interface GuideStep {
   title: string;
@@ -57,7 +58,7 @@ const ACCOUNT_STEPS: GuideStep[] = [
   },
   {
     title: "Оператороо идэвхжүүлнэ",
-    body: "Dashboard-ын Холболтууд хэсгээс таны акаунтад идэвхжсэн оператороо сонгож маягт бөглөнө (бүртгэлийн мэдээлэл, хаяг, орлого хүлээн авах данс). Хяналтаар батлагдсаны дараа цахим гэрээ байгуулмагц холболт идэвхжинэ.",
+    body: "QPay, PayLink: dashboard-аас оператороо сонгож маягт бөглөнө (бүртгэлийн мэдээлэл, хаяг, орлого хүлээн авах данс). Хяналтаар батлагдсаны дараа цахим гэрээ байгуулмагц холболт идэвхжинэ. Toki, MonPay, StorePay, Pocket Zero: оператортой байгуулсан өөрийн гэрээ, түлхүүрээрээ dashboard-аас холбоно.",
   },
 ];
 
@@ -184,7 +185,7 @@ export const GUIDES: Guide[] = [
     line1: "Монголд картаар",
     line2: "төлбөр хэрхэн авах вэ?",
     answer:
-      "Wire-ийн төлбөрийн хуудас Visa, Mastercard болон дотоодын картаар төлөх сонголттой. Картын connector-ыг dashboard-аасаа идэвхжүүлж project дээрээ асаахад таны төлбөрийн линк болон checkout дээр картаар төлөх сонголт гарч, бусад сувгийн адил нэг dashboard-д тайлагнагдана.",
+      "Wire-ийн төлбөрийн хуудас Visa, Mastercard болон дотоодын картаар төлөх сонголттой. PayLink картын connector-ыг dashboard-аасаа идэвхжүүлж project дээрээ асаахад таны төлбөрийн линк болон checkout дээр картаар төлөх сонголт гарч, бусад сувгийн адил нэг dashboard-д тайлагнагдана.",
     stepsTitle: "Картын төлбөр идэвхжүүлэх",
     steps: [
       {
@@ -295,7 +296,7 @@ export const GUIDES: Guide[] = [
     line1: "Payment gateway",
     line2: "гэж юу вэ?",
     answer:
-      "Payment gateway бол таны бизнесийг төлбөрийн операторуудтай холбодог давхарга. Оператор бүртэй тусад нь техникийн холболт хийхийн оронд Wire-тэй нэг удаа холбогдоод банкны апп, цахим хэтэвч, QR, картын төлбөрийг нэг API, нэг dashboard-аар хүлээн авна.",
+      "Payment gateway бол таны бизнесийг төлбөрийн операторуудтай холбодог давхарга. Оператор бүртэй тусад нь техникийн холболт хийхийн оронд Wire-тэй нэг удаа холбогдоод банкны апп, цахим хэтэвч, QR, карт, хуваан төлөх төлбөрийг нэг API, нэг dashboard-аар хүлээн авна.",
     stepsTitle: "Төлбөр хэрхэн дамждаг вэ",
     steps: [
       {
@@ -327,11 +328,11 @@ export const GUIDES: Guide[] = [
     faqs: [
       {
         q: "Wire ямар төлбөр хүлээн авах вэ?",
-        a: "Банкны апп, цахим хэтэвч, QR төлбөр, карт зэрэг таны акаунтад идэвхжсэн Монголын төлбөрийн операторуудын сувгууд.",
+        a: "QR код, банкны апп (QPay), карт (PayLink), цахим хэтэвч (Toki, MonPay), хуваан төлөх (StorePay, Pocket Zero) — таны холбосон Монголын төлбөрийн операторуудын сувгууд.",
       },
       {
         q: "Оператор бүртэй гэрээ хийх үү?",
-        a: "Холболт бүрийн гэрээг dashboard дотроос ДАН-аар цахимаар байгуулна. Техникийн холболт нь ганцхан — Wire.",
+        a: "QPay, PayLink-ийн гэрээг dashboard дотроос ДАН-аар цахимаар байгуулна. Toki, MonPay, StorePay, Pocket Zero-д оператортой байгуулсан өөрийн гэрээгээ ашиглана. Аль ч тохиолдолд техникийн холболт нь ганцхан — Wire.",
       },
       {
         q: "Wire-ийг хэн ажиллуулдаг вэ?",
@@ -414,7 +415,7 @@ export const GUIDES: Guide[] = [
     line1: "Every payment,",
     line2: "one gateway.",
     answer:
-      "Wire is a payment gateway for businesses in Mongolia. One integration accepts payments through the Mongolian payment operators enabled on your account — bank apps, e-wallets, QR payments and cards — with ready-made payment links or a REST API, and all revenue in one dashboard.",
+      "Wire is a payment gateway for businesses in Mongolia. One integration accepts payments through Mongolian payment operators — QR and bank apps (QPay), cards (PayLink), e-wallets (Toki, MonPay) and buy-now-pay-later (StorePay, Pocket Zero) — with ready-made payment links or a REST API, and all revenue in one dashboard.",
     stepsTitle: "What you get",
     steps: [
       {
@@ -478,7 +479,7 @@ export const GUIDES: Guide[] = [
     line1: "How to accept online",
     line2: "payments in Mongolia",
     answer:
-      "Wire is a payment gateway for Mongolia. A business or individual seller in Mongolia signs up at app.wire.mn, verifies the owner once (phone and DAN, the national e-ID), activates the payment operators it wants, and then takes payments through hosted checkout, payment links or a REST API. Buyers pay with bank apps, e-wallets, QR or cards, and the money goes to the business's own bank account.",
+      "Wire is a payment gateway for Mongolia. A business or individual seller in Mongolia signs up at app.wire.mn, verifies the owner once (phone and DAN, the national e-ID), activates the payment operators it wants, and then takes payments through hosted checkout, payment links or a REST API. Buyers pay with bank apps, e-wallets, QR, cards or buy-now-pay-later, and the money goes to the business's own account.",
     stepsTitle: "From sign-up to the first payment",
     steps: [
       {
@@ -487,7 +488,7 @@ export const GUIDES: Guide[] = [
       },
       {
         title: "Activate an operator",
-        body: "In the dashboard, pick an operator enabled for your account and submit your business details and payout bank account. After review you sign the agreement electronically and the connection goes live.",
+        body: "For QPay or PayLink, submit your business details and payout bank account in the dashboard; after review you sign the agreement electronically and the connection goes live. For Toki, MonPay, StorePay or Pocket Zero, enter the keys from your own contract with the operator.",
       },
       {
         title: "Create a project and API key",
@@ -505,7 +506,7 @@ export const GUIDES: Guide[] = [
     faqs: [
       {
         q: "Which payment methods can buyers use?",
-        a: "Bank apps, e-wallets, QR payments and cards (Visa, Mastercard and domestic cards) — the channels of the Mongolian payment operators enabled on your account.",
+        a: "QR and bank apps (QPay), cards — Visa, Mastercard and domestic cards (PayLink), e-wallets (Toki, MonPay) and buy-now-pay-later (StorePay, Pocket Zero). QPay and PayLink are connected through Wire; the others with your own operator contract and keys, entered in the dashboard.",
       },
       {
         q: "What currency are amounts in?",

@@ -14,7 +14,7 @@ export const DOCS_SITE_URL = "https://docs.wire.mn";
 
 export const HOME_TITLE = "Wire — All-in-one Payment Gateway";
 export const HOME_DESCRIPTION =
-  "Бүх төлбөрөө нэг гарцаар. Банкны апп, цахим хэтэвч, зээлийн суваг — олон төлбөрийн системд нэг холболтоор. Бэлэн линк эсвэл API, орлого нэг dashboard-д. All-in-one payment gateway for Mongolia.";
+  "Бүх төлбөрөө нэг гарцаар. QPay, PayLink (карт), Toki, MonPay, StorePay, Pocket Zero — QR, карт, цахим хэтэвч, хуваан төлөх нэг холболтоор. Бэлэн линк эсвэл API, орлого нэг dashboard-д. All-in-one payment gateway for Mongolia.";
 
 export interface PublicPage {
   path: string;
@@ -32,15 +32,15 @@ export const PUBLIC_PAGES = [
     title: HOME_TITLE,
     description: HOME_DESCRIPTION,
     priority: 1,
-    updated: "2026-10-12",
+    updated: "2026-11-08",
   },
   {
     path: "/features",
     title: "Боломжууд — нэг холболт, олон суваг",
     description:
-      "Банк, хэтэвч, зээлийн апп — бүгд нэг API. Авто-routing, бодит цагийн мэдэгдэл, тайлан, MNT бүрэн дэмжлэг.",
+      "QR, банкны апп, карт, цахим хэтэвч, хуваан төлөх — QPay, PayLink, Toki, MonPay, StorePay, Pocket Zero нэг API-аар. Бодит цагийн мэдэгдэл, тайлан, MNT бүрэн дэмжлэг.",
     priority: 0.9,
-    updated: "2026-07-30",
+    updated: "2026-11-08",
   },
   {
     path: "/developers",
@@ -80,7 +80,7 @@ export const PUBLIC_PAGES = [
     description:
       "Вэб сайт, апп-даа QR, банкны апп, карт, цахим хэтэвчийн төлбөрийг нэг холболтоор хүлээн ав — бүртгэлээс эхний төлбөр хүртэлх 5 алхам.",
     priority: 0.8,
-    updated: "2026-10-25",
+    updated: "2026-11-08",
   },
   {
     path: "/guides/payment-link",
@@ -88,7 +88,7 @@ export const PUBLIC_PAGES = [
     description:
       "Facebook, Instagram, Messenger-ээр зардаг бол төлбөрийн линк үүсгээд хуваалц. Програмист хэрэггүй, нэг линкээр олон төлбөр авна.",
     priority: 0.8,
-    updated: "2026-10-25",
+    updated: "2026-11-08",
   },
   {
     path: "/guides/card-payments",
@@ -96,7 +96,7 @@ export const PUBLIC_PAGES = [
     description:
       "Visa, Mastercard болон дотоодын картаар төлбөр хүлээн ав. Картын connector-ыг dashboard-аас идэвхжүүлж, линк болон checkout дээрээ санал болго.",
     priority: 0.8,
-    updated: "2026-10-25",
+    updated: "2026-11-08",
   },
   {
     path: "/guides/qr-payments",
@@ -104,7 +104,7 @@ export const PUBLIC_PAGES = [
     description:
       "Төлбөр бүрт QR код болон банкны апп-ын deeplink. Монголын төлбөрийн операторуудын QR төлбөрийг нэг холболтоор хүлээн ав.",
     priority: 0.8,
-    updated: "2026-10-25",
+    updated: "2026-11-08",
   },
   {
     path: "/guides/payment-gateway",
@@ -112,7 +112,7 @@ export const PUBLIC_PAGES = [
     description:
       "Payment gateway хэрхэн ажилладаг, оператор бүртэй тусад нь холбогдохоос юугаараа ялгаатай вэ. Нэг API, нэг dashboard, нэг webhook.",
     priority: 0.8,
-    updated: "2026-10-25",
+    updated: "2026-11-08",
   },
   {
     path: "/guides/platform",
@@ -128,7 +128,7 @@ export const PUBLIC_PAGES = [
     description:
       "Accept bank-app, e-wallet, QR and card payments in Mongolia through one integration: payment links, hosted checkout, REST API and SDKs.",
     priority: 0.8,
-    updated: "2026-10-25",
+    updated: "2026-11-08",
     lang: "en",
   },
   {
@@ -137,7 +137,7 @@ export const PUBLIC_PAGES = [
     description:
       "Sign up, verify once, activate an operator and take payments in MNT with hosted checkout, payment links or the Wire REST API.",
     priority: 0.7,
-    updated: "2026-10-25",
+    updated: "2026-11-08",
     lang: "en",
   },
   {

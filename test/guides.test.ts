@@ -51,7 +51,7 @@ describe("answer pages", () => {
     expect(layout).toContain('href="/en"');
   });
 
-  it("name no operator or competitor brand", () => {
+  it("name no competitor or non-connector brand", () => {
     expect(brandNames(JSON.stringify(GUIDES))).toEqual([]);
   });
 

@@ -28,7 +28,7 @@ export function Hero() {
         </h1>
 
         <p className="rise-in mx-auto mt-6 max-w-xl text-[15px] leading-relaxed text-[var(--color-muted)] [animation-delay:160ms] sm:text-[17px]">
-          Wire банкны апп, цахим хэтэвч, зээлийн сувгуудыг{" "}
+          Wire QR, банкны апп, карт, цахим хэтэвч, хуваан төлөх сувгуудыг{" "}
           <Hl>нэг холболтод нэгтгэнэ</Hl>. Бэлэн линк эсвэл API — орлогоо нэг
           dashboard-оос хянаарай.
         </p>

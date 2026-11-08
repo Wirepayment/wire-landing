@@ -1,28 +1,31 @@
 import { createHash } from "node:crypto";
 
-// Public copy must stay operator-agnostic (CLAUDE.md rule #9). This repo is
-// public, so the guard lists the names it forbids as hashes, not in clear: a
-// guard that spells out every operator and competitor would itself break the
-// rule. Card schemes (Visa, Mastercard) are not operators and stay allowed.
+// Public copy must not name competitors or operators that are not Wire
+// connectors (CLAUDE.md rule #9). Owner decision 2026-11-08: wire.mn names the
+// six live connectors (lib/connectors.ts — QPay, PayLink, StorePay, Toki,
+// MonPay, Pocket Zero) and shows their logos, so those names are NOT in the
+// lists below; every other operator, bank, processor and competitor stays
+// forbidden. Card schemes (Visa, Mastercard) are not operators and stay
+// allowed.
+//
+// This repo is public, so the guard lists the names it forbids as hashes, not
+// in clear: a guard that spells out every competitor would itself break the
+// rule.
 //
 // Matching: the text is split into words; a word, or two adjacent words
 // joined with or without a space, is checked against EXACT (Latin names,
 // whole word) and against PREFIX (Cyrillic names, so inflected forms such as
 // a genitive suffix still match). To add a name: sha256 of its lowercase
-// form, first 16 hex chars.
+// form, first 16 hex chars. Never add a connector name here — the connector
+// test in brand-names.test.ts fails if one comes back.
 const EXACT = new Set([
-  "b841a72ef109b4c6",
   "2bed2032ed3d8300",
   "6ecdcb213b610b7e",
-  "ef2477fdaa02c661",
   "b09d3966dc6f7664",
-  "946b3214b4ad1622",
   "dd3901003412e4d7",
-  "687021e1d987c187",
   "40d8f598b47ca059",
   "fcb248ee6d38bd1b",
   "c6a6ea89bb6fef43",
-  "044984e115110d53",
   "1b2455e9fef29158",
   "724ec1a3f9b8f747",
 ]);
