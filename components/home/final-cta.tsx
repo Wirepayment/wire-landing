@@ -25,7 +25,7 @@ const COLUMNS: Item[][] = [
     { label: "Платформ модуль" },
   ],
   [
-    { label: "Авто-routing", soon: "Удахгүй" },
+    { label: "Авто-routing" },
     { label: "Картын төлбөр" },
     { label: "Тайлан экспорт" },
     { label: "Smart insights", soon: "Roadmap" },
