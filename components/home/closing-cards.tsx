@@ -16,10 +16,8 @@ import { LogoMark } from "@/components/logo";
 import { DASHBOARD_URL } from "@/lib/links";
 
 /* ClosingCards — the reference's two big rounded panels:
- * 1) "Smart Insights"-style coming-soon split card → automatic failover (a
- *    payment whose channel stalls moves to the next one). Choosing the channel
- *    (auto-routing) is live and listed on /features; failover is not yet, so
- *    this card keeps its "Удахгүй" pill;
+ * 1) split card → automatic failover: an auto-routed payment whose channel is
+ *    down moves to the next ranked one (wire-api Confirm, live since 2026-11-08);
  * 2) "Finally sorted" consolidation card → many integrations vs one connection. */
 
 export function RoutingCard() {
@@ -30,7 +28,7 @@ export function RoutingCard() {
           <div className="flex flex-col items-start justify-center p-8 sm:p-12">
             <span className="badge-pill">
               <LogoMark className="size-3.5" />
-              Удахгүй
+              Шинэ
             </span>
             <h3 className="display mt-5 text-[clamp(30px,4vw,44px)]">
               Автомат шилжилт.
@@ -38,9 +36,9 @@ export function RoutingCard() {
               <span className="display-dim">Гүйлгээ тасрахгүй.</span>
             </h3>
             <p className="mt-4 max-w-md text-[15px] leading-relaxed text-[var(--color-muted)]">
-              Сонгосон суваг саатвал төлбөр дараагийн идэвхтэй суваг руу өөрөө
-              шилжиж, <Hl>гүйлгээ тасрахгүй</Hl> — олон сувгийг нэг дор холбосон
-              систем л үүнийг хийж чадна.
+              Автоматаар чиглүүлсэн төлбөрийн суваг саатвал төлбөр дараагийн
+              идэвхтэй суваг руу өөрөө шилжиж, <Hl>гүйлгээ тасрахгүй</Hl> — олон
+              сувгийг нэг дор холбосон систем л үүнийг хийж чадна.
             </p>
             <Button asChild size="lg" className="mt-7">
               <a href={DASHBOARD_URL}>
@@ -74,8 +72,8 @@ export function RoutingCard() {
                   Гүйлгээ өөр суваг руу шилжлээ
                 </p>
                 <p className="mt-1.5 text-[12px] leading-relaxed text-[var(--color-muted)]">
-                  Сонгосон суваг 3 секунд хариу өгөөгүй тул дараагийн идэвхтэй
-                  суваг руу автоматаар чиглүүлэв. Гүйлгээ амжилттай.
+                  Сонгосон суваг хариу өгөөгүй тул дараагийн идэвхтэй суваг руу
+                  автоматаар чиглүүлэв. Гүйлгээ амжилттай.
                 </p>
                 <div className="mt-3 flex flex-wrap gap-1.5">
                   {["PAY-1024", "₮176,000", "Амжилттай"].map((c) => (
