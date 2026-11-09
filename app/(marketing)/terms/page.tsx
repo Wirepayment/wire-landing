@@ -72,10 +72,10 @@ export default function TermsPage() {
         <p className="mt-8 text-xs text-[var(--color-faint)]">
           Сүүлд шинэчилсэн: 2026-06-12 · Асуулт байвал{" "}
           <a
-            href="mailto:support@wire.mn"
+            href="mailto:usukhbayar@buildry.cloud"
             className="text-[var(--color-primary)] hover:opacity-80"
           >
-            support@wire.mn
+            usukhbayar@buildry.cloud
           </a>
         </p>
       </div>

@@ -174,10 +174,10 @@ export default async function StatusPage() {
         <p className="mt-6 text-center text-xs text-[var(--color-faint)]">
           Хуудсыг сэргээх бүрт системүүдийг шууд шалгана. Доголдол үргэлжилбэл{" "}
           <a
-            href="mailto:support@wire.mn"
+            href="mailto:usukhbayar@buildry.cloud"
             className="text-[var(--color-primary)] hover:underline"
           >
-            support@wire.mn
+            usukhbayar@buildry.cloud
           </a>
           .
         </p>
