@@ -4,11 +4,12 @@ import type { Locale } from "./locales";
 import { routing } from "./routing";
 import mn from "@/messages/mn.json";
 import en from "@/messages/en.json";
+import zh from "@/messages/zh.json";
 
 export type Messages = typeof mn;
 
-// TEMP until translations: zh and ko show the Mongolian copy.
-const MESSAGES: Record<Locale, Messages> = { mn, en, zh: mn, ko: mn };
+// TEMP until translations: ko shows the Mongolian copy.
+const MESSAGES: Record<Locale, Messages> = { mn, en, zh, ko: mn };
 
 export default getRequestConfig(async ({ requestLocale }) => {
   const requested = await requestLocale;

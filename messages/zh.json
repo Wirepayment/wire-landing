@@ -1,0 +1,630 @@
+{
+  "common": {
+    "home": "首页",
+    "features": "功能",
+    "verification": "身份验证",
+    "guide": "使用指南",
+    "links": "支付链接",
+    "developers": "开发者",
+    "status": "状态",
+    "terms": "服务条款",
+    "docs": "文档"
+  },
+  "nav": {
+    "homeAria": "Wire 首页",
+    "signIn": "登录",
+    "openMenu": "打开菜单",
+    "closeMenu": "关闭菜单",
+    "language": "选择语言"
+  },
+  "footer": {
+    "tagline": "所有支付，尽在一个网关——一个连接，接入蒙古国各支付运营商。",
+    "linksHeading": "链接",
+    "solutionsHeading": "解决方案",
+    "legalHeading": "法律",
+    "contactHeading": "联系我们",
+    "facebook": "Facebook 主页",
+    "rights": "© {year} {company} · wire.mn。保留所有权利。",
+    "byBuildry": "A product by Buildry ↗"
+  },
+  "home": {
+    "hero": {
+      "badge": "一站式支付网关",
+      "titleLine1": "所有支付，",
+      "titleLine2": "尽在一个网关。",
+      "lead": "Wire 将二维码、银行 App、银行卡、电子钱包和分期付款等渠道<hl>整合为一个连接</hl>。使用现成的支付链接或 API，在一个管理后台中掌握您的全部收入。",
+      "start": "开始使用",
+      "howItWorks": "了解运作方式",
+      "dashboardBadge": "实时管理后台"
+    },
+    "dashboardMock": {
+      "storeName": "Wire Store",
+      "search": "搜索",
+      "groups": {
+        "operations": "运营",
+        "finance": "财务",
+        "settings": "设置"
+      },
+      "nav": {
+        "overview": "概览",
+        "transactions": "交易",
+        "paymentLinks": "支付链接",
+        "accounts": "账户",
+        "reports": "报表",
+        "channels": "渠道",
+        "settings": "设置"
+      },
+      "userInitials": "BT",
+      "userName": "B. Temuulen",
+      "pageTitle": "概览",
+      "monthRevenue": "本月收入",
+      "monthRevenueValue": "₮4,820 万",
+      "growth": "较上月增长 ₮910 万",
+      "month": "{n}月",
+      "latest": "最近交易",
+      "columns": {
+        "transaction": "交易",
+        "channel": "渠道",
+        "amount": "金额",
+        "date": "日期",
+        "status": "状态"
+      },
+      "channels": {
+        "bankApp": "银行 App",
+        "wallet": "电子钱包",
+        "qr": "二维码支付"
+      },
+      "statuses": {
+        "succeeded": "成功",
+        "pending": "处理中"
+      },
+      "stats": {
+        "todayRevenue": "今日收入",
+        "successRate": "成功交易",
+        "activeLinks": "有效链接",
+        "connectedChannels": "已连接渠道"
+      }
+    },
+    "getStarted": {
+      "badge": "开始使用",
+      "line1": "您的首笔收款，",
+      "line2": "只需五分钟。",
+      "lead": "无需冗长的入驻流程，也无需复杂的配置——注册、账户绑定和管理后台<hl>全部免费</hl>。",
+      "minutes": "分钟",
+      "signup": {
+        "title": "注册并完成验证",
+        "desc": "免费注册。通过手机 + DAN（蒙古国政府电子身份认证）完成一次 KYC 验证，此后无需重复。",
+        "heading": "身份验证",
+        "phone": "手机号码",
+        "dan": "DAN（KYC）",
+        "done": "已验证 ✓"
+      },
+      "account": {
+        "title": "绑定账户",
+        "desc": "指定用于接收收入的收款账户。无协议预付费，也无开通费。",
+        "heading": "绑定账户",
+        "chooseBank": "选择银行",
+        "connect": "绑定"
+      },
+      "revenue": {
+        "title": "开始收款",
+        "desc": "通过现成的链接或 API 收款，每笔交易都会实时显示在管理后台中。",
+        "today": "今日收入",
+        "newPayment": "新收款"
+      }
+    },
+    "connectors": {
+      "badge": "支付渠道",
+      "line1": "六大渠道，",
+      "line2": "一个连接。",
+      "lead": "二维码、银行卡、电子钱包、分期付款——所有渠道的交易都汇集于<hl>一个 API、一个管理后台</hl>。",
+      "logoAlt": "{name} 标志"
+    },
+    "featureBlocks": {
+      "badge": "平台",
+      "line1": "从链接到 API，",
+      "line2": "一应俱全。",
+      "lead": "零售、订单、发票——所有收款方式汇集于一个网关。<hl>新增渠道无需修改代码。</hl>",
+      "start": "开始使用",
+      "links": {
+        "line1": "支付链接，",
+        "line2": "秒级生成。",
+        "copy": "在管理后台创建链接，通过聊天、社交媒体帖子或电子邮件分享——<hl>人人都能轻松上手</hl>。付款完成后，您会立即收到通知。"
+      },
+      "api": {
+        "line1": "一个 API，",
+        "line2": "多种渠道。",
+        "copy": "简洁的 REST API、SDK 以及带签名的 Webhook。<hl>只需一次集成</hl>，即可通过账户中已启用的所有渠道收款。"
+      },
+      "docsLink": "开发者文档 →",
+      "webhooks": {
+        "line1": "实时",
+        "line2": "通知。",
+        "copy": "<hl>付款一到账，即发送电子邮件 + Webhook 通知。</hl>每个事件都带有签名，可逐条验证通知的真实性。"
+      },
+      "linkMock": {
+        "title": "新建支付链接",
+        "name": "名称",
+        "nameValue": "订单 #1024",
+        "amount": "金额",
+        "create": "创建链接",
+        "copy": "复制",
+        "share": "聊天、帖子、电子邮件——随处分享"
+      },
+      "apiMock": {
+        "amountDue": "应付金额",
+        "channels": {
+          "bankApp": "银行 App",
+          "wallet": "电子钱包",
+          "qr": "二维码支付"
+        },
+        "pay": "支付"
+      },
+      "webhookMock": {
+        "title": "Webhook events",
+        "verified": "Signature verified",
+        "delivered": "Delivered"
+      }
+    },
+    "closingCards": {
+      "routing": {
+        "badge": "新功能",
+        "line1": "自动切换，",
+        "line2": "交易不中断。",
+        "copy": "当自动路由的支付渠道出现故障时，付款会自动切换到下一个可用渠道，<hl>交易不会中断</hl>——只有将多个渠道集中连接的系统才能做到这一点。",
+        "start": "开始使用",
+        "chip": "自动切换",
+        "ago": "5 秒前",
+        "eventTitle": "交易已切换至其他渠道",
+        "eventBody": "所选渠道未响应，已自动路由至下一个可用渠道。交易成功。",
+        "succeeded": "成功"
+      },
+      "consolidation": {
+        "line1": "无需多头集成，",
+        "line2": "只需一个连接。",
+        "copy": "过去需要为每个支付运营商分别搭建集成，如今 Wire <hl>以一个连接全部取代</hl>。",
+        "replaces": "取代：",
+        "rails": {
+          "qr": "二维码支付",
+          "bankApp": "银行 App",
+          "card": "银行卡",
+          "wallet": "电子钱包",
+          "installment": "分期付款"
+        },
+        "checks": {
+          "oneApi": "一个 API、一套签名、一个管理后台",
+          "noCode": "新增渠道无需修改代码",
+          "oneReport": "所有交易汇总于一份报表"
+        },
+        "stats": {
+          "total": "总收入",
+          "pending": "处理中",
+          "average": "平均交易额"
+        },
+        "channels": {
+          "bankApp": "银行 App",
+          "wallet": "电子钱包",
+          "qr": "二维码支付"
+        },
+        "footer": "所有渠道 · 一份报表 · 2026-07"
+      }
+    },
+    "faq": {
+      "badge": "帮助",
+      "heading": "常见问题。"
+    },
+    "finalCta": {
+      "heading": "所有支付，一个网关。",
+      "lead": "免费注册。绑定账户即可开始收款——<hl>仅对成功交易收取手续费</hl>。",
+      "items": {
+        "paymentLink": "支付链接",
+        "dashboard": "实时管理后台",
+        "qr": "二维码支付",
+        "projects": "多项目、多账户",
+        "api": "REST API + SDK",
+        "webhooks": "Webhook + 签名",
+        "idempotency": "幂等性（Idempotency）",
+        "platform": "平台模块",
+        "routing": "自动路由",
+        "cards": "银行卡支付",
+        "export": "报表导出",
+        "insights": "智能洞察"
+      },
+      "roadmap": "路线图",
+      "start": "开始使用"
+    }
+  },
+  "features": {
+    "intro": {
+      "badge": "多渠道 · 一次集成",
+      "line1": "所有渠道，",
+      "line2": "汇于一个连接。",
+      "lead": "二维码、银行 App、银行卡、电子钱包、分期付款——无论买家选择哪种方式，<hl>您只需管理一个连接</hl>。"
+    },
+    "start": "开始使用",
+    "rails": {
+      "qr": {
+        "label": "二维码 · 银行",
+        "items": "二维码 · 银行 App",
+        "desc": "扫描二维码即可付款——在手机上会直接打开银行 App。"
+      },
+      "card": {
+        "label": "银行卡",
+        "items": "Visa · Mastercard · 本地银行卡",
+        "desc": "买家直接在支付页面上用银行卡付款。"
+      },
+      "wallet": {
+        "label": "电子钱包",
+        "items": "钱包 App",
+        "desc": "买家通过二维码、深度链接（deeplink）或手机号码，在钱包 App 中付款。"
+      },
+      "installment": {
+        "label": "分期付款",
+        "items": "分期付款 · 信贷",
+        "desc": "买家可将所购商品的金额分期支付。"
+      }
+    },
+    "logoAlt": "{name} 标志",
+    "modeLine": "<b>{label}</b>——{hint}",
+    "grid": {
+      "badge": "功能",
+      "line1": "API 之外，",
+      "line2": "所需一切。",
+      "lead": "无需为每个支付运营商分别搭建技术连接——一个连接就足够。"
+    },
+    "items": {
+      "routing": {
+        "title": "自动路由",
+        "desc": "未指定渠道的付款，会根据过去 24 小时的成功率、速度和金额限额，自动路由至最合适的渠道，并跳过出现故障的渠道。"
+      },
+      "guarantee": {
+        "title": "三重保障",
+        "desc": "Webhook + 主动查询 + 每日对账——确保付款不会丢失。"
+      },
+      "notifications": {
+        "title": "实时通知",
+        "desc": "付款一到账，即发送电子邮件 + Webhook 通知。通知选项由您自行管理。"
+      },
+      "reports": {
+        "title": "报表与历史记录",
+        "desc": "交易、发票、退款——全部集中于一个管理后台，支持筛选与搜索。"
+      },
+      "mnt": {
+        "title": "全面支持 MNT",
+        "desc": "所有金额均以蒙古图格里克（MNT）计价，不含小数。对账清晰，不会混淆。"
+      },
+      "ecosystem": {
+        "title": "经过验证的生态",
+        "desc": "每位所有者都通过手机 + DAN（蒙古国政府电子身份认证）完成验证——您的合作伙伴值得信赖。"
+      }
+    }
+  },
+  "developers": {
+    "intro": {
+      "badge": "10 分钟完成首笔收款",
+      "line1": "专为开发者",
+      "line2": "打造。",
+      "lead": "清晰易懂的 REST API、6 种语言的现成 SDK（Go、Python、Node、PHP、Ruby、.NET），以及自动通知每笔付款的 Webhook——<hl>几分钟内即可开始集成</hl>。"
+    },
+    "docs": "查看文档",
+    "apiKey": "获取 API 密钥",
+    "grid": {
+      "badge": "API · SDK · 平台",
+      "line1": "强大的 API，",
+      "line2": "轻松的集成。",
+      "lead": "简洁的 REST API、现成的 SDK、带签名的 Webhook。平台可使用一个密钥连接多个商户，并通过一个渠道收款。"
+    },
+    "items": {
+      "rest": {
+        "title": "REST API",
+        "desc": "PaymentIntent / Charge / Refund——可预期的资源模型，OpenAPI 3.1。"
+      },
+      "sdk": {
+        "title": "8 个 SDK",
+        "desc": "Go · Python · Node · PHP · Ruby · .NET + checkout JS/iOS——均已在各自的软件包仓库上线。"
+      },
+      "webhooks": {
+        "title": "带签名的 Webhook",
+        "desc": "HMAC-SHA256、重试 + 死信队列（dead-letter）、固定出口 IP，便于加入白名单。"
+      },
+      "platform": {
+        "title": "平台 / 代理商",
+        "desc": "使用一个密钥连接多个商户，并通过一个渠道收款。"
+      },
+      "idempotency": {
+        "title": "幂等性（Idempotency）",
+        "desc": "安全重试——通过 Idempotency-Key 防止重复扣款。"
+      }
+    }
+  },
+  "links": {
+    "intro": {
+      "badge": "人人适用 · 简单易用",
+      "line1": "创建链接，",
+      "line2": "随手分享。",
+      "lead": "小商店、服务业、自由职业者——<hl>无需程序员</hl>。创建链接，通过聊天、帖子或电子邮件发送，即可收款。"
+    },
+    "create": "创建链接",
+    "line1": "一个链接，",
+    "line2": "多次收款。",
+    "perks": {
+      "fast": "在管理后台内秒级创建",
+      "amount": "固定金额或开放金额（由买家自行输入）",
+      "reusable": "可重复使用——一个链接，多次收款",
+      "share": "二维码、复制按钮，分享到 FB/Instagram/LinkedIn 时附带图片预览",
+      "live": "每笔付款都实时显示在管理后台并发送通知"
+    },
+    "showcase": {
+      "title": "月度会员",
+      "active": "有效",
+      "amount": "金额",
+      "copy": "复制",
+      "payments": "付款笔数",
+      "collected": "已收金额"
+    }
+  },
+  "guide": {
+    "intro": {
+      "badge": "入门指南",
+      "line1": "从注册",
+      "line2": "到开始收款",
+      "lead": "新商户如何在 Wire 上注册、完成身份验证、创建项目并启用运营商连接——完整流程，附真实界面截图。"
+    },
+    "tocAria": "指南目录",
+    "phases": {
+      "signup": {
+        "tag": "阶段 A",
+        "title": "注册与身份验证",
+        "intro": "Wire 不设单独的密码——您使用 Google 账户登录。由于这是用于收款的金融服务，每位所有者都需完成手机 + DAN（蒙古国政府电子身份认证）两步验证。两者都只需完成一次——无论之后开设多少企业或项目，都无需重复。"
+      },
+      "project": {
+        "tag": "阶段 B",
+        "title": "创建项目",
+        "intro": "<b>企业</b> = 拥有 KYC、银行账户和运营商注册信息的主体。<b>项目</b> = 其下的集成环境：拥有自己的 API 密钥、一个 Webhook 和一个收银台模板。一个企业下可以有多个项目，一位用户也可以开设多个企业。"
+      },
+      "connector": {
+        "tag": "阶段 C",
+        "title": "连接运营商",
+        "intro": "要开始收款，需为您的企业至少连接一个支付运营商。流程：<b>填写并提交表单 → 审核批准 → 在线签署电子协议 → 开通收款</b>。协议在批准<em>之后</em>签署——提交申请时无需协议。下方截图中的运营商名称和编号已做通用化处理——您的账户中会显示已为您启用的运营商的真实名称。"
+      },
+      "integration": {
+        "tag": "阶段 D",
+        "title": "集成设置",
+        "intro": "运营商启用后，技术集成需要以下两项。无需编写代码，也可以立即开始使用支付链接和收银台。"
+      }
+    },
+    "steps": {
+      "s1": {
+        "title": "使用 Google 登录",
+        "desc": "访问 <b>app.wire.mn</b>，点击<ui>使用 Google 登录</ui>。首次登录时会自动创建新账户。",
+        "caption": "app.wire.mn/signin——使用 Google 登录"
+      },
+      "s2": {
+        "title": "输入手机号码",
+        "desc": "新用户会直接进入身份验证页面。输入您的手机号码，然后点击<ui>验证</ui>。",
+        "caption": "身份验证 1/2——手机号码"
+      },
+      "s3": {
+        "title": "发送短信完成验证",
+        "desc": "将屏幕上显示的验证码<b>从您本人的手机</b>以短信发送至指定的短号码——由您主动发送，而不是等待接收短信。发送后页面会自动继续。",
+        "caption": "验证码 + 短号码，等待短信中"
+      },
+      "s4": {
+        "title": "开始 DAN 验证",
+        "desc": "第二步——通过政府 DAN 系统验证您的个人身份信息。点击<ui>通过 DAN 验证</ui>。",
+        "caption": "身份验证 2/2——DAN"
+      },
+      "s5": {
+        "title": "在 sso.gov.mn 上授权",
+        "desc": "您将跳转至政府统一登录系统，使用本人的 DAN 账户登录，并授权传输您的信息。成功后会自动返回。",
+        "caption": "DAN——身份认证与登录系统"
+      },
+      "s6": {
+        "title": "确认已通过验证",
+        "desc": "在个人资料页面中，确认手机和 DAN 均显示为<ui>已验证</ui>。此后所有功能均已开放。",
+        "caption": "个人资料——已完成全部验证"
+      },
+      "s7": {
+        "title": "创建新项目——命名",
+        "desc": "在左上角的项目选择器中点击<ui>创建新项目</ui>。输入名称并选择企业选项。首个项目不会显示此选项——企业会随项目自动创建。",
+        "caption": "使用当前企业（默认）——注册信息、账户和连接都会沿用"
+      },
+      "s8": {
+        "title": "或者：注册新企业",
+        "desc": "如需为独立的法人实体或其他业务开设全新的企业，请选择第二个选项。无需再次验证手机/DAN；KYC、银行账户和运营商申请将在新企业下单独进行。",
+        "caption": "注册新企业——拥有独立的 KYC、账户和申请"
+      },
+      "s9": {
+        "title": "保存您的 secret key",
+        "desc": "项目创建后，<code>sk_live_…</code> secret key 只会显示<b>一次</b>。请通过<ui>复制</ui>或<ui>下载 .txt</ui>按钮将其保存到密码管理器中——它不会再次显示；如有遗失，请创建新的密钥。",
+        "caption": "一次性显示密钥（图中的密钥已失效）"
+      },
+      "s10": {
+        "title": "项目概览",
+        "desc": "新项目的首页。通过左侧菜单可进入交易、支付链接、收银台、账户、报表和设置。",
+        "caption": "概览——新项目的起点"
+      },
+      "s11": {
+        "title": "在“连接”页面中选择",
+        "desc": "设置 → 渠道。从您账户已启用的运营商中选择要连接的运营商。一个项目可以连接多个运营商，每个运营商只能连接一次。",
+        "caption": "连接——可用运营商列表（名称已通用化）"
+      },
+      "s12": {
+        "title": "开始与快速通道",
+        "desc": "运营商页面会显示 3 个阶段的进度。如果您此前已在其他企业下通过审核，会出现<ui>直接使用现有商户注册</ui>卡片——选择后无需新申请、无需等待，即可直接使用。如为新企业，请填写 5 步表单（个人 / 机构）。",
+        "caption": "3 个进度阶段、现有注册卡片、表单第 1 步（运营商编号已隐藏）"
+      },
+      "s13": {
+        "title": "表单 2/5——基本信息",
+        "desc": "登记号、姓名、企业名称、业务类型。点击<ui>使用 DAN 已验证信息填写</ui>卡片上的<ui>使用</ui>按钮，即可一键填写。",
+        "caption": "2/5 信息——DAN 自动填写（登记号已隐藏）"
+      },
+      "s14": {
+        "title": "表单 3/5——地址与联系方式",
+        "desc": "城市、区、详细地址、电话、电子邮件。也可以使用 DAN 中的地址和个人资料信息一键填写。",
+        "caption": "3/5 地址——两张自动填写卡片（地址已隐藏）"
+      },
+      "s15": {
+        "title": "表单 4/5——收款账户",
+        "desc": "选择用于接收收入的银行账户，或通过<ui>绑定其他账户</ui>新增账户。此前绑定的账户会直接列出。",
+        "caption": "4/5 账户（账号已隐藏）"
+      },
+      "s16": {
+        "title": "表单 5/5——检查并提交",
+        "desc": "在一个页面上核对所有信息，然后点击<ui>提交申请</ui>。表单每一步都会自动保存，即使中途退出，之后也可以继续填写。",
+        "caption": "5/5 检查——汇总（个人信息已隐藏）"
+      },
+      "s17": {
+        "title": "确认提交",
+        "desc": "在最后的窗口中点击<ui>提交</ui>，申请即进入审核。",
+        "caption": "“是否提交申请？”窗口——最终确认"
+      },
+      "s18": {
+        "title": "等待审核 → 协议 → 开通",
+        "desc": "申请进入<ui>审核中</ui>状态。一经批准，您会收到电子邮件通知，运营商页面上会出现<b>签署电子协议</b>部分——签署协议后，连接即刻启用，您便可开始收款。",
+        "caption": "审核中的申请——可以取消并重新提交"
+      },
+      "s19": {
+        "title": "管理 API 密钥",
+        "desc": "设置 → API 密钥。轮换（rotate）密钥，并使旧密钥失效。每个密钥只能访问其所属项目的数据。",
+        "caption": "API 密钥——每个项目都有自己的 sk_live 密钥"
+      },
+      "s20": {
+        "title": "连接 Webhook",
+        "desc": "设置 → Webhook。登记用于接收支付事件的服务器 URL，并进行<b>验证</b>。每个项目只有一个 Webhook endpoint；更改 URL 后，在新地址验证通过之前，事件仍会发送到旧地址。完整的 API 参考——docs.wire.mn。",
+        "caption": "Webhook——登记并验证 endpoint"
+      }
+    },
+    "notes": {
+      "s8": "如果选错了选项：没有数据的项目可以通过运营商页面上的<ui>直接使用现有商户注册</ui>卡片转移到其他企业（第 12 步）。",
+      "s18": "<b>注意：</b>即使已获批准，在签署协议之前，连接仍保持未启用状态。已获批准却无法使用的最常见原因——未完成签署协议这一步。"
+    }
+  },
+  "terms": {
+    "legalNotice": "本页为译文，以蒙古语版本为准。",
+    "badge": "法律",
+    "heading": "服务条款。",
+    "lead": "注册并登录 Wire，即表示您接受以下条款。",
+    "sections": {
+      "service": {
+        "title": "1. 服务",
+        "body": "Wire（wire.mn）是一个通过一次集成连接蒙古国各支付运营商的支付网关。您可通过管理后台收款、查看交易并管理设置。"
+      },
+      "account": {
+        "title": "2. 账户与登录",
+        "body": "通过 Google 账户登录——我们不存储密码。您的电子邮件地址是账户的主要识别标识。"
+      },
+      "kyc": {
+        "title": "3. 身份验证（KYC）",
+        "body": "由于这是金融服务，每位所有者需要（a）通过短信验证手机号码，（b）通过蒙古国政府 DAN 电子身份认证系统（sso.gov.mn）验证个人身份信息。从 DAN 获取的信息（姓名、登记号、地址）将加密存储。每位公民只能验证一个账户。"
+      },
+      "privacy": {
+        "title": "4. 信息保护",
+        "body": "个人信息和银行账户信息采用 AES-256 加密存储。我们不会将您的信息用于广告，也不会出售给第三方。仅在向支付运营商办理商户注册所需的范围内共享。"
+      },
+      "payments": {
+        "title": "5. 支付信息",
+        "body": "交易金额、状态及相关元数据将被保存，用于对账和解决争议。所有金额均以蒙古图格里克（MNT）记录。"
+      },
+      "duties": {
+        "title": "6. 用户义务",
+        "body": "请妥善保管您的 API 密钥。禁止将本服务用于非法商品或服务的收款。一经发现违规，账户可能被暂停或永久关闭。"
+      },
+      "termination": {
+        "title": "7. 终止",
+        "body": "您可以随时删除项目并退出服务。根据财务记录相关法律法规，部分交易记录将在规定期限内保留。"
+      }
+    },
+    "updated": "最近更新：2026-06-12 · 如有疑问，请联系 <link>{email}</link>"
+  },
+  "verification": {
+    "intro": {
+      "badge": "KYC · 2 步 · 约 2 分钟",
+      "line1": "每位所有者，",
+      "line2": "均已验证。",
+      "lead": "Wire 是用于收款的金融服务。因此，每次开户都需要进行手机和个人身份验证——<hl>既保护您，也保护您的客户</hl>。"
+    },
+    "phone": {
+      "chip": "第 1 步 · 手机",
+      "line1": "手机号码，",
+      "line2": "一条短信。",
+      "copy": "输入号码后，<hl>向指定短号码发送一条短信即可完成验证</hl>。无需记忆验证码，也无需安装 App——从您本人手机发出的短信本身就是证明。",
+      "bullets": {
+        "oneAccount": "一个手机号码 = 一个账户",
+        "auto": "通常 30 秒内自动识别",
+        "alerts": "通知和重要提醒将发送至此号码"
+      }
+    },
+    "dan": {
+      "chip": "第 2 步 · DAN",
+      "line1": "个人身份验证，",
+      "line2": "通过政府 DAN 系统。",
+      "copy": "您将跳转至政府统一登录系统 DAN（蒙古国政府电子身份认证，sso.gov.mn），经您本人授权后登录。<hl>Wire 永远看不到您的密码</hl>——我们只会收到验证结果（姓名、登记号）。",
+      "bullets": {
+        "official": "官方政府系统——无需额外提交证件",
+        "once": "仅需一次，约 1 分钟——无需重复",
+        "signed": "经签名（signed）的通道——数据在传输中不会被篡改"
+      }
+    },
+    "phoneMock": {
+      "title": "验证手机",
+      "yourNumber": "您的号码",
+      "sent": "已发送至短号码",
+      "recognized": "30 秒内已自动识别"
+    },
+    "danMock": {
+      "title": "DAN — sso.gov.mn",
+      "gov": "政府系统",
+      "name": "姓名",
+      "nameValue": "B. Temuulen",
+      "register": "登记号",
+      "registerValue": "UK92******91",
+      "noPassword": "Wire 永远看不到您的密码"
+    },
+    "privacy": {
+      "badge": "隐私",
+      "line1": "您的信息，",
+      "line2": "始终属于您。",
+      "items": {
+        "encrypted": {
+          "title": "加密存储",
+          "desc": "个人信息采用 AES-256 加密。屏幕上仅显示姓名以及登记号的首尾部分（已脱敏）。"
+        },
+        "oneCitizen": {
+          "title": "一位公民 = 一个账户",
+          "desc": "每位公民的信息只能验证一个账户——防止重复注册和欺诈。"
+        },
+        "noThirdParty": {
+          "title": "不提供给第三方",
+          "desc": "我们不会将您的信息用于广告，也不会出售。仅在 KYC 所需的范围内使用。"
+        }
+      }
+    }
+  },
+  "status": {
+    "heading": "系统状态。",
+    "overall": {
+      "operational": "所有系统运行正常",
+      "degraded": "部分系统出现延迟",
+      "down": "部分系统出现故障"
+    },
+    "health": {
+      "operational": "正常",
+      "degraded": "延迟",
+      "down": "故障"
+    },
+    "checked": "更新时间：{checkedAt}（乌兰巴托时间）",
+    "components": {
+      "api": "API",
+      "dashboard": "管理后台",
+      "checkout": "收银台",
+      "website": "网站"
+    },
+    "footer": "每次刷新本页面都会实时检测各系统。如故障持续，请联系 <link>{email}</link>。"
+  },
+  "guidePage": {
+    "stepsBadge": "步骤",
+    "faqBadge": "帮助",
+    "faqHeading": "常见问题。"
+  }
+}

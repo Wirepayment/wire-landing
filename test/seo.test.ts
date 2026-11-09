@@ -13,6 +13,7 @@ import {
 import { LOCALES } from "@/i18n/locales";
 import robots from "@/app/robots";
 import { ALLOWED_CRAWLERS } from "@/lib/crawlers";
+import { displayLength } from "./display-length";
 import { llmsTxt } from "@/lib/llms";
 import { homeJsonLd } from "@/lib/structured-data";
 import { faqsFor } from "@/lib/faq";
@@ -63,13 +64,22 @@ describe("public page registry", () => {
     }
   });
 
+  it("counts a CJK character as two Latin letters of display length", () => {
+    expect(displayLength("Wire")).toBe(4);
+    expect(displayLength("支付网关。")).toBe(10);
+    expect(displayLength("결제 채널")).toBe(9);
+  });
+
   it("keeps descriptions in the length search engines display", () => {
     for (const l of LOCALES) {
       for (const [path, page] of Object.entries(pagesFor(l))) {
-        expect(page.description.length, `${l} ${path}`).toBeGreaterThan(50);
-        expect(page.description.length, `${l} ${path}`).toBeLessThanOrEqual(
-          260,
+        expect(displayLength(page.description), `${l} ${path}`).toBeGreaterThan(
+          50,
         );
+        expect(
+          displayLength(page.description),
+          `${l} ${path}`,
+        ).toBeLessThanOrEqual(260);
       }
     }
   });

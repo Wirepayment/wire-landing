@@ -8,6 +8,7 @@ import { llmsTxt } from "@/lib/llms";
 import { LOCALES } from "@/i18n/locales";
 import mn from "@/messages/mn.json";
 import { brandNames } from "./brand-names";
+import { displayLength } from "./display-length";
 
 const registered = new Set<string>(PUBLIC_PAGES.map((p) => p.path));
 const layout = readFileSync(
@@ -24,8 +25,8 @@ describe.each(LOCALES)("answer pages (%s)", (locale) => {
 
   it("answer a question properly: short answer, steps, at least 4 FAQs", () => {
     for (const g of guides) {
-      expect(g.answer.length, g.slug).toBeGreaterThan(120);
-      expect(g.answer.length, g.slug).toBeLessThan(480);
+      expect(displayLength(g.answer), g.slug).toBeGreaterThan(120);
+      expect(displayLength(g.answer), g.slug).toBeLessThan(480);
       expect(g.steps.length, g.slug).toBeGreaterThanOrEqual(3);
       expect(g.faqs.length, g.slug).toBeGreaterThanOrEqual(4);
       expect(new Set(g.faqs.map((f) => f.q)).size).toBe(g.faqs.length);

@@ -1,2 +1,34 @@
-// TEMP until translations: the Mongolian home FAQ.
-export { FAQS } from "@/content/mn/faq";
+import type { Faq } from "@/lib/faq";
+
+// Home-page FAQ in Simplified Chinese, one entry per Mongolian question in
+// content/mn/faq.ts, same order.
+export const FAQS: Faq[] = [
+  {
+    q: "注册需要付费吗？",
+    a: "不需要——注册、账户绑定和管理后台全部免费。没有使用费，也没有月费，仅对成功交易收取手续费。",
+  },
+  {
+    q: "交易手续费是多少？",
+    a: "视您选择的支付渠道而定，最低 1% 起。具体费率会在绑定账户时，在该渠道的条款中明确列出——没有任何隐藏费用。",
+  },
+  {
+    q: "如何开始使用？",
+    a: "创建账户后，通过手机 + DAN（蒙古国政府电子身份认证）完成一次验证。然后绑定用于接收收入的收款账户，即可通过现成的链接或 API 开始收款。",
+  },
+  {
+    q: "不是程序员也能使用吗？",
+    a: "可以——现成的支付链接人人都能轻松使用。只需在管理后台中秒级创建，然后通过聊天、帖子或电子邮件分享即可。",
+  },
+  {
+    q: "可以通过哪些渠道收款？",
+    a: "QPay（二维码、银行 App）、PayLink（Visa、Mastercard、本地银行卡）、Toki 和 MonPay（电子钱包）、StorePay 和 Pocket Zero（分期付款）。QPay 和 PayLink 通过 Wire 接入；其他渠道则使用您与运营商签订的自有协议和密钥，在管理后台中连接。所有渠道的交易都汇集于一个连接、一个管理后台。",
+  },
+  {
+    q: "收入何时到账？",
+    a: "取决于所选支付渠道的条款。每笔交易都会实时显示在管理后台中，收入将转入您绑定的账户。",
+  },
+  {
+    q: "我的信息安全吗？",
+    a: "个人信息采用 AES-256 加密存储，不会提供给第三方。每个 Webhook 都带有签名，可逐条验证通知的真实性。",
+  },
+];
