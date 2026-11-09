@@ -6,10 +6,7 @@ import { Link, usePathname } from "@/i18n/navigation";
 const ITEMS = [
   { href: "/", label: "home" },
   { href: "/features", label: "features" },
-  { href: "/verification", label: "verification" },
-  { href: "/guide", label: "guide" },
   { href: "/links", label: "links" },
-  { href: "/developers", label: "developers" },
 ] as const;
 
 /** NavLinks — the marketing header menu with the current page highlighted

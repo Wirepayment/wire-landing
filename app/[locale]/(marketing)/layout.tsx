@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { Mail, Phone } from "lucide-react";
+import { BookOpen, Mail, Phone } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Logo, LogoMark } from "@/components/logo";
 import { Button } from "@/components/ui/button";
@@ -58,8 +58,9 @@ export default async function MarketingLayout({
               href={DOCS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden rounded-full px-3 py-1.5 font-[family-name:var(--font-round)] text-[13.5px] font-semibold text-[var(--color-muted)] transition-colors hover:text-[var(--color-foreground)] lg:inline-flex"
+              className="hidden items-center gap-1.5 rounded-full px-3 py-1.5 font-[family-name:var(--font-round)] text-[13.5px] font-semibold text-[var(--color-muted)] transition-colors hover:text-[var(--color-foreground)] md:inline-flex"
             >
+              <BookOpen className="size-4" aria-hidden />
               {common("docs")}
             </a>
             <LanguagePicker />
@@ -94,6 +95,11 @@ export default async function MarketingLayout({
                   <a href={DOCS_URL} className={FOOTER_LINK}>
                     {common("docs")}
                   </a>
+                </li>
+                <li>
+                  <Link href="/developers" className={FOOTER_LINK}>
+                    {common("developers")}
+                  </Link>
                 </li>
                 <li>
                   <Link href="/status" className={FOOTER_LINK}>

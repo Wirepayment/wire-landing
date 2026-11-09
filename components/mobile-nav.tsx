@@ -3,17 +3,14 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
-import { Menu, X, ArrowUpRight } from "lucide-react";
-import { DOCS_URL } from "@/lib/links";
+import { BookOpen, Menu, X } from "lucide-react";
 import { LanguageLinks } from "@/components/language-picker";
+import { DOCS_URL } from "@/lib/links";
 
 const ITEMS = [
   { href: "/", label: "home" },
   { href: "/features", label: "features" },
-  { href: "/verification", label: "verification" },
-  { href: "/guide", label: "guide" },
   { href: "/links", label: "links" },
-  { href: "/developers", label: "developers" },
 ] as const;
 
 /** MobileNav — the marketing menu for small screens (the inline NavLinks hide
@@ -76,10 +73,10 @@ export function MobileNav() {
               href={DOCS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 rounded-lg px-3 py-2.5 text-[15px] text-[var(--color-muted)] transition-colors hover:bg-[var(--color-surface)]"
+              className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-[15px] text-[var(--color-muted)] transition-colors hover:bg-[var(--color-surface)]"
             >
+              <BookOpen className="size-4" aria-hidden />
               {t("docs")}
-              <ArrowUpRight className="size-3.5" />
             </a>
           </nav>
         </div>
