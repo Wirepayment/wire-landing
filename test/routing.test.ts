@@ -141,13 +141,16 @@ describe("CJK fonts", () => {
     expect(layout).not.toMatch(/Noto_/);
   });
 
-  it("sets --font-cjk only for zh and ko", () => {
+  it("sets --font-cjk only for zh and ko, and keeps Korean words whole", () => {
     for (const lang of ["zh-Hans", "ko"]) {
       const block = css.match(
         new RegExp(`html:lang\\(${lang}\\)\\s*\\{([^}]*)\\}`),
       );
       expect(block?.[1], lang).toMatch(/--font-cjk:/);
     }
+    const ko = css.match(/html:lang\(ko\)\s*\{([^}]*)\}/)?.[1] ?? "";
+    expect(ko).toMatch(/word-break:\s*keep-all;/);
+    expect(ko).toMatch(/overflow-wrap:\s*anywhere;/);
     // One definition per CJK language and none elsewhere.
     expect(css.match(/--font-cjk:/g)).toHaveLength(2);
   });

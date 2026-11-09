@@ -72,6 +72,10 @@ html:lang(ko) {
   --font-cjk:
     "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans CJK KR", "Noto Sans KR",
     "Source Han Sans K", "Nanum Gothic";
+  /* Korean breaks between words, never inside one; anywhere still lets a
+     long token (URL) wrap instead of overflowing a phone screen. */
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 
 @layer base {
