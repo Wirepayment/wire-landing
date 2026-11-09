@@ -9,6 +9,7 @@ import {
   pageMetadata,
   pagesFor,
   sitemapEntries,
+  TRANSLATED_ON,
 } from "@/lib/seo";
 import { LOCALES } from "@/i18n/locales";
 import robots from "@/app/robots";
@@ -107,6 +108,26 @@ describe("sitemap.xml", () => {
     }
     // Stable across calls — not "now" on every request.
     expect(sitemapEntries()).toEqual(entries);
+  });
+
+  // mn keeps each page's own `updated`; en/zh/ko were written on
+  // TRANSLATED_ON, so their lastmod is never older than that.
+  it("dates mn by the page and translations by the translation", () => {
+    const lastmod = (l: (typeof LOCALES)[number], path: string) => {
+      const url = absoluteUrl(localizedPath(l, path));
+      const e = sitemapEntries().find((x) => x.url === url);
+      return (e?.lastModified as Date).toISOString().slice(0, 10);
+    };
+    expect(TRANSLATED_ON).toBe("2026-11-09");
+    for (const p of PUBLIC_PAGES) {
+      expect(lastmod("mn", p.path), p.path).toBe(p.updated);
+      const want = p.updated > TRANSLATED_ON ? p.updated : TRANSLATED_ON;
+      for (const l of ["en", "zh", "ko"] as const) {
+        expect(lastmod(l, p.path), `${l}${p.path}`).toBe(want);
+      }
+    }
+    expect(lastmod("en", "/terms")).toBe("2026-11-09");
+    expect(lastmod("mn", "/terms")).toBe("2026-07-30");
   });
 });
 

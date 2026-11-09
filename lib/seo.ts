@@ -18,11 +18,15 @@ import { PAGES as KO_PAGES, SITE as KO_SITE } from "@/content/ko/pages";
 //
 // `updated` is the date the page's content last changed (YYYY-MM-DD). Bump it
 // when you edit the page's copy — search engines stop trusting lastmod that
-// moves on every deploy.
+// moves on every deploy. en/zh/ko were written on TRANSLATED_ON, so their
+// lastmod is the later of that and the page's `updated`; mn keeps `updated`.
 
 export const SITE_URL = "https://wire.mn";
 export const SITE_NAME = "WireMN";
 export const DOCS_SITE_URL = "https://docs.wire.mn";
+
+/** The day the en/zh/ko translations landed (YYYY-MM-DD). */
+export const TRANSLATED_ON = "2026-11-09";
 
 export interface PublicPage {
   /** The path without a locale prefix; each locale serves it (mn unprefixed). */
@@ -155,11 +159,16 @@ export function pageMetadata(locale: Locale, path: PublicPath): Metadata {
   };
 }
 
+function lastmodOf(locale: Locale, updated: string): string {
+  if (locale === DEFAULT_LOCALE) return updated;
+  return updated > TRANSLATED_ON ? updated : TRANSLATED_ON;
+}
+
 export function sitemapEntries(): MetadataRoute.Sitemap {
   return PUBLIC_PAGES.flatMap((p) =>
     LOCALES.map((l) => ({
       url: absoluteUrl(localizedPath(l, p.path)),
-      lastModified: new Date(`${p.updated}T00:00:00Z`),
+      lastModified: new Date(`${lastmodOf(l, p.updated)}T00:00:00Z`),
       changeFrequency: "monthly" as const,
       priority: p.priority,
       alternates: { languages: languageAlternates(p.path) },
