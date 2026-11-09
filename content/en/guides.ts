@@ -44,7 +44,7 @@ export const GUIDES: Guide[] = [
       },
       {
         title: "Send buyers to the payment page",
-        body: "On your server, create a PaymentIntent, open a checkout session for it and send the buyer to the payment page on pay.wire.mn. The page shows the QR code, bank-app deeplinks and the other channels you switched on by itself.",
+        body: "On your server, create a PaymentIntent, open a checkout session for it and send the buyer to the payment page on pay.wire.mn. The page itself shows the QR code, bank-app deeplinks and the other channels you switched on.",
       },
       {
         title: "Confirm with a webhook",
@@ -291,7 +291,7 @@ export const GUIDES: Guide[] = [
       },
       {
         q: "Do I need an agreement with each operator?",
-        a: "For QPay and PayLink, you sign the agreement electronically with DAN inside the dashboard. For Toki, MonPay, StorePay and Pocket Zero, you use your own agreement with the operator. Either way there is only one technical connection — Wire.",
+        a: "For QPay and PayLink, you sign the agreement electronically with DAN (state e-ID) inside the dashboard. For Toki, MonPay, StorePay and Pocket Zero, you use your own agreement with the operator. Either way there is only one technical connection — Wire.",
       },
       {
         q: "Who operates Wire?",
@@ -372,12 +372,12 @@ export const GUIDES: Guide[] = [
     line1: "How to accept online",
     line2: "payments in Mongolia",
     answer:
-      "Wire is a payment gateway for Mongolia. A business or individual seller in Mongolia signs up at app.wire.mn, verifies the owner once (phone and DAN, the national e-ID), activates the payment operators it wants, and then takes payments through hosted checkout, payment links or a REST API. Buyers pay with bank apps, e-wallets, QR, cards or buy-now-pay-later, and the money goes to the business's own account.",
+      "Wire is a payment gateway for Mongolia. A business or individual seller in Mongolia signs up at app.wire.mn, verifies the owner's phone and DAN (state e-ID) once, activates the payment operators it wants, and then takes payments through hosted checkout, payment links or a REST API. Buyers pay with bank apps, e-wallets, QR, cards or buy-now-pay-later, and the money goes to the business's own account.",
     stepsTitle: "From sign-up to the first payment",
     steps: [
       {
         title: "Sign up and verify once",
-        body: "Sign in at app.wire.mn and verify the owner's phone and DAN identity. It is done once, however many businesses or projects you open later.",
+        body: "Sign in at app.wire.mn and verify the owner's phone and DAN (state e-ID). It is done once, however many businesses or projects you open later.",
       },
       {
         title: "Activate an operator",
