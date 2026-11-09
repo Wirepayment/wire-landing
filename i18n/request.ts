@@ -5,11 +5,11 @@ import { routing } from "./routing";
 import mn from "@/messages/mn.json";
 import en from "@/messages/en.json";
 import zh from "@/messages/zh.json";
+import ko from "@/messages/ko.json";
 
 export type Messages = typeof mn;
 
-// TEMP until translations: ko shows the Mongolian copy.
-const MESSAGES: Record<Locale, Messages> = { mn, en, zh, ko: mn };
+const MESSAGES: Record<Locale, Messages> = { mn, en, zh, ko };
 
 export default getRequestConfig(async ({ requestLocale }) => {
   const requested = await requestLocale;

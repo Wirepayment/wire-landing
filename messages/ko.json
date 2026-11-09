@@ -1,0 +1,630 @@
+{
+  "common": {
+    "home": "홈",
+    "features": "기능",
+    "verification": "인증",
+    "guide": "가이드",
+    "links": "결제 링크",
+    "developers": "개발자",
+    "status": "서비스 상태",
+    "terms": "이용약관",
+    "docs": "문서"
+  },
+  "nav": {
+    "homeAria": "Wire 홈",
+    "signIn": "로그인",
+    "openMenu": "메뉴 열기",
+    "closeMenu": "메뉴 닫기",
+    "language": "언어 선택"
+  },
+  "footer": {
+    "tagline": "모든 결제를 하나의 게이트웨이로 — 몽골 결제 사업자들과 하나의 연결로.",
+    "linksHeading": "링크",
+    "solutionsHeading": "솔루션",
+    "legalHeading": "법적 고지",
+    "contactHeading": "문의",
+    "facebook": "Facebook 페이지",
+    "rights": "© {year} {company} · wire.mn. 모든 권리 보유.",
+    "byBuildry": "A product by Buildry ↗"
+  },
+  "home": {
+    "hero": {
+      "badge": "올인원 결제 게이트웨이",
+      "titleLine1": "모든 결제를,",
+      "titleLine2": "하나의 게이트웨이로.",
+      "lead": "Wire는 QR, 은행 앱, 카드, 전자지갑, 분할 결제를 <hl>하나의 연결로 통합합니다</hl>. 준비된 링크나 API를 사용하고, 하나의 대시보드에서 수입을 관리하십시오.",
+      "start": "시작하기",
+      "howItWorks": "작동 방식",
+      "dashboardBadge": "실시간 대시보드"
+    },
+    "dashboardMock": {
+      "storeName": "Wire Store",
+      "search": "검색",
+      "groups": {
+        "operations": "운영",
+        "finance": "재무",
+        "settings": "설정"
+      },
+      "nav": {
+        "overview": "개요",
+        "transactions": "거래",
+        "paymentLinks": "결제 링크",
+        "accounts": "계좌",
+        "reports": "보고서",
+        "channels": "채널",
+        "settings": "설정"
+      },
+      "userInitials": "BT",
+      "userName": "B. Temuulen",
+      "pageTitle": "개요",
+      "monthRevenue": "이번 달 수입",
+      "monthRevenueValue": "₮4,820만",
+      "growth": "지난달 대비 ₮910만 증가",
+      "month": "{n}월",
+      "latest": "최근 거래",
+      "columns": {
+        "transaction": "거래",
+        "channel": "채널",
+        "amount": "금액",
+        "date": "일시",
+        "status": "상태"
+      },
+      "channels": {
+        "bankApp": "은행 앱",
+        "wallet": "전자지갑",
+        "qr": "QR 결제"
+      },
+      "statuses": {
+        "succeeded": "성공",
+        "pending": "대기 중"
+      },
+      "stats": {
+        "todayRevenue": "오늘 수입",
+        "successRate": "성공한 거래",
+        "activeLinks": "활성 링크",
+        "connectedChannels": "연결된 채널"
+      }
+    },
+    "getStarted": {
+      "badge": "시작하기",
+      "line1": "첫 결제까지",
+      "line2": "단 5분.",
+      "lead": "긴 온보딩도 복잡한 설정도 없습니다. 가입, 계좌 연결, 대시보드는 <hl>모두 무료</hl>입니다.",
+      "minutes": "분",
+      "signup": {
+        "title": "가입 및 인증",
+        "desc": "가입은 무료입니다. 휴대폰과 DAN(몽골 정부 전자 신원 인증)으로 KYC 인증을 한 번만 하면 다시 요청하지 않습니다.",
+        "heading": "인증",
+        "phone": "휴대폰 번호",
+        "dan": "DAN(KYC)",
+        "done": "인증 완료 ✓"
+      },
+      "account": {
+        "title": "계좌 연결",
+        "desc": "수입을 받을 계좌를 선택합니다. 사전 계약금도 개설비도 없습니다.",
+        "heading": "계좌 연결",
+        "chooseBank": "은행 선택",
+        "connect": "연결"
+      },
+      "revenue": {
+        "title": "수입 받기",
+        "desc": "준비된 링크나 API로 결제를 받고, 모든 거래를 대시보드에서 실시간으로 확인합니다.",
+        "today": "오늘 수입",
+        "newPayment": "새 결제"
+      }
+    },
+    "connectors": {
+      "badge": "결제 채널",
+      "line1": "6개 채널.",
+      "line2": "하나의 연결.",
+      "lead": "QR, 카드, 전자지갑, 분할 결제 — 모든 채널의 거래가 <hl>하나의 API와 하나의 대시보드</hl>로 모입니다.",
+      "logoAlt": "{name} 로고"
+    },
+    "featureBlocks": {
+      "badge": "플랫폼",
+      "line1": "링크부터 API까지.",
+      "line2": "모두 한곳에서.",
+      "lead": "판매, 주문, 청구서 — 모든 수납 방식을 하나의 게이트웨이로. <hl>채널을 추가해도 코드를 바꿀 필요가 없습니다.</hl>",
+      "start": "시작하기",
+      "links": {
+        "line1": "결제 링크.",
+        "line2": "몇 초 만에 준비.",
+        "copy": "대시보드에서 링크를 만들어 메신저, SNS 게시물, 이메일로 공유하십시오. <hl>누구나 쉽게</hl> 사용할 수 있으며, 결제되는 즉시 알림을 받습니다."
+      },
+      "api": {
+        "line1": "하나의 API.",
+        "line2": "여러 채널.",
+        "copy": "깔끔한 REST API, SDK, 서명된 Webhook. <hl>한 번의 연동</hl>으로 계정에서 활성화된 모든 채널의 결제를 받습니다."
+      },
+      "docsLink": "개발자 문서 →",
+      "webhooks": {
+        "line1": "실시간",
+        "line2": "알림.",
+        "copy": "<hl>결제가 들어오는 즉시 이메일과 Webhook으로 알립니다.</hl> 모든 이벤트에 서명이 포함되어 있어 각 알림을 검증할 수 있습니다."
+      },
+      "linkMock": {
+        "title": "새 결제 링크",
+        "name": "이름",
+        "nameValue": "주문 #1024",
+        "amount": "금액",
+        "create": "링크 만들기",
+        "copy": "복사",
+        "share": "메신저, 게시물, 이메일 — 어디서나 공유"
+      },
+      "apiMock": {
+        "amountDue": "결제 금액",
+        "channels": {
+          "bankApp": "은행 앱",
+          "wallet": "전자지갑",
+          "qr": "QR 결제"
+        },
+        "pay": "결제하기"
+      },
+      "webhookMock": {
+        "title": "Webhook events",
+        "verified": "Signature verified",
+        "delivered": "Delivered"
+      }
+    },
+    "closingCards": {
+      "routing": {
+        "badge": "신규",
+        "line1": "자동 전환.",
+        "line2": "끊기지 않는 결제.",
+        "copy": "자동 라우팅된 결제 채널에 장애가 생기면 결제가 다음 활성 채널로 자동 전환되어 <hl>거래가 끊기지 않습니다</hl>. 여러 채널을 한곳에 연결한 시스템만이 할 수 있는 일입니다.",
+        "start": "시작하기",
+        "chip": "자동 전환",
+        "ago": "5초 전",
+        "eventTitle": "거래가 다른 채널로 전환됨",
+        "eventBody": "선택된 채널이 응답하지 않아 결제가 다음 활성 채널로 자동 라우팅되었습니다. 거래 성공.",
+        "succeeded": "성공"
+      },
+      "consolidation": {
+        "line1": "여러 연동이 아닌,",
+        "line2": "하나의 연결.",
+        "copy": "결제 사업자마다 따로 구축하던 연동을 Wire가 <hl>하나의 연결로 대체합니다</hl>.",
+        "replaces": "대체 대상:",
+        "rails": {
+          "qr": "QR 결제",
+          "bankApp": "은행 앱",
+          "card": "카드",
+          "wallet": "전자지갑",
+          "installment": "분할 결제"
+        },
+        "checks": {
+          "oneApi": "하나의 API, 하나의 서명, 하나의 대시보드",
+          "noCode": "채널 추가 시 코드 변경 불필요",
+          "oneReport": "모든 거래를 하나의 보고서로"
+        },
+        "stats": {
+          "total": "총수입",
+          "pending": "대기 중",
+          "average": "평균 거래액"
+        },
+        "channels": {
+          "bankApp": "은행 앱",
+          "wallet": "전자지갑",
+          "qr": "QR 결제"
+        },
+        "footer": "모든 채널 · 하나의 보고서 · 2026-07"
+      }
+    },
+    "faq": {
+      "badge": "도움말",
+      "heading": "자주 묻는 질문."
+    },
+    "finalCta": {
+      "heading": "모든 결제를, 하나의 게이트웨이로.",
+      "lead": "가입은 무료입니다. 계좌를 연결하고 결제를 받기 시작하십시오. <hl>수수료는 성공한 거래에만</hl> 부과됩니다.",
+      "items": {
+        "paymentLink": "결제 링크",
+        "dashboard": "실시간 대시보드",
+        "qr": "QR 결제",
+        "projects": "여러 프로젝트, 여러 계좌",
+        "api": "REST API + SDK",
+        "webhooks": "Webhook + 서명",
+        "idempotency": "멱등성(Idempotency)",
+        "platform": "플랫폼 모듈",
+        "routing": "자동 라우팅",
+        "cards": "카드 결제",
+        "export": "보고서 내보내기",
+        "insights": "스마트 인사이트"
+      },
+      "roadmap": "로드맵",
+      "start": "시작하기"
+    }
+  },
+  "features": {
+    "intro": {
+      "badge": "여러 채널 · 하나의 연동",
+      "line1": "모든 채널을,",
+      "line2": "하나의 연결로.",
+      "lead": "QR, 은행 앱, 카드, 전자지갑, 분할 결제 — 구매자가 무엇을 선택하든 <hl>관리할 연결은 하나뿐입니다</hl>."
+    },
+    "start": "시작하기",
+    "rails": {
+      "qr": {
+        "label": "QR · 은행",
+        "items": "QR 코드 · 은행 앱",
+        "desc": "QR만 스캔하면 됩니다. 휴대폰에서는 은행 앱이 바로 열립니다."
+      },
+      "card": {
+        "label": "카드",
+        "items": "Visa · Mastercard · 국내 카드",
+        "desc": "구매자는 결제 페이지에서 바로 카드로 결제합니다."
+      },
+      "wallet": {
+        "label": "전자지갑",
+        "items": "지갑 앱",
+        "desc": "구매자는 지갑 앱에서 QR, 딥링크 또는 휴대폰 번호로 결제합니다."
+      },
+      "installment": {
+        "label": "분할 결제",
+        "items": "분할 결제 · 신용",
+        "desc": "구매자는 구매 대금을 나누어 결제합니다."
+      }
+    },
+    "logoAlt": "{name} 로고",
+    "modeLine": "<b>{label}</b> — {hint}",
+    "grid": {
+      "badge": "기능",
+      "line1": "API 그 이상의",
+      "line2": "모든 것.",
+      "lead": "결제 사업자마다 별도의 기술 연결을 구축할 필요 없이, 하나의 연결이면 충분합니다."
+    },
+    "items": {
+      "routing": {
+        "title": "자동 라우팅",
+        "desc": "채널을 지정하지 않은 결제는 최근 24시간의 성공률, 속도, 금액 한도를 기준으로 가장 적합한 채널로 자동 전송되며, 장애가 있는 채널은 건너뜁니다."
+      },
+      "guarantee": {
+        "title": "3중 확인",
+        "desc": "Webhook + 능동 조회 + 일일 대사 — 결제가 누락되지 않습니다."
+      },
+      "notifications": {
+        "title": "실시간 알림",
+        "desc": "결제가 들어오는 즉시 이메일 + Webhook. 받을 알림은 직접 선택합니다."
+      },
+      "reports": {
+        "title": "보고서와 내역",
+        "desc": "거래, 청구서, 환불 — 모두 하나의 대시보드에서 필터와 검색으로 확인합니다."
+      },
+      "mnt": {
+        "title": "MNT 완전 지원",
+        "desc": "모든 금액을 몽골 투그릭(MNT) 정수로 표시합니다. 대사할 때 혼동이 없습니다."
+      },
+      "ecosystem": {
+        "title": "인증된 생태계",
+        "desc": "모든 계정 소유자는 휴대폰 + DAN(몽골 정부 전자 신원 인증)으로 인증되므로, 신뢰할 수 있는 파트너와 거래합니다."
+      }
+    }
+  },
+  "developers": {
+    "intro": {
+      "badge": "10분 만에 첫 결제",
+      "line1": "개발자를 위해",
+      "line2": "만들었습니다.",
+      "lead": "명확한 REST API, 6개 언어(Go, Python, Node, PHP, Ruby, .NET)용 SDK, 모든 결제를 자동으로 알려 주는 Webhook — <hl>몇 분 만에 연동을 시작하십시오</hl>."
+    },
+    "docs": "문서 보기",
+    "apiKey": "API 키 발급",
+    "grid": {
+      "badge": "API · SDK · 플랫폼",
+      "line1": "강력한 API.",
+      "line2": "쉬운 연동.",
+      "lead": "깔끔한 REST API, SDK, 서명된 Webhook. 플랫폼은 하나의 키로 여러 가맹점을 연결하고 하나의 채널로 결제를 받을 수 있습니다."
+    },
+    "items": {
+      "rest": {
+        "title": "REST API",
+        "desc": "PaymentIntent / Charge / Refund — 예측 가능한 리소스 모델, OpenAPI 3.1."
+      },
+      "sdk": {
+        "title": "SDK 8종",
+        "desc": "Go · Python · Node · PHP · Ruby · .NET + checkout JS/iOS — 각 레지스트리에 공개되어 있습니다."
+      },
+      "webhooks": {
+        "title": "서명된 Webhook",
+        "desc": "HMAC-SHA256, 재시도 + dead-letter, 허용 목록에 등록할 고정 송신 IP."
+      },
+      "platform": {
+        "title": "플랫폼 / 리셀러",
+        "desc": "하나의 키로 여러 가맹점을 연결하고 하나의 채널로 결제를 받습니다."
+      },
+      "idempotency": {
+        "title": "멱등성(Idempotency)",
+        "desc": "안전한 재시도 — Idempotency-Key가 이중 결제를 방지합니다."
+      }
+    }
+  },
+  "links": {
+    "intro": {
+      "badge": "누구나 · 쉽게",
+      "line1": "링크를 만들고",
+      "line2": "공유하십시오.",
+      "lead": "소규모 매장, 서비스업, 프리랜서 — <hl>개발자가 필요 없습니다</hl>. 링크를 만들어 메신저, 게시물, 이메일로 보내면 결제가 들어옵니다."
+    },
+    "create": "링크 만들기",
+    "line1": "링크 하나로.",
+    "line2": "여러 결제를.",
+    "perks": {
+      "fast": "대시보드에서 몇 초 만에 생성",
+      "amount": "고정 금액 또는 자유 금액(구매자가 입력)",
+      "reusable": "재사용 가능 — 링크 하나로 여러 결제",
+      "share": "QR 코드, 복사 버튼, FB/Instagram/LinkedIn 이미지 미리보기",
+      "live": "모든 결제를 대시보드에서 실시간 확인 + 알림"
+    },
+    "showcase": {
+      "title": "월간 멤버십",
+      "active": "활성",
+      "amount": "금액",
+      "copy": "복사",
+      "payments": "결제 건수",
+      "collected": "수금액"
+    }
+  },
+  "guide": {
+    "intro": {
+      "badge": "시작 가이드",
+      "line1": "가입부터",
+      "line2": "결제 수납까지",
+      "lead": "신규 가맹점이 Wire에 가입하고, 인증을 마치고, 프로젝트를 만들고, 결제 사업자 연결을 활성화하는 전체 과정을 실제 화면과 함께 안내합니다."
+    },
+    "tocAria": "가이드 목차",
+    "phases": {
+      "signup": {
+        "tag": "A단계",
+        "title": "가입 및 인증",
+        "intro": "Wire에는 별도의 비밀번호가 없으며, Google 계정으로 로그인합니다. 결제를 받는 금융 서비스이므로 모든 계정 소유자는 휴대폰 + DAN(몽골 정부 전자 신원 인증)의 2단계 인증을 완료합니다. 두 가지 모두 한 번만 하면 되며, 사업자나 프로젝트를 몇 개 개설하더라도 다시 요청하지 않습니다."
+      },
+      "project": {
+        "tag": "B단계",
+        "title": "프로젝트 만들기",
+        "intro": "<b>사업자</b> = KYC, 은행 계좌, 결제 사업자 등록 정보를 가진 주체입니다. <b>프로젝트</b> = 그 아래의 연동 환경으로, 고유한 API 키, 하나의 Webhook, 결제 페이지 템플릿을 가집니다. 한 사업자에 여러 프로젝트를 둘 수 있으며, 한 사용자가 여러 사업자를 개설할 수도 있습니다."
+      },
+      "connector": {
+        "tag": "C단계",
+        "title": "결제 사업자 연결",
+        "intro": "결제를 받으려면 사업자에 결제 사업자를 하나 이상 연결해야 합니다. 절차: <b>양식 작성 및 제출 → 심사 및 승인 → 계약 전자 서명 → 결제 개시</b>. 계약은 승인 <em>후에</em> 서명하며, 신청서를 제출할 때는 계약이 필요 없습니다. 아래 화면의 결제 사업자 이름과 번호는 일반화되어 있으며, 실제 계정에는 해당 계정에서 사용할 수 있는 결제 사업자의 실제 이름이 표시됩니다."
+      },
+      "integration": {
+        "tag": "D단계",
+        "title": "연동 설정",
+        "intro": "결제 사업자가 활성화되면 기술 연동에 다음 두 가지가 필요합니다. 코드를 작성하지 않고도 결제 링크와 결제 페이지를 바로 사용할 수 있습니다."
+      }
+    },
+    "steps": {
+      "s1": {
+        "title": "Google로 로그인",
+        "desc": "<b>app.wire.mn</b>에 접속하여 <ui>Sign in with Google</ui>(Google로 로그인) 버튼을 클릭합니다. 처음 로그인하면 새 계정이 자동으로 생성됩니다.",
+        "caption": "app.wire.mn/signin — Google로 로그인"
+      },
+      "s2": {
+        "title": "휴대폰 번호 입력",
+        "desc": "신규 사용자는 바로 인증 페이지로 이동합니다. 휴대폰 번호를 입력하고 <ui>Verify</ui>(인증) 버튼을 클릭합니다.",
+        "caption": "인증 1/2 — 휴대폰 번호"
+      },
+      "s3": {
+        "title": "SMS를 보내 인증",
+        "desc": "화면에 표시된 코드를 <b>본인 휴대폰에서</b> 안내된 단축 번호로 SMS로 보냅니다. 메시지를 기다리는 대신 직접 보내는 방식입니다. 전송되면 페이지가 자동으로 다음 단계로 넘어갑니다.",
+        "caption": "코드 + 단축 번호, SMS 대기 중"
+      },
+      "s4": {
+        "title": "DAN 인증 시작",
+        "desc": "두 번째 단계로, 정부 DAN 시스템을 통해 개인 정보를 인증합니다. <ui>Verify with DAN</ui>(DAN으로 인증) 버튼을 클릭합니다.",
+        "caption": "인증 2/2 — DAN"
+      },
+      "s5": {
+        "title": "sso.gov.mn에서 동의",
+        "desc": "정부 통합 로그인으로 이동하여 본인의 DAN 계정으로 로그인하고 정보 제공에 동의합니다. 완료되면 자동으로 돌아옵니다.",
+        "caption": "DAN — 정부 신원 확인 및 로그인 시스템"
+      },
+      "s6": {
+        "title": "인증 완료 확인",
+        "desc": "프로필 페이지에서 휴대폰과 DAN이 모두 <ui>Verified</ui>(인증 완료)로 표시되는지 확인합니다. 이제 모든 기능을 사용할 수 있습니다.",
+        "caption": "프로필 — 인증 완료"
+      },
+      "s7": {
+        "title": "새 프로젝트 만들기 — 이름 지정",
+        "desc": "왼쪽 상단의 프로젝트 전환 메뉴에서 <ui>Create new project</ui>(새 프로젝트 만들기) 버튼을 클릭합니다. 이름을 입력하고 사업자 옵션을 선택합니다. 첫 프로젝트에는 이 선택지가 표시되지 않으며, 사업자가 함께 생성됩니다.",
+        "caption": "현재 사업자 사용(기본값) — 등록 정보, 계좌, 연결이 그대로 이어집니다"
+      },
+      "s8": {
+        "title": "또는: 새 사업자 등록",
+        "desc": "별도의 법인이나 다른 업종을 위해 완전히 새로운 사업자를 개설하려면 두 번째 옵션을 선택합니다. 휴대폰과 DAN은 다시 요청하지 않으며, KYC, 은행 계좌, 결제 사업자 신청은 새 사업자에서 별도로 진행됩니다.",
+        "caption": "새 사업자 등록 — 자체 KYC, 계좌, 신청"
+      },
+      "s9": {
+        "title": "비밀 키 보관",
+        "desc": "프로젝트가 생성되면 <code>sk_live_…</code> 비밀 키가 <b>단 한 번</b> 표시됩니다. <ui>Copy</ui>(복사) 또는 <ui>Download .txt</ui>(.txt 다운로드) 버튼으로 비밀번호 관리자에 저장하십시오. 다시 표시되지 않으며, 분실하면 새 키를 만들어야 합니다.",
+        "caption": "일회성 키 표시(이미지의 키는 유효하지 않습니다)"
+      },
+      "s10": {
+        "title": "프로젝트 개요",
+        "desc": "새 프로젝트의 홈입니다. 왼쪽 메뉴에서 거래, 결제 링크, 결제 페이지, 계좌, 보고서, 설정으로 이동합니다.",
+        "caption": "개요 — 새 프로젝트의 시작 화면"
+      },
+      "s11": {
+        "title": "연결 페이지에서 선택",
+        "desc": "설정 → 채널. 계정에서 사용할 수 있는 결제 사업자 중 연결할 곳을 선택합니다. 한 프로젝트에 여러 결제 사업자를 연결할 수 있으며, 각 결제 사업자는 한 번씩 연결합니다.",
+        "caption": "연결 — 사용 가능한 결제 사업자 목록(이름 일반화)"
+      },
+      "s12": {
+        "title": "시작과 빠른 경로",
+        "desc": "결제 사업자 페이지에 3단계 진행 상황이 표시됩니다. 이전에 다른 사업자로 승인받은 적이 있다면 <ui>Use your existing merchant registration</ui>(기존 가맹점 등록 바로 사용) 카드가 나타납니다. 이를 선택하면 새 신청이나 대기 없이 바로 연결됩니다. 새 사업자라면 5단계 양식(개인 / 법인)을 작성합니다.",
+        "caption": "3단계 진행 상황, 기존 등록 카드, 양식 1단계(결제 사업자 번호 숨김)"
+      },
+      "s13": {
+        "title": "양식 2/5 — 기본 정보",
+        "desc": "등록번호, 성과 이름, 사업자명, 업종을 입력합니다. <ui>Fill with DAN-verified details</ui>(DAN 인증 정보로 작성) 카드의 <ui>Use</ui>(사용) 버튼을 누르면 한 번에 입력됩니다.",
+        "caption": "2/5 정보 — DAN 자동 입력(등록번호 숨김)"
+      },
+      "s14": {
+        "title": "양식 3/5 — 주소 및 연락처",
+        "desc": "시, 구, 상세 주소, 전화번호, 이메일을 입력합니다. DAN 주소와 프로필 정보로 한 번에 입력할 수도 있습니다.",
+        "caption": "3/5 주소 — 자동 입력 카드 2개(주소 숨김)"
+      },
+      "s15": {
+        "title": "양식 4/5 — 정산 계좌",
+        "desc": "수입이 입금될 은행 계좌를 선택하거나 <ui>Connect another account</ui>(다른 계좌 연결)로 새 계좌를 추가합니다. 이전에 연결한 계좌는 이미 목록에 있습니다.",
+        "caption": "4/5 계좌(번호 숨김)"
+      },
+      "s16": {
+        "title": "양식 5/5 — 검토 및 제출",
+        "desc": "모든 정보를 한 화면에서 확인하고 <ui>Submit request</ui>(신청 제출) 버튼을 클릭합니다. 양식은 단계마다 자동 저장되므로 중간에 나갔다가 나중에 이어서 작성할 수 있습니다.",
+        "caption": "5/5 검토 — 요약(개인 정보 숨김)"
+      },
+      "s17": {
+        "title": "제출 확인",
+        "desc": "마지막 창에서 <ui>Submit</ui>(제출) 버튼을 클릭하면 신청이 심사로 넘어갑니다.",
+        "caption": "“신청을 제출하시겠습니까?” 창 — 최종 확인"
+      },
+      "s18": {
+        "title": "심사 → 계약 → 활성화",
+        "desc": "신청이 <ui>Under review</ui>(심사 중) 상태로 바뀝니다. 승인되면 이메일이 발송되고 결제 사업자 페이지에 <b>계약 전자 서명</b> 섹션이 나타납니다. 서명하는 즉시 연결이 활성화되어 결제를 받기 시작합니다.",
+        "caption": "심사 중인 신청 — 취소하고 다시 제출할 수 있습니다"
+      },
+      "s19": {
+        "title": "API 키 관리",
+        "desc": "설정 → API 키. 키를 교체하고 이전 키를 폐기합니다. 각 키는 해당 프로젝트의 데이터에만 접근합니다.",
+        "caption": "API 키 — 프로젝트마다 고유한 sk_live 키"
+      },
+      "s20": {
+        "title": "Webhook 연결",
+        "desc": "설정 → Webhook. 결제 이벤트를 받을 서버의 URL을 등록하고 <b>검증</b>합니다. 프로젝트마다 Webhook 엔드포인트는 정확히 하나이며, URL을 변경하면 새 주소가 검증될 때까지 이벤트는 이전 주소로 계속 전송됩니다. 전체 API 레퍼런스 — docs.wire.mn.",
+        "caption": "Webhook — 엔드포인트 등록 및 검증"
+      }
+    },
+    "notes": {
+      "s8": "옵션을 잘못 선택했다면: 데이터가 없는 프로젝트는 결제 사업자 페이지의 <ui>Use your existing merchant registration</ui>(기존 가맹점 등록 바로 사용) 카드를 통해 다른 사업자로 옮길 수 있습니다(12단계).",
+      "s18": "<b>참고:</b> 승인된 후에도 계약에 서명하기 전까지 연결은 비활성 상태로 유지됩니다. 승인된 연결이 작동하지 않는 가장 흔한 이유는 계약 단계를 마치지 않았기 때문입니다."
+    }
+  },
+  "terms": {
+    "legalNotice": "본 문서는 번역본이며, 몽골어 원문이 법적 효력을 가집니다.",
+    "badge": "법적 고지",
+    "heading": "서비스 이용약관.",
+    "lead": "Wire에 가입하고 로그인함으로써 귀하는 아래 약관에 동의합니다.",
+    "sections": {
+      "service": {
+        "title": "1. 서비스",
+        "body": "Wire(wire.mn)는 몽골의 결제 사업자들을 하나의 연동으로 연결하는 결제 게이트웨이입니다. 대시보드를 통해 결제를 받고, 거래를 확인하고, 설정을 관리합니다."
+      },
+      "account": {
+        "title": "2. 계정 및 로그인",
+        "body": "Google 계정으로 로그인하며, 당사는 비밀번호를 저장하지 않습니다. 이메일 주소는 계정의 주요 식별자입니다."
+      },
+      "kyc": {
+        "title": "3. 인증(KYC)",
+        "body": "금융 서비스이므로 모든 계정 소유자는 (a) 휴대폰 번호를 SMS로, (b) 개인 정보를 DAN(몽골 정부 전자 신원 인증) 시스템(sso.gov.mn)으로 인증합니다. DAN에서 받은 정보(이름, 등록번호, 주소)는 암호화되어 저장됩니다. 시민 한 명은 하나의 계정만 인증할 수 있습니다."
+      },
+      "privacy": {
+        "title": "4. 정보 보호",
+        "body": "개인 정보와 은행 계좌 정보는 AES-256 암호화로 저장됩니다. 당사는 귀하의 정보를 광고에 사용하지 않으며 제3자에게 판매하지 않습니다. 가맹점 등록에 필요한 범위에서만 결제 사업자와 공유합니다."
+      },
+      "payments": {
+        "title": "5. 결제 데이터",
+        "body": "거래 금액, 상태 및 관련 메타데이터는 대사와 분쟁 해결을 위해 보관됩니다. 모든 금액은 몽골 투그릭(MNT)으로 기록됩니다."
+      },
+      "duties": {
+        "title": "6. 이용자의 의무",
+        "body": "API 키는 비밀로 유지하십시오. Wire를 이용하여 불법 상품이나 서비스의 대금을 받는 것은 금지됩니다. 위반이 확인되면 계정이 정지되거나 영구적으로 해지될 수 있습니다."
+      },
+      "termination": {
+        "title": "7. 해지",
+        "body": "언제든지 프로젝트를 삭제하고 서비스를 탈퇴할 수 있습니다. 금융 기록 보관에 관한 법령에 따라 일부 거래 내역은 정해진 기간 동안 보관됩니다."
+      }
+    },
+    "updated": "최종 수정일: 2026-06-12 · 문의: <link>{email}</link>"
+  },
+  "verification": {
+    "intro": {
+      "badge": "KYC · 2단계 · 약 2분",
+      "line1": "모든 계정 소유자를",
+      "line2": "인증합니다.",
+      "lead": "Wire는 결제를 받는 금융 서비스입니다. 따라서 모든 계정 개설 시 휴대폰과 개인 신원 인증을 거칩니다. <hl>이는 귀하와 귀하의 고객을 보호합니다</hl>."
+    },
+    "phone": {
+      "chip": "1단계 · 휴대폰",
+      "line1": "휴대폰 번호.",
+      "line2": "SMS 한 통.",
+      "copy": "번호를 입력하고 <hl>안내된 단축 번호로 SMS 한 통을 보내면 인증됩니다</hl>. 외울 코드도, 설치할 앱도 없습니다. 본인 휴대폰에서 보낸 메시지가 곧 증명입니다.",
+      "bullets": {
+        "oneAccount": "휴대폰 번호 1개 = 계정 1개",
+        "auto": "보통 30초 안에 자동 인식",
+        "alerts": "알림과 중요 공지가 이 번호로 발송됩니다"
+      }
+    },
+    "dan": {
+      "chip": "2단계 · DAN",
+      "line1": "신원 인증.",
+      "line2": "정부 DAN 전자 신원 인증으로.",
+      "copy": "정부 통합 로그인 DAN(sso.gov.mn)으로 이동하여 본인 동의하에 로그인합니다. <hl>Wire는 귀하의 비밀번호를 볼 수 없습니다</hl>. 인증된 결과(이름, 등록번호)만 전달받습니다.",
+      "bullets": {
+        "official": "정부 공식 시스템 — 추가 서류 제출 불필요",
+        "once": "한 번, 약 1분 — 반복하지 않습니다",
+        "signed": "서명된 채널 — 전송 중 데이터를 변조할 수 없습니다"
+      }
+    },
+    "phoneMock": {
+      "title": "휴대폰 인증",
+      "yourNumber": "내 번호",
+      "sent": "단축 번호로 전송됨",
+      "recognized": "30초 만에 자동 인식됨"
+    },
+    "danMock": {
+      "title": "DAN — sso.gov.mn",
+      "gov": "정부 시스템",
+      "name": "이름",
+      "nameValue": "B. Temuulen",
+      "register": "등록번호",
+      "registerValue": "UK92******91",
+      "noPassword": "Wire는 비밀번호를 볼 수 없습니다"
+    },
+    "privacy": {
+      "badge": "개인정보",
+      "line1": "귀하의 정보는",
+      "line2": "귀하의 것입니다.",
+      "items": {
+        "encrypted": {
+          "title": "암호화 저장",
+          "desc": "개인 정보는 AES-256으로 암호화됩니다. 화면에는 이름과 등록번호의 앞뒤 일부(마스킹)만 표시됩니다."
+        },
+        "oneCitizen": {
+          "title": "시민 1명 = 계정 1개",
+          "desc": "한 시민의 정보로는 하나의 계정만 인증할 수 있어, 중복 가입과 사기를 방지합니다."
+        },
+        "noThirdParty": {
+          "title": "제3자에게 제공하지 않음",
+          "desc": "귀하의 정보를 광고에 사용하거나 판매하지 않습니다. KYC에 필요한 범위에서만 사용합니다."
+        }
+      }
+    }
+  },
+  "status": {
+    "heading": "서비스 상태.",
+    "overall": {
+      "operational": "모든 시스템 정상 운영 중",
+      "degraded": "일부 시스템 지연",
+      "down": "일부 시스템 장애"
+    },
+    "health": {
+      "operational": "정상",
+      "degraded": "지연",
+      "down": "장애"
+    },
+    "checked": "업데이트: {checkedAt}(울란바토르 시간)",
+    "components": {
+      "api": "API",
+      "dashboard": "대시보드",
+      "checkout": "결제 페이지",
+      "website": "웹사이트"
+    },
+    "footer": "이 페이지를 새로 고칠 때마다 시스템을 실시간으로 점검합니다. 장애가 계속되면 <link>{email}</link>로 문의해 주십시오."
+  },
+  "guidePage": {
+    "stepsBadge": "단계",
+    "faqBadge": "도움말",
+    "faqHeading": "자주 묻는 질문."
+  }
+}
