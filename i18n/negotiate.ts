@@ -38,6 +38,7 @@ function hasLocalePrefix(pathname: string): boolean {
 export function landingRedirect(req: {
   method: string;
   pathname: string;
+  /** NextURL.search: "?a=1" with its leading "?", or "" when there is none. */
   search: string;
   cookie: string | undefined;
   country: string | null;

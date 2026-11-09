@@ -1,19 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { Link, usePathname } from "@/i18n/navigation";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { DOCS_URL } from "@/lib/links";
 
-const ITEMS: { href: string; label: string }[] = [
-  { href: "/", label: "Эхлэл" },
-  { href: "/features", label: "Боломжууд" },
-  { href: "/verification", label: "Баталгаажуулалт" },
-  { href: "/guide", label: "Гарын авлага" },
-  { href: "/links", label: "Төлбөрийн линк" },
-  { href: "/developers", label: "Хөгжүүлэгч" },
-];
+const ITEMS = [
+  { href: "/", label: "home" },
+  { href: "/features", label: "features" },
+  { href: "/verification", label: "verification" },
+  { href: "/guide", label: "guide" },
+  { href: "/links", label: "links" },
+  { href: "/developers", label: "developers" },
+] as const;
 
 /** MobileNav — the marketing menu for small screens (the inline NavLinks hide
  *  below sm/md): a hamburger that opens a full-width sheet under the header.
@@ -21,6 +21,8 @@ const ITEMS: { href: string; label: string }[] = [
 export function MobileNav() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const t = useTranslations("common");
+  const nav = useTranslations("nav");
 
   // close when the route changes (Link navigation)
   useEffect(() => setOpen(false), [pathname]);
@@ -40,7 +42,7 @@ export function MobileNav() {
     <div className="md:hidden">
       <button
         type="button"
-        aria-label={open ? "Цэс хаах" : "Цэс нээх"}
+        aria-label={open ? nav("closeMenu") : nav("openMenu")}
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
         className="flex size-9 items-center justify-center rounded-full text-[var(--color-foreground)] transition-colors hover:bg-[var(--color-surface)]"
@@ -64,7 +66,7 @@ export function MobileNav() {
                       : "text-[var(--color-foreground)] hover:bg-[var(--color-surface)]"
                   }`}
                 >
-                  {item.label}
+                  {t(item.label)}
                 </Link>
               );
             })}
@@ -74,7 +76,7 @@ export function MobileNav() {
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 rounded-lg px-3 py-2.5 text-[15px] text-[var(--color-muted)] transition-colors hover:bg-[var(--color-surface)]"
             >
-              Docs
+              {t("docs")}
               <ArrowUpRight className="size-3.5" />
             </a>
           </nav>

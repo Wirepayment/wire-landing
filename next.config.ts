@@ -1,5 +1,8 @@
 import type { NextConfig } from "next";
 import { withSentryConfig } from "@sentry/nextjs";
+import createNextIntlPlugin from "next-intl/plugin";
+
+const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 
 // Content-Security-Policy for the landing surface (GA4, no auth).
 // See docs/superpowers/specs/2026-06-06-csp-per-app-design.md.
@@ -37,7 +40,7 @@ const nextConfig: NextConfig = {
 
 // tunnelRoute proxies Sentry events through same-origin /monitoring, so the CSP
 // connect-src stays 'self' — no Sentry ingest domain is added.
-export default withSentryConfig(nextConfig, {
+export default withSentryConfig(withNextIntl(nextConfig), {
   tunnelRoute: "/monitoring",
   silent: !process.env.CI,
   widenClientFileUpload: true,

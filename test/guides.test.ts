@@ -11,7 +11,7 @@ const registered = new Map<string, (typeof PUBLIC_PAGES)[number]>(
   PUBLIC_PAGES.map((p) => [p.path, p]),
 );
 const layout = readFileSync(
-  path.resolve(import.meta.dirname, "../app/(marketing)/layout.tsx"),
+  path.resolve(import.meta.dirname, "../app/[locale]/(marketing)/layout.tsx"),
   "utf8",
 );
 

@@ -57,11 +57,13 @@ describe("connectors", () => {
   });
 
   it("is a section of the home page", () => {
-    expect(read("app/(marketing)/page.tsx")).toContain("<Connectors />");
+    expect(read("app/[locale]/(marketing)/page.tsx")).toContain(
+      "<Connectors />",
+    );
   });
 
   it("gives every connector a payment-method group on the features page", () => {
-    const features = read("app/(marketing)/features/page.tsx");
+    const features = read("app/[locale]/(marketing)/features/page.tsx");
     for (const c of CONNECTORS) {
       expect(features, c.id).toContain(`group: "${c.group}"`);
     }

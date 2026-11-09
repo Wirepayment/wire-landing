@@ -1,22 +1,23 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { Link, usePathname } from "@/i18n/navigation";
 
-const ITEMS: { href: string; label: string }[] = [
-  { href: "/", label: "Эхлэл" },
-  { href: "/features", label: "Боломжууд" },
-  { href: "/verification", label: "Баталгаажуулалт" },
-  { href: "/guide", label: "Гарын авлага" },
-  { href: "/links", label: "Төлбөрийн линк" },
-  { href: "/developers", label: "Хөгжүүлэгч" },
-];
+const ITEMS = [
+  { href: "/", label: "home" },
+  { href: "/features", label: "features" },
+  { href: "/verification", label: "verification" },
+  { href: "/guide", label: "guide" },
+  { href: "/links", label: "links" },
+  { href: "/developers", label: "developers" },
+] as const;
 
 /** NavLinks — the marketing header menu with the current page highlighted
  *  (ink text + a hand-drawn mint underline). Inline from md up; below that the
  *  hamburger MobileNav owns navigation (no partially-hidden in-between state). */
 export function NavLinks() {
   const pathname = usePathname();
+  const t = useTranslations("common");
   return (
     <>
       {ITEMS.map((item) => {
@@ -33,7 +34,7 @@ export function NavLinks() {
                 : "text-[var(--color-muted)] hover:text-[var(--color-foreground)]"
             }`}
           >
-            {item.label}
+            {t(item.label)}
             {active && (
               <span
                 aria-hidden

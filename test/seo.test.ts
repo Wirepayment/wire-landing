@@ -27,22 +27,34 @@ function pageRoutes(dir = appDir): { route: string; file: string }[] {
       const segs = path
         .relative(appDir, dir)
         .split(path.sep)
-        .filter((s) => s && !s.startsWith("("));
+        .filter((s) => s && !s.startsWith("(") && s !== "[locale]");
       out.push({ route: `/${segs.join("/")}`, file: full });
     }
   }
   return out;
 }
 
+// The English pages are still registered under /en (lib/seo.ts is reworked for
+// four languages later); their files now live once under app/[locale].
+const withoutLocale = (p: string) =>
+  p.replace(/^\/(?:en|zh|ko)(?=\/|$)/, "") || "/";
+
 describe("public page registry", () => {
   it("lists every page.tsx, and every page uses pageMetadata", () => {
     const routes = pageRoutes();
-    const registered = PUBLIC_PAGES.map((p) => p.path).sort();
+    const registered = [
+      ...new Set(PUBLIC_PAGES.map((p) => withoutLocale(p.path))),
+    ].sort();
     expect(routes.map((r) => r.route).sort()).toEqual(registered);
     for (const { route, file } of routes) {
-      expect(readFileSync(file, "utf8"), file).toContain(
-        `pageMetadata("${route}")`,
-      );
+      const src = readFileSync(file, "utf8");
+      const calls = PUBLIC_PAGES.filter(
+        (p) => withoutLocale(p.path) === route,
+      ).map((p) => `pageMetadata("${p.path}")`);
+      expect(
+        calls.some((c) => src.includes(c)),
+        file,
+      ).toBe(true);
     }
   });
 
@@ -66,8 +78,10 @@ describe("public page registry", () => {
   });
 
   it("does not let the root layout set a canonical every page inherits", () => {
-    const layout = readFileSync(path.join(appDir, "layout.tsx"), "utf8");
-    expect(layout).not.toMatch(/canonical/);
+    for (const f of ["layout.tsx", "[locale]/layout.tsx"]) {
+      const layout = readFileSync(path.join(appDir, f), "utf8");
+      expect(layout, f).not.toMatch(/canonical/);
+    }
   });
 });
 

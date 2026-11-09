@@ -1,0 +1,29 @@
+{
+  "common": {
+    "home": "Эхлэл",
+    "features": "Боломжууд",
+    "verification": "Баталгаажуулалт",
+    "guide": "Гарын авлага",
+    "links": "Төлбөрийн линк",
+    "developers": "Хөгжүүлэгч",
+    "status": "Статус",
+    "terms": "Үйлчилгээний нөхцөл",
+    "docs": "Docs"
+  },
+  "nav": {
+    "homeAria": "wire нүүр",
+    "signIn": "Нэвтрэх",
+    "openMenu": "Цэс нээх",
+    "closeMenu": "Цэс хаах"
+  },
+  "footer": {
+    "tagline": "Бүх төлбөрөө нэг гарцаар — Монголын төлбөрийн операторуудад нэг холболтоор.",
+    "linksHeading": "Холбоос",
+    "solutionsHeading": "Шийдлүүд",
+    "legalHeading": "Эрх зүй",
+    "contactHeading": "Холбоо барих",
+    "facebook": "Facebook хуудас",
+    "rights": "© {year} {company} · wire.mn. Бүх эрх хамгаалагдсан.",
+    "byBuildry": "A product by Buildry ↗"
+  }
+}
