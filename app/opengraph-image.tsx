@@ -2,8 +2,8 @@ import { ImageResponse } from "next/og";
 
 /* Branded social share card (Open Graph + Twitter / FB / LinkedIn).
  * "Clear sky" look mirroring the landing hero: white paper, mint cloud
- * glow, serif Cyrillic headline (Playfair Display subset fetched at
- * render), Rubik UI voice, gradient pill CTA and a floating mini
+ * glow, Comfortaa everywhere (Cyrillic subset fetched at render, same
+ * voice as the site), gradient pill CTA and a floating mini
  * dashboard card. Satori has no <text> SVG support — everything is
  * flex divs + shape SVGs. */
 
@@ -53,36 +53,34 @@ function LogoMark({ size: s }: { size: number }) {
 }
 
 export default async function Image() {
-  const serifText = HEADLINE1 + HEADLINE2;
-  const rubikText = BADGE + SUB + CTA + "wire.mn Хяналт ₮48.2 сая +23%→";
-  const [serif, rubik400, rubik600] = await Promise.all([
-    loadFont("Playfair Display", serifText, 600),
-    loadFont("Rubik", rubikText, 400),
-    loadFont("Rubik", rubikText, 600),
+  const allText =
+    HEADLINE1 +
+    HEADLINE2 +
+    BADGE +
+    SUB +
+    CTA +
+    "wire.mn Хяналт ₮48.2 сая +23%→";
+  const [c400, c700] = await Promise.all([
+    loadFont("Comfortaa", allText, 400),
+    loadFont("Comfortaa", allText, 700),
   ]);
   const fonts = [
-    serif && {
-      name: "Playfair Display",
-      data: serif,
-      weight: 600 as const,
-      style: "normal" as const,
-    },
-    rubik400 && {
-      name: "Rubik",
-      data: rubik400,
+    c400 && {
+      name: "Comfortaa",
+      data: c400,
       weight: 400 as const,
       style: "normal" as const,
     },
-    rubik600 && {
-      name: "Rubik",
-      data: rubik600,
-      weight: 600 as const,
+    c700 && {
+      name: "Comfortaa",
+      data: c700,
+      weight: 700 as const,
       style: "normal" as const,
     },
   ].filter(Boolean) as {
     name: string;
     data: ArrayBuffer;
-    weight: 400 | 600;
+    weight: 400 | 700;
     style: "normal";
   }[];
 
@@ -93,7 +91,7 @@ export default async function Image() {
         height: "100%",
         display: "flex",
         background: PAPER,
-        fontFamily: "Rubik, sans-serif",
+        fontFamily: "Comfortaa, sans-serif",
         position: "relative",
       }}
     >
@@ -128,7 +126,7 @@ export default async function Image() {
             style={{
               display: "flex",
               fontSize: 44,
-              fontWeight: 600,
+              fontWeight: 700,
               letterSpacing: "-1px",
               color: INK,
             }}
@@ -150,7 +148,7 @@ export default async function Image() {
               background: "rgba(255,255,255,0.85)",
               padding: "10px 22px",
               fontSize: 22,
-              fontWeight: 600,
+              fontWeight: 700,
               color: MUTED,
             }}
           >
@@ -172,9 +170,9 @@ export default async function Image() {
               display: "flex",
               flexDirection: "column",
               marginTop: 28,
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "Comfortaa, sans-serif",
               fontSize: 92,
-              fontWeight: 600,
+              fontWeight: 700,
               letterSpacing: "-3px",
               color: INK,
               lineHeight: 1.06,
@@ -212,7 +210,7 @@ export default async function Image() {
               background: `linear-gradient(180deg, ${MINT_BRIGHT} 0%, ${MINT_DEEP} 100%)`,
               color: "#ffffff",
               fontSize: 26,
-              fontWeight: 600,
+              fontWeight: 700,
               boxShadow: "0 12px 40px rgba(16,185,129,0.35)",
             }}
           >
@@ -262,7 +260,7 @@ export default async function Image() {
             style={{
               display: "flex",
               fontSize: 44,
-              fontWeight: 600,
+              fontWeight: 700,
               letterSpacing: "-1px",
               color: INK,
             }}
@@ -276,7 +274,7 @@ export default async function Image() {
               background: "#dcf3e8",
               color: MINT_DEEP,
               fontSize: 18,
-              fontWeight: 600,
+              fontWeight: 700,
               padding: "4px 12px",
             }}
           >
