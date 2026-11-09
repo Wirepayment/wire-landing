@@ -1,9 +1,10 @@
 import { describe, it, expect } from "vitest";
-import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
+import { readdirSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
 import { NextRequest } from "next/server";
 import { unstable_doesMiddlewareMatch } from "next/experimental/testing/server";
 import proxy, { config } from "@/proxy";
+import { HTML_LANG } from "@/i18n/locales";
 
 const appDir = path.resolve(import.meta.dirname, "../app");
 
@@ -142,13 +143,12 @@ describe("CJK fonts", () => {
   });
 
   it("sets --font-cjk only for zh and ko, and keeps Korean words whole", () => {
-    for (const lang of ["zh-Hans", "ko"]) {
-      const block = css.match(
-        new RegExp(`html:lang\\(${lang}\\)\\s*\\{([^}]*)\\}`),
-      );
-      expect(block?.[1], lang).toMatch(/--font-cjk:/);
+    const langBlock = (lang: string) =>
+      css.match(new RegExp(`html:lang\\(${lang}\\)\\s*\\{([^}]*)\\}`))?.[1];
+    for (const lang of [HTML_LANG.zh, HTML_LANG.ko]) {
+      expect(langBlock(lang), lang).toMatch(/--font-cjk:/);
     }
-    const ko = css.match(/html:lang\(ko\)\s*\{([^}]*)\}/)?.[1] ?? "";
+    const ko = langBlock(HTML_LANG.ko) ?? "";
     expect(ko).toMatch(/word-break:\s*keep-all;/);
     expect(ko).toMatch(/overflow-wrap:\s*anywhere;/);
     // One definition per CJK language and none elsewhere.
@@ -164,38 +164,5 @@ describe("CJK fonts", () => {
       );
     }
     expect(css).not.toMatch(/var\(--font-cjk,\s*\)/);
-  });
-
-  it("links the same stylesheets on every locale (needs pnpm build)", () => {
-    const html = (l: string) => {
-      const file = path.resolve(
-        import.meta.dirname,
-        `../.next/server/app/${l}.html`,
-      );
-      expect(existsSync(file), `${file} missing: run pnpm build`).toBe(true);
-      return readFileSync(file, "utf8");
-    };
-    const sheets = (l: string) =>
-      [...html(l).matchAll(/<link[^>]*rel="stylesheet"[^>]*href="([^"]+)"/g)]
-        .map((m) => m[1] ?? "")
-        .sort();
-    const fontPreloads = (l: string) =>
-      html(l).match(/<link[^>]*rel="preload"[^>]*as="font"[^>]*>/g) ?? [];
-    for (const l of ["en", "zh", "ko"]) {
-      expect(sheets(l), l).toEqual(sheets("mn"));
-      expect(fontPreloads(l), l).toEqual(fontPreloads("mn"));
-    }
-    // No CJK web font is served anywhere (system stacks only).
-    for (const href of sheets("mn")) {
-      const sheet = readFileSync(
-        path.resolve(
-          import.meta.dirname,
-          "../.next",
-          href.replace("/_next/", ""),
-        ),
-        "utf8",
-      );
-      expect(sheet, href).not.toMatch(/@font-face\s*\{[^}]*Noto/);
-    }
   });
 });

@@ -18,6 +18,10 @@ import { createHash } from "node:crypto";
 // a genitive suffix still match). To add a name: sha256 of its lowercase
 // form, first 16 hex chars. Never add a connector name here — the connector
 // test in brand-names.test.ts fails if one comes back.
+//
+// A Latin name glued to Chinese or Korean ("<name>银行", "<name>은행") is
+// still its own word: a word is also split where it changes between CJK and
+// any other script.
 const EXACT = new Set([
   "2bed2032ed3d8300",
   "6ecdcb213b610b7e",
@@ -28,6 +32,12 @@ const EXACT = new Set([
   "c6a6ea89bb6fef43",
   "1b2455e9fef29158",
   "724ec1a3f9b8f747",
+  // Large Chinese and Korean wallets, Latin spelling (2026-11-09).
+  "88e2cce43eeadb36",
+  "14f0d48d7dd34e0a",
+  "0c4c7aab82ab323c",
+  "f9eca8105b04d377",
+  "43fdb591888f1ddc",
 ]);
 const PREFIX: ReadonlyArray<readonly [number, string]> = [
   [9, "31253c0edd03f09b"],
@@ -36,28 +46,89 @@ const PREFIX: ReadonlyArray<readonly [number, string]> = [
   [10, "f959a7522ceef870"],
 ];
 
+// Chinese and Korean names (2026-11-09, spec §7.7). CJK text has no spaces
+// between words and Korean adds particles straight onto a name, so these
+// match as a substring of any CJK run — whitespace between two CJK characters
+// is dropped first, so a name written with a space still matches. Two groups:
+// the large Chinese and Korean QR/wallet brands, and the Chinese/Korean
+// spellings of the Mongolian banks and operators forbidden above. Hash the
+// name the same way; keep it at most CJK_MAX_LENGTH characters.
+const CJK_SUBSTRING = new Set([
+  // Chinese and Korean wallets, in Chinese.
+  "276a8bc458036a1a",
+  "064464bf647781a6",
+  "358f6064aa4e1b11",
+  "6419de732fece5d6",
+  "ea931069265d4827",
+  // Chinese and Korean wallets, in Korean.
+  "e92001560a056721",
+  "d5fe34e33cb5cfc7",
+  "70565e85e760736e",
+  "12cb57b5e43c757b",
+  "a631da0b426f6b83",
+  "a19f35281d68cf84",
+  "17711f1f7a392eb7",
+  // Forbidden Mongolian banks and operators, in Chinese.
+  "f1d6c001e8dd3717",
+  "03b4dc4d5db69690",
+  "eff6a83eaeb33a7e",
+  // Forbidden Mongolian banks and operators, in Korean.
+  "557da4dd5e56b85a",
+  "996a3d003b857418",
+  "5095d39ef9d1bd4e",
+  "0b9ac9fc0e68b8fa",
+  "b8d35fd0f44d82e9",
+  "691762587374f7ab",
+  "5e738c8499b1bf36",
+  "f66b748f453bd4b2",
+  "4fd555c72cdee0a1",
+  "d843223bab87074a",
+]);
+const CJK_MAX_LENGTH = 8;
+
+const CJK =
+  "\\p{Script=Han}\\p{Script=Hangul}\\p{Script=Hiragana}\\p{Script=Katakana}";
+const CJK_RUN = new RegExp(`[${CJK}]+`, "gu");
+const CJK_SPACE = new RegExp(`(?<=[${CJK}])\\s+(?=[${CJK}])`, "gu");
+const SCRIPT_PIECE = new RegExp(`[${CJK}]+|[^${CJK}]+`, "gu");
+
 const digest = (s: string) =>
   createHash("sha256").update(s).digest("hex").slice(0, 16);
 
+function latinOrCyrillicHit(candidate: string): boolean {
+  if (EXACT.has(digest(candidate))) return true;
+  const chars = [...candidate];
+  return PREFIX.some(
+    ([n, h]) => chars.length >= n && digest(chars.slice(0, n).join("")) === h,
+  );
+}
+
+function cjkHits(text: string): string[] {
+  const hits: string[] = [];
+  for (const [run] of text.replace(CJK_SPACE, "").matchAll(CJK_RUN)) {
+    const chars = [...run];
+    for (let i = 0; i < chars.length; i++) {
+      for (let n = 1; n <= CJK_MAX_LENGTH && i + n <= chars.length; n++) {
+        const sub = chars.slice(i, i + n).join("");
+        if (CJK_SUBSTRING.has(digest(sub))) hits.push(sub);
+      }
+    }
+  }
+  return hits;
+}
+
 /** Every forbidden brand name found in text (empty when the copy is clean). */
 export function brandNames(text: string): string[] {
-  const words = text
-    .toLowerCase()
+  const lower = text.toLowerCase();
+  const words = lower
     .split(/[^\p{L}\p{N}]+/u)
-    .filter(Boolean);
-  const hits = new Set<string>();
+    .flatMap((w) => w.match(SCRIPT_PIECE) ?? []);
+  const hits = new Set<string>(cjkHits(lower));
   words.forEach((word, i) => {
     const next = words[i + 1];
     const candidates = next ? [word, word + next, `${word} ${next}`] : [word];
     // One hit per word: the shortest candidate that matches.
-    const hit = candidates.find((c) => {
-      if (EXACT.has(digest(c))) return true;
-      const chars = [...c];
-      return PREFIX.some(
-        ([n, h]) =>
-          chars.length >= n && digest(chars.slice(0, n).join("")) === h,
-      );
-    });
+    const hit = candidates.find(latinOrCyrillicHit);
     if (hit) hits.add(hit);
   });
   return [...hits];
