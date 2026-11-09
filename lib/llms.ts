@@ -41,6 +41,12 @@ const HEADINGS = {
 
 type LlmsLocale = keyof typeof HEADINGS;
 
+/** The English part's overview after the summary: how each channel is
+ *  connected, the developer surface and the price — facts the Mongolian
+ *  pages state (connectors, /developers, the FAQ). */
+const ENGLISH_DETAILS =
+  "QPay (QR code and bank apps) and PayLink (Visa, Mastercard and domestic cards) are connected through Wire. Toki and MonPay (e-wallets), StorePay and Pocket Zero (buy-now-pay-later) are connected with the merchant's own operator agreement and keys, and the money goes straight to the merchant's operator account; Wire never holds it. Merchants use ready-made payment links or a REST API (OpenAPI 3.1, SDKs for Go, Python, Node.js, PHP, Ruby and .NET, checkout SDKs for JavaScript and iOS, signed webhooks) and see all revenue in one dashboard. Amounts are in Mongolian tögrög (MNT), as whole numbers. Sign-up, account connection and the dashboard are free; a fee applies only to successful transactions.";
+
 function channels(locale: LlmsLocale): string[] {
   const h = HEADINGS[locale];
   const modes = connectorModesFor(locale);
@@ -121,6 +127,8 @@ export function llmsTxt(): string {
     "## English",
     "",
     siteFor("en").summary,
+    "",
+    ENGLISH_DETAILS,
     "",
     `The site is also in English (${absoluteUrl(localizedPath("en", "/"))}), Chinese (${absoluteUrl(localizedPath("zh", "/"))}) and Korean (${absoluteUrl(localizedPath("ko", "/"))}). Developer documentation: ${DOCS_SITE_URL}/en/docs`,
     "",

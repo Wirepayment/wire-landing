@@ -44,7 +44,7 @@ export const PUBLIC_PAGES = [
   { path: "/guides/qr-payments", priority: 0.8, updated: "2026-11-08" },
   { path: "/guides/payment-gateway", priority: 0.8, updated: "2026-11-08" },
   { path: "/guides/platform", priority: 0.7, updated: "2026-10-25" },
-  { path: "/payments-in-mongolia", priority: 0.7, updated: "2026-11-08" },
+  { path: "/payments-in-mongolia", priority: 0.7, updated: "2026-11-09" },
   { path: "/terms", priority: 0.4, updated: "2026-07-30" },
   { path: "/status", priority: 0.3, updated: "2026-07-30" },
 ] as const satisfies readonly PublicPage[];

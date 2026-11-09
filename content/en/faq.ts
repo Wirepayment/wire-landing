@@ -1,32 +1,33 @@
 import type { Faq } from "@/lib/faq";
-import { FAQS as MN } from "@/content/mn/faq";
 
-// Home-page FAQ in English, one entry per Mongolian question, same order.
-// Entries marked "real English" come verbatim from the former /en page (the
-// English guide that "/en" used to be); the rest are TEMP until translations
-// (B8) and still show the Mongolian copy.
+// Home-page FAQ in English, one entry per Mongolian question in
+// content/mn/faq.ts, same order. Where the former English /en page answered
+// the same question, its wording is kept.
 export const FAQS: Faq[] = [
-  // Real English (former /en).
   {
     q: "Is there a sign-up or monthly fee?",
-    a: "No. Sign-up, connecting accounts and the dashboard are free. A fee applies only to successful transactions, starting from 1% depending on the connector.",
+    a: "No. Sign-up, connecting accounts and the dashboard are free, and there are no usage or monthly fees. A fee applies only to successful transactions.",
   },
-  // TEMP until translations.
-  MN[1]!,
-  // Real English (former /en).
+  {
+    q: "What is the transaction fee?",
+    a: "It starts from 1%, depending on the payment channel you choose. The exact rate is shown in that channel's terms when you connect your account — there are no hidden fees.",
+  },
   {
     q: "How do I start?",
-    a: "Sign up at app.wire.mn, verify the owner once with phone and DAN (Mongolia's national e-ID), connect a payout bank account and activate an operator. Then use payment links or the API.",
+    a: "Sign up and verify the owner once with phone and DAN (Mongolia's state e-ID). Then connect the account that receives your revenue and start taking payments with ready-made links or the API.",
   },
-  // Real English (former /en).
   {
     q: "Do I need a developer?",
-    a: "No. Payment links work from the dashboard alone. The API and SDKs are there when you want to integrate checkout into a website or app.",
+    a: "No. Ready-made payment links are easy for anyone: create one in the dashboard in seconds and share it in chat, social posts or email.",
   },
-  // TEMP until translations.
-  MN[4]!,
-  MN[5]!,
-  // Real English (former /en).
+  {
+    q: "Which channels can I take payments through?",
+    a: "QPay (QR code, bank apps), PayLink (Visa, Mastercard, domestic cards), Toki and MonPay (e-wallets), StorePay and Pocket Zero (installments). QPay and PayLink are connected through Wire; the others you connect from the dashboard with your own agreement and keys from the payment operator. Transactions from every channel come through one connection into one dashboard.",
+  },
+  {
+    q: "When does the revenue reach my account?",
+    a: "It depends on the terms of the payment channel you choose. Every transaction shows in the dashboard in real time, and the revenue goes to the account you connected.",
+  },
   {
     q: "Is my data safe?",
     a: "Personal data is stored encrypted with AES-256 and not shared with third parties. Every webhook carries a signature so you can verify each notification.",

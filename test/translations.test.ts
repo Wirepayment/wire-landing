@@ -83,8 +83,7 @@ function messageLeaves(locale: Locale): Map<string, unknown> {
 }
 
 /** The content modules' leaves. Only the exports Mongolian has are the
- *  contract; a translation may keep extra helpers (content/en's
- *  PAYMENTS_IN_MONGOLIA). */
+ *  contract; a translation may export extra helpers of its own. */
 function contentLeaves(locale: Locale): Map<string, unknown> {
   const out = new Map<string, unknown>();
   for (const [file, mn] of Object.entries(CONTENT.mn)) {

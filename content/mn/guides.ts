@@ -369,70 +369,65 @@ export const GUIDES: Guide[] = [
     ],
     cta: { label: "Холбогдох", href: `mailto:${CONTACT.email}` },
   },
-  // TEMP until translations (B8 writes the Mongolian version): English copy
-  // of content/en/guides.ts PAYMENTS_IN_MONGOLIA.
   {
     slug: "/payments-in-mongolia",
-    label: "Accept payments in Mongolia",
-    badge: "Guide",
-    line1: "How to accept online",
-    line2: "payments in Mongolia",
+    label: "Монголд төлбөр хүлээн авах",
+    badge: "Гарын авлага",
+    line1: "Монголд онлайн төлбөр",
+    line2: "хэрхэн хүлээн авах вэ?",
     answer:
-      "Wire is a payment gateway for Mongolia. A business or individual seller in Mongolia signs up at app.wire.mn, verifies the owner once (phone and DAN, the national e-ID), activates the payment operators it wants, and then takes payments through hosted checkout, payment links or a REST API. Buyers pay with bank apps, e-wallets, QR, cards or buy-now-pay-later, and the money goes to the business's own account.",
-    stepsTitle: "From sign-up to the first payment",
+      "Wire бол Монголд зориулсан төлбөрийн gateway. Монголын бизнес эсвэл хувь хүн худалдагч app.wire.mn-д бүртгүүлж, эзэмшигчийн утас болон ДАН (төрийн цахим танилт)-аар нэг удаа баталгаажуулаад, хүссэн төлбөрийн операторуудаа идэвхжүүлнэ. Дараа нь Wire-ийн төлбөрийн хуудас, төлбөрийн линк эсвэл REST API-аар төлбөр хүлээн авна. Худалдан авагч банкны апп, цахим хэтэвч, QR, карт эсвэл хуваан төлөх сувгаар төлж, мөнгө бизнесийн өөрийн данс руу орно.",
+    stepsTitle: "Бүртгэлээс эхний төлбөр хүртэл",
     steps: [
       {
-        title: "Sign up and verify once",
-        body: "Sign in at app.wire.mn and verify the owner's phone and DAN identity. It is done once, however many businesses or projects you open later.",
+        title: "Бүртгүүлж, нэг удаа баталгаажуулна",
+        body: "app.wire.mn-д нэвтэрч, эзэмшигчийн утас болон ДАН баталгаажуулалтыг хийнэ. Энэ нь нэг л удаа — дараа нь хэдэн ч бизнес, project нээсэн дахин шаардахгүй.",
       },
       {
-        title: "Activate an operator",
-        body: "For QPay or PayLink, submit your business details and payout bank account in the dashboard; after review you sign the agreement electronically and the connection goes live. For Toki, MonPay, StorePay or Pocket Zero, enter the keys from your own contract with the operator.",
+        title: "Оператороо идэвхжүүлнэ",
+        body: "QPay, PayLink: dashboard-аас бизнесийн мэдээлэл, орлого хүлээн авах дансаа илгээнэ. Хяналтаар батлагдсаны дараа гэрээг цахимаар байгуулмагц холболт идэвхжинэ. Toki, MonPay, StorePay, Pocket Zero: оператортой байгуулсан өөрийн гэрээний түлхүүрээ dashboard-д оруулна.",
       },
       {
-        title: "Create a project and API key",
-        body: "Each project has its own sk_live secret key and one webhook endpoint. The key is shown once — store it in a password manager.",
+        title: "Project үүсгэж API key авна",
+        body: "Project бүр өөрийн sk_live нууц түлхүүр, нэг webhook endpoint-той. Түлхүүр ганц удаа харагдах тул нууц үгийн менежерт хадгална.",
       },
       {
-        title: "Send buyers to checkout",
-        body: "Create a PaymentIntent on your server, open a checkout session and redirect the buyer to the hosted page on pay.wire.mn, which shows the QR code, bank-app deeplinks and every channel you switched on.",
+        title: "Худалдан авагчийг төлбөрийн хуудас руу илгээнэ",
+        body: "Сервер талдаа PaymentIntent үүсгэж, checkout session нээгээд худалдан авагчийг pay.wire.mn дээрх төлбөрийн хуудас руу чиглүүлнэ. Хуудас QR код, банкны апп-ын deeplink болон таны асаасан бүх сувгийг харуулна.",
       },
       {
-        title: "Confirm with a webhook",
-        body: "Your server receives payment_intent.succeeded, signed with HMAC-SHA256. Verify the signature, then fulfil the order.",
+        title: "Webhook-оор баталгаажуулна",
+        body: "Таны сервер HMAC-SHA256 гарын үсэгтэй payment_intent.succeeded event хүлээн авна. Гарын үсгийг шалгаад захиалгаа гүйцэтгэнэ.",
       },
     ],
     faqs: [
       {
-        q: "Which payment methods can buyers use?",
-        a: "QR and bank apps (QPay), cards — Visa, Mastercard and domestic cards (PayLink), e-wallets (Toki, MonPay) and buy-now-pay-later (StorePay, Pocket Zero). QPay and PayLink are connected through Wire; the others with your own operator contract and keys, entered in the dashboard.",
+        q: "Худалдан авагч ямар аргаар төлж болох вэ?",
+        a: "QR код, банкны апп (QPay), карт — Visa, Mastercard, дотоодын карт (PayLink), цахим хэтэвч (Toki, MonPay), хуваан төлөх (StorePay, Pocket Zero). QPay, PayLink-ийг Wire-ээр дамжуулан холбоно; бусдыг оператортой байгуулсан өөрийн гэрээ, түлхүүрээрээ dashboard-аас холбоно.",
       },
       {
-        q: "What currency are amounts in?",
-        a: "Mongolian tögrög (MNT), as whole numbers — MNT has no minor unit.",
+        q: "Дүн ямар валютаар байх вэ?",
+        a: "Монгол төгрөг (MNT), бүхэл тоогоор — төгрөгт бутархай нэгж байхгүй.",
       },
       {
-        q: "Which languages have SDKs?",
-        a: "Go, Python, Node.js, PHP, Ruby and .NET on the server, plus checkout SDKs for JavaScript and iOS. The API is described by an OpenAPI 3.1 spec.",
+        q: "Ямар хэл дээр SDK байдаг вэ?",
+        a: "Сервер талд Go, Python, Node.js, PHP, Ruby, .NET, мөн checkout-ийн JavaScript болон iOS SDK. API нь OpenAPI 3.1 тодорхойлолттой.",
+      },
+      { q: "Шимтгэл хэд вэ?", a: FEE_ANSWER },
+      {
+        q: "Вэб сайтгүйгээр төлбөр авч болох уу?",
+        a: "Тийм. Dashboard-аас төлбөрийн линк үүсгээд чат, пост, имэйлээр хуваалцах эсвэл QR кодыг нь хэвлэнэ.",
       },
       {
-        q: "What does it cost?",
-        a: "Sign-up, connecting accounts and the dashboard are free and there is no monthly fee. A fee applies only to successful transactions, starting from 1% depending on the connector; the exact rate is shown when you activate it.",
-      },
-      {
-        q: "Can I take payments without a website?",
-        a: "Yes. Create a payment link in the dashboard and share it in chat, social posts or email, or print its QR code.",
-      },
-      {
-        q: "Who operates Wire?",
-        a: "Buildry AI LLC (Билдрай Эй Ай ХХК).",
+        q: "Wire-ийг хэн ажиллуулдаг вэ?",
+        a: "Билдрай Эй Ай ХХК.",
       },
     ],
     related: [
-      { label: "Wire in English", href: "/" },
-      { label: "Developer docs (English)", href: `${DOCS_URL}/en/docs` },
-      { label: "Quickstart", href: `${DOCS_URL}/en/docs/quickstart` },
+      { label: "Wire нүүр", href: "/" },
+      { label: "Хөгжүүлэгчийн баримт бичиг", href: `${DOCS_URL}/docs` },
+      { label: "Quickstart (docs)", href: `${DOCS_URL}/docs/quickstart` },
     ],
-    cta: { label: "Get started", href: DASHBOARD_URL },
+    cta: SIGNUP,
   },
 ];

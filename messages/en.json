@@ -1,0 +1,630 @@
+{
+  "common": {
+    "home": "Home",
+    "features": "Features",
+    "verification": "Verification",
+    "guide": "Guide",
+    "links": "Payment links",
+    "developers": "Developers",
+    "status": "Status",
+    "terms": "Terms of service",
+    "docs": "Docs"
+  },
+  "nav": {
+    "homeAria": "Wire home",
+    "signIn": "Sign in",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Choose language"
+  },
+  "footer": {
+    "tagline": "Every payment, one gateway — one connection to Mongolia's payment operators.",
+    "linksHeading": "Links",
+    "solutionsHeading": "Solutions",
+    "legalHeading": "Legal",
+    "contactHeading": "Contact",
+    "facebook": "Facebook page",
+    "rights": "© {year} {company} · wire.mn. All rights reserved.",
+    "byBuildry": "A product by Buildry ↗"
+  },
+  "home": {
+    "hero": {
+      "badge": "All-in-one Payment Gateway",
+      "titleLine1": "Every payment,",
+      "titleLine2": "one gateway.",
+      "lead": "Wire brings QR, bank apps, cards, e-wallets and installments <hl>together in one connection</hl>. Use ready-made links or the API, and track your revenue from one dashboard.",
+      "start": "Get started",
+      "howItWorks": "How it works",
+      "dashboardBadge": "Real-time dashboard"
+    },
+    "dashboardMock": {
+      "storeName": "Wire Store",
+      "search": "Search",
+      "groups": {
+        "operations": "Operations",
+        "finance": "Finance",
+        "settings": "Settings"
+      },
+      "nav": {
+        "overview": "Overview",
+        "transactions": "Transactions",
+        "paymentLinks": "Payment links",
+        "accounts": "Accounts",
+        "reports": "Reports",
+        "channels": "Channels",
+        "settings": "Settings"
+      },
+      "userInitials": "BT",
+      "userName": "B. Temuulen",
+      "pageTitle": "Overview",
+      "monthRevenue": "Revenue this month",
+      "monthRevenueValue": "₮48.2M",
+      "growth": "Up ₮9.1M on last month",
+      "month": "M{n}",
+      "latest": "Latest transactions",
+      "columns": {
+        "transaction": "Transaction",
+        "channel": "Channel",
+        "amount": "Amount",
+        "date": "Date",
+        "status": "Status"
+      },
+      "channels": {
+        "bankApp": "Bank app",
+        "wallet": "E-wallet",
+        "qr": "QR payment"
+      },
+      "statuses": {
+        "succeeded": "Succeeded",
+        "pending": "Pending"
+      },
+      "stats": {
+        "todayRevenue": "Today's revenue",
+        "successRate": "Successful transactions",
+        "activeLinks": "Active links",
+        "connectedChannels": "Connected channels"
+      }
+    },
+    "getStarted": {
+      "badge": "Get started",
+      "line1": "Your first payment is",
+      "line2": "five minutes away.",
+      "lead": "No long onboarding and no complicated setup — sign-up, account connection and the dashboard are <hl>all free</hl>.",
+      "minutes": "min",
+      "signup": {
+        "title": "Sign up and verify",
+        "desc": "Sign-up is free. Verify once with your phone and DAN (state e-ID) for KYC — you are never asked again.",
+        "heading": "Verification",
+        "phone": "Phone number",
+        "dan": "DAN (KYC)",
+        "done": "Verified ✓"
+      },
+      "account": {
+        "title": "Connect your account",
+        "desc": "Choose the account that receives your revenue. No upfront agreement fee and no setup fee.",
+        "heading": "Connect account",
+        "chooseBank": "Choose bank",
+        "connect": "Connect"
+      },
+      "revenue": {
+        "title": "Receive your revenue",
+        "desc": "Take payments with ready-made links or the API, and see every transaction in the dashboard in real time.",
+        "today": "Today's revenue",
+        "newPayment": "New payment"
+      }
+    },
+    "connectors": {
+      "badge": "Payment channels",
+      "line1": "Six channels.",
+      "line2": "One connection.",
+      "lead": "QR, cards, e-wallets and installments — transactions from every channel come together <hl>in one API and one dashboard</hl>.",
+      "logoAlt": "{name} logo"
+    },
+    "featureBlocks": {
+      "badge": "Platform",
+      "line1": "From links to the API.",
+      "line2": "All in one place.",
+      "lead": "Sales, orders, invoices — every way of taking payment in one gateway. <hl>Adding a channel needs no code changes.</hl>",
+      "start": "Get started",
+      "links": {
+        "line1": "Payment links.",
+        "line2": "Ready in seconds.",
+        "copy": "Create a link in the dashboard and share it in chat, social posts or email — <hl>easy for anyone</hl>. You get a notification as soon as it is paid."
+      },
+      "api": {
+        "line1": "One API.",
+        "line2": "Many channels.",
+        "copy": "A clean REST API, SDKs and signed webhooks. <hl>One integration</hl> accepts payments through every channel active on your account."
+      },
+      "docsLink": "Developer documentation →",
+      "webhooks": {
+        "line1": "Real-time",
+        "line2": "notifications.",
+        "copy": "<hl>Email and webhook the moment a payment arrives.</hl> Every event carries a signature so you can verify each notification."
+      },
+      "linkMock": {
+        "title": "New payment link",
+        "name": "Name",
+        "nameValue": "Order #1024",
+        "amount": "Amount",
+        "create": "Create link",
+        "copy": "Copy",
+        "share": "Chat, posts, email — share it anywhere"
+      },
+      "apiMock": {
+        "amountDue": "Amount due",
+        "channels": {
+          "bankApp": "Bank app",
+          "wallet": "E-wallet",
+          "qr": "QR payment"
+        },
+        "pay": "Pay"
+      },
+      "webhookMock": {
+        "title": "Webhook events",
+        "verified": "Signature verified",
+        "delivered": "Delivered"
+      }
+    },
+    "closingCards": {
+      "routing": {
+        "badge": "New",
+        "line1": "Automatic failover.",
+        "line2": "No dropped payments.",
+        "copy": "If an automatically routed payment channel fails, the payment moves to the next active channel on its own, so <hl>the transaction is not dropped</hl> — only a system that connects many channels in one place can do this.",
+        "start": "Get started",
+        "chip": "Automatic failover",
+        "ago": "5s ago",
+        "eventTitle": "Transaction moved to another channel",
+        "eventBody": "The chosen channel did not respond, so the payment was routed to the next active channel automatically. Transaction succeeded.",
+        "succeeded": "Succeeded"
+      },
+      "consolidation": {
+        "line1": "Not many integrations.",
+        "line2": "One connection.",
+        "copy": "Where you built a separate integration for each payment operator, Wire <hl>replaces them with one connection</hl>.",
+        "replaces": "Replaces:",
+        "rails": {
+          "qr": "QR payment",
+          "bankApp": "Bank app",
+          "card": "Card",
+          "wallet": "E-wallet",
+          "installment": "Installments"
+        },
+        "checks": {
+          "oneApi": "One API, one signature, one dashboard",
+          "noCode": "No code changes to add a channel",
+          "oneReport": "Every transaction in one report"
+        },
+        "stats": {
+          "total": "Total revenue",
+          "pending": "Pending",
+          "average": "Average transaction"
+        },
+        "channels": {
+          "bankApp": "Bank app",
+          "wallet": "E-wallet",
+          "qr": "QR payment"
+        },
+        "footer": "All channels · one report · 2026-07"
+      }
+    },
+    "faq": {
+      "badge": "Help",
+      "heading": "Frequently asked questions."
+    },
+    "finalCta": {
+      "heading": "Every payment, one gateway.",
+      "lead": "Sign-up is free. Connect your account and start taking payments — <hl>a fee only on successful transactions</hl>.",
+      "items": {
+        "paymentLink": "Payment links",
+        "dashboard": "Real-time dashboard",
+        "qr": "QR payments",
+        "projects": "Many projects, many accounts",
+        "api": "REST API + SDK",
+        "webhooks": "Webhook + signature",
+        "idempotency": "Idempotency",
+        "platform": "Platform module",
+        "routing": "Auto-routing",
+        "cards": "Card payments",
+        "export": "Report export",
+        "insights": "Smart insights"
+      },
+      "roadmap": "Roadmap",
+      "start": "Get started"
+    }
+  },
+  "features": {
+    "intro": {
+      "badge": "Many channels · one integration",
+      "line1": "Every channel,",
+      "line2": "in one connection.",
+      "lead": "QR, bank apps, cards, e-wallets and installments — whichever the buyer chooses, <hl>you manage just one connection</hl>."
+    },
+    "start": "Get started",
+    "rails": {
+      "qr": {
+        "label": "QR · Bank",
+        "items": "QR code · Bank app",
+        "desc": "Just scan the QR — on a phone, the bank app opens directly."
+      },
+      "card": {
+        "label": "Card",
+        "items": "Visa · Mastercard · Domestic cards",
+        "desc": "Buyers pay by card right on the payment page."
+      },
+      "wallet": {
+        "label": "E-wallet",
+        "items": "Wallet apps",
+        "desc": "Buyers pay in their wallet app by QR, deeplink or their phone number."
+      },
+      "installment": {
+        "label": "Installments",
+        "items": "Installments · Credit",
+        "desc": "Buyers split their purchase into installments."
+      }
+    },
+    "logoAlt": "{name} logo",
+    "modeLine": "<b>{label}</b> — {hint}",
+    "grid": {
+      "badge": "Features",
+      "line1": "Everything beyond",
+      "line2": "the API.",
+      "lead": "No need to build a separate technical connection for each payment operator — one connection is enough."
+    },
+    "items": {
+      "routing": {
+        "title": "Auto-routing",
+        "desc": "A payment with no channel specified goes automatically to the best-suited channel by success rate, speed and amount limits over the last 24 hours, skipping channels that are failing."
+      },
+      "guarantee": {
+        "title": "Triple confirmation",
+        "desc": "Webhook + active checks + daily reconciliation — no payment gets lost."
+      },
+      "notifications": {
+        "title": "Real-time notifications",
+        "desc": "Email + webhook the moment a payment arrives. You choose what you receive."
+      },
+      "reports": {
+        "title": "Reports and history",
+        "desc": "Transactions, invoices, refunds — all in one dashboard, with filters and search."
+      },
+      "mnt": {
+        "title": "Full MNT support",
+        "desc": "Every amount in tögrög, as whole numbers. No confusion when you reconcile."
+      },
+      "ecosystem": {
+        "title": "Verified ecosystem",
+        "desc": "Every owner is verified with phone + DAN — you work with trusted partners."
+      }
+    }
+  },
+  "developers": {
+    "intro": {
+      "badge": "First payment in 10 minutes",
+      "line1": "Built for",
+      "line2": "developers.",
+      "lead": "A clear REST API, ready-made SDKs in 6 languages (Go, Python, Node, PHP, Ruby, .NET) and webhooks that report every payment automatically — <hl>start your integration in minutes</hl>."
+    },
+    "docs": "View documentation",
+    "apiKey": "Get an API key",
+    "grid": {
+      "badge": "API · SDK · platform",
+      "line1": "A powerful API.",
+      "line2": "An easy integration.",
+      "lead": "A clean REST API, ready-made SDKs and signed webhooks. A platform can connect many merchants with one key and collect payments through one channel."
+    },
+    "items": {
+      "rest": {
+        "title": "REST API",
+        "desc": "PaymentIntent / Charge / Refund — a predictable resource model, OpenAPI 3.1."
+      },
+      "sdk": {
+        "title": "8 SDKs",
+        "desc": "Go · Python · Node · PHP · Ruby · .NET + checkout JS/iOS — live on their registries."
+      },
+      "webhooks": {
+        "title": "Webhook with signature",
+        "desc": "HMAC-SHA256, retries + dead-letter, fixed egress IPs for your allow-list."
+      },
+      "platform": {
+        "title": "Platform / reseller",
+        "desc": "Connect many merchants with one key and collect payments through one channel."
+      },
+      "idempotency": {
+        "title": "Idempotency",
+        "desc": "Safe retries — the Idempotency-Key prevents double charges."
+      }
+    }
+  },
+  "links": {
+    "intro": {
+      "badge": "For everyone · easy",
+      "line1": "Create a link",
+      "line2": "and share it.",
+      "lead": "Small shops, services, freelancers — <hl>no developer needed</hl>. Create your link, send it in chat, posts or email, and the payments come in."
+    },
+    "create": "Create a link",
+    "line1": "One link.",
+    "line2": "Many payments.",
+    "perks": {
+      "fast": "Created in seconds in the dashboard",
+      "amount": "Fixed or open amount (the buyer enters it)",
+      "reusable": "Reusable — one link, many payments",
+      "share": "QR code, copy button, image previews on FB/Instagram/LinkedIn",
+      "live": "Every payment in real time in the dashboard + notifications"
+    },
+    "showcase": {
+      "title": "Monthly membership",
+      "active": "Active",
+      "amount": "Amount",
+      "copy": "Copy",
+      "payments": "payments",
+      "collected": "collected"
+    }
+  },
+  "guide": {
+    "intro": {
+      "badge": "Getting started guide",
+      "line1": "From sign-up to",
+      "line2": "taking payments",
+      "lead": "How a new merchant signs up on Wire, completes verification, creates a project and activates an operator connection — the full sequence, with real screens."
+    },
+    "tocAria": "Guide contents",
+    "phases": {
+      "signup": {
+        "tag": "Stage A",
+        "title": "Sign-up and verification",
+        "intro": "Wire has no separate password — you sign in with your Google account. Because this is a financial service for taking payments, every owner completes two-step verification: phone + DAN (state e-ID). Both are done once — however many businesses or projects you open, they are not asked again."
+      },
+      "project": {
+        "tag": "Stage B",
+        "title": "Create a project",
+        "intro": "<b>Business</b> = the identity with KYC, bank accounts and operator registrations. <b>Project</b> = the integration environment under it: its own API key, one webhook and a checkout template. One business can have many projects, and one user can open several businesses."
+      },
+      "connector": {
+        "tag": "Stage C",
+        "title": "Connect an operator",
+        "intro": "To take payments, connect at least one payment operator to your business. The flow: <b>fill in and submit the form → review and approval → sign the agreement electronically → payments go live</b>. The agreement is signed <em>after</em> approval — submitting the application needs no agreement. Operator names and numbers are generalised in the screenshots below — your account shows the real names of the operators active for it."
+      },
+      "integration": {
+        "tag": "Stage D",
+        "title": "Integration settings",
+        "intro": "Once an operator is active, these two things are needed for a technical integration. You can start using payment links and checkout right away, without writing code."
+      }
+    },
+    "steps": {
+      "s1": {
+        "title": "Sign in with Google",
+        "desc": "Go to <b>app.wire.mn</b> and click <ui>Sign in with Google</ui>. If this is your first sign-in, a new account is created automatically.",
+        "caption": "app.wire.mn/signin — sign in with Google"
+      },
+      "s2": {
+        "title": "Enter your phone number",
+        "desc": "A new user goes straight to the verification page. Enter your phone number and click <ui>Verify</ui>.",
+        "caption": "Verification 1/2 — phone number"
+      },
+      "s3": {
+        "title": "Verify by sending an SMS",
+        "desc": "Send the code shown on screen by SMS <b>from your own phone</b> to the short number given — you send it yourself instead of waiting for a message. Once it is sent, the page continues automatically.",
+        "caption": "Code + short number, waiting for the SMS"
+      },
+      "s4": {
+        "title": "Start DAN verification",
+        "desc": "The second step — verify your personal details through the state DAN system. Click <ui>Verify with DAN</ui>.",
+        "caption": "Verification 2/2 — DAN"
+      },
+      "s5": {
+        "title": "Give consent on sso.gov.mn",
+        "desc": "You move to the state single sign-on, sign in with your own DAN account and consent to sharing your details. When it succeeds, you return automatically.",
+        "caption": "DAN — the state identity and sign-in system"
+      },
+      "s6": {
+        "title": "Check that you are verified",
+        "desc": "On the profile page, check that phone and DAN both show <ui>Verified</ui>. From here on, every feature is open.",
+        "caption": "Profile — fully verified"
+      },
+      "s7": {
+        "title": "Create a new project — give it a name",
+        "desc": "In the project switcher at the top left, click <ui>Create new project</ui>. Give it a name and choose the business option. Your first project does not show this choice — its business is created along with it.",
+        "caption": "Use the current business (default) — registration, accounts and connections carry over"
+      },
+      "s8": {
+        "title": "Or: register a new business",
+        "desc": "To open a brand-new business for a separate legal entity or another line of activity, take the second option. Phone and DAN are not asked again; KYC, bank accounts and operator applications run separately on the new business.",
+        "caption": "Register a new business — its own KYC, accounts and applications"
+      },
+      "s9": {
+        "title": "Store your secret key",
+        "desc": "As soon as the project is created, the <code>sk_live_…</code> secret key is shown <b>only once</b>. Save it in a password manager with the <ui>Copy</ui> or <ui>Download .txt</ui> button — it is never shown again; if you lose it, create a new key.",
+        "caption": "One-time key reveal (the key in the image is invalid)"
+      },
+      "s10": {
+        "title": "Project overview",
+        "desc": "The new project's home. The left menu leads to transactions, payment links, checkout, accounts, reports and settings.",
+        "caption": "Overview — a new project's start"
+      },
+      "s11": {
+        "title": "Choose from the Connections page",
+        "desc": "Settings → Channels. Choose which of the operators active for your account to connect. One project can connect several operators, each operator once.",
+        "caption": "Connections — the list of available operators (names generalised)"
+      },
+      "s12": {
+        "title": "Start and the fast track",
+        "desc": "The operator page shows progress in 3 stages. If you were approved before on another business, a <ui>Use your existing merchant registration</ui> card appears — choose it and the connection works right away, with no new application and no wait. For a new business, fill in the 5-step form (Individual / Organisation).",
+        "caption": "The 3 progress stages, the existing-registration card, step 1 of the form (operator No. hidden)"
+      },
+      "s13": {
+        "title": "Form 2/5 — Basic details",
+        "desc": "Register number, surname and name, business name, type of activity. The <ui>Use</ui> button on the <ui>Fill with DAN-verified details</ui> card fills them in one click.",
+        "caption": "2/5 Details — DAN prefill (register number hidden)"
+      },
+      "s14": {
+        "title": "Form 3/5 — Address and contact",
+        "desc": "City, district, full address, phone, email. You can also fill these in one click from your DAN address and your profile details.",
+        "caption": "3/5 Address — two prefill cards (address hidden)"
+      },
+      "s15": {
+        "title": "Form 4/5 — Settlement account",
+        "desc": "Choose the bank account where your revenue lands, or add a new one with <ui>Connect another account</ui>. Accounts you connected before are already listed.",
+        "caption": "4/5 Account (number hidden)"
+      },
+      "s16": {
+        "title": "Form 5/5 — Review and submit",
+        "desc": "Check all your details on one screen and click <ui>Submit request</ui>. The form saves itself at every step, so you can leave it half done and continue later.",
+        "caption": "5/5 Review — summary (personal details hidden)"
+      },
+      "s17": {
+        "title": "Confirm the submission",
+        "desc": "Click <ui>Submit</ui> in the last window and the request goes to review.",
+        "caption": "The Submit request? window — final confirmation"
+      },
+      "s18": {
+        "title": "Review → agreement → activation",
+        "desc": "The request moves to <ui>Under review</ui>. Once it is approved, you get an email and a section to <b>sign the agreement electronically</b> appears on the operator page — as soon as you sign it, the connection goes live and you start taking payments.",
+        "caption": "A request under review — you can cancel it and submit again"
+      },
+      "s19": {
+        "title": "Manage API keys",
+        "desc": "Settings → API key. Rotate a key and revoke the old one. Each key reaches only its own project's data.",
+        "caption": "API key — each project has its own sk_live key"
+      },
+      "s20": {
+        "title": "Connect a webhook",
+        "desc": "Settings → Webhook. Register the URL of the server that receives payment events and <b>verify</b> it. Each project has exactly one webhook endpoint; when you change the URL, events keep going to the old address until the new one is verified. Full API reference — docs.wire.mn.",
+        "caption": "Webhook — register and verify an endpoint"
+      }
+    },
+    "notes": {
+      "s8": "If you chose the wrong option: a project with no data can move to another business through the <ui>Use your existing merchant registration</ui> card on the operator page (step 12).",
+      "s18": "<b>Note:</b> even after approval, the connection stays inactive until you sign the agreement. The most common reason an approved connection does not work is that the agreement step was not done."
+    }
+  },
+  "terms": {
+    "legalNotice": "This is a translation. The Mongolian version is legally binding.",
+    "badge": "Legal",
+    "heading": "Terms of service.",
+    "lead": "By signing up and signing in to Wire, you accept the terms below.",
+    "sections": {
+      "service": {
+        "title": "1. Service",
+        "body": "Wire (wire.mn) is a payment gateway that connects Mongolia's payment operators through one integration. Through the dashboard you take payments, track your transactions and manage your settings."
+      },
+      "account": {
+        "title": "2. Account and sign-in",
+        "body": "You sign in with a Google account — we do not store passwords. Your email address is your account's main identifier."
+      },
+      "kyc": {
+        "title": "3. Verification (KYC)",
+        "body": "Because this is a financial service, every owner verifies (a) their phone number by SMS and (b) their personal details through the state DAN e-ID system (sso.gov.mn). The details received from DAN (name, register number, address) are stored encrypted. One citizen can verify only one account."
+      },
+      "privacy": {
+        "title": "4. Data protection",
+        "body": "Personal and bank account details are stored with AES-256 encryption. We do not use your data for advertising and do not sell it to third parties. We share it with payment operators only as far as the merchant registration requires."
+      },
+      "payments": {
+        "title": "5. Payment data",
+        "body": "Transaction amounts, statuses and related metadata are kept for reconciliation and dispute resolution. All amounts are recorded in tögrög (MNT)."
+      },
+      "duties": {
+        "title": "6. User obligations",
+        "body": "Keep your API keys secret. Using Wire to take payments for illegal goods or services is prohibited. If a violation is found, the account may be suspended or closed permanently."
+      },
+      "termination": {
+        "title": "7. Termination",
+        "body": "You can delete your projects and leave the service at any time. Under financial record-keeping laws and regulations, some transaction history is kept for the required period."
+      }
+    },
+    "updated": "Last updated: 2026-06-12 · Questions: <link>{email}</link>"
+  },
+  "verification": {
+    "intro": {
+      "badge": "KYC · 2 steps · ~2 minutes",
+      "line1": "Every owner",
+      "line2": "verified.",
+      "lead": "Wire is a financial service for taking payments. That is why every account opening includes phone and personal identity verification — <hl>it protects you and your customers</hl>."
+    },
+    "phone": {
+      "chip": "Step 1 · Phone",
+      "line1": "Phone number.",
+      "line2": "One SMS.",
+      "copy": "Enter your number and <hl>send one SMS to the given short number — that verifies it</hl>. No code to remember and no app to install — the message sent from your own phone is the proof.",
+      "bullets": {
+        "oneAccount": "One phone number = one account",
+        "auto": "Usually recognised automatically within 30 seconds",
+        "alerts": "Notifications and important alerts go to this number"
+      }
+    },
+    "dan": {
+      "chip": "Step 2 · DAN",
+      "line1": "Identity verification.",
+      "line2": "Through the state DAN e-ID.",
+      "copy": "You move to DAN (sso.gov.mn), the state single sign-on, and sign in with your own consent. <hl>Wire never sees your password</hl> — only the verified result (name, register number) reaches us.",
+      "bullets": {
+        "official": "An official state system — no extra documents to send",
+        "once": "Once, ~1 minute — never repeated",
+        "signed": "A signed channel — data cannot be altered in transit"
+      }
+    },
+    "phoneMock": {
+      "title": "Verify phone",
+      "yourNumber": "Your number",
+      "sent": "Sent to the short number",
+      "recognized": "Recognised automatically in 30 seconds"
+    },
+    "danMock": {
+      "title": "DAN — sso.gov.mn",
+      "gov": "State system",
+      "name": "Name",
+      "nameValue": "B. Temuulen",
+      "register": "Register No.",
+      "registerValue": "UK92******91",
+      "noPassword": "Wire never sees your password"
+    },
+    "privacy": {
+      "badge": "Privacy",
+      "line1": "Your data",
+      "line2": "stays yours.",
+      "items": {
+        "encrypted": {
+          "title": "Encrypted storage",
+          "desc": "Personal data is encrypted with AES-256. The screen shows only your name and the first and last parts of your register number (masked)."
+        },
+        "oneCitizen": {
+          "title": "One citizen = one account",
+          "desc": "One citizen's details can verify only one account — this prevents duplicate sign-ups and fraud."
+        },
+        "noThirdParty": {
+          "title": "Not shared with third parties",
+          "desc": "We do not use your data for advertising and do not sell it. It is used only as far as KYC requires."
+        }
+      }
+    }
+  },
+  "status": {
+    "heading": "System status.",
+    "overall": {
+      "operational": "All systems operational",
+      "degraded": "Some systems are slow",
+      "down": "Some systems are down"
+    },
+    "health": {
+      "operational": "Operational",
+      "degraded": "Slow",
+      "down": "Down"
+    },
+    "checked": "Updated: {checkedAt} (Ulaanbaatar)",
+    "components": {
+      "api": "API",
+      "dashboard": "Dashboard",
+      "checkout": "Checkout",
+      "website": "Website"
+    },
+    "footer": "Systems are checked live every time you reload this page. If an outage continues, write to <link>{email}</link>."
+  },
+  "guidePage": {
+    "stepsBadge": "Steps",
+    "faqBadge": "Help",
+    "faqHeading": "Frequently asked questions."
+  }
+}

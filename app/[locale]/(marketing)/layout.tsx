@@ -190,7 +190,9 @@ export default async function MarketingLayout({
             <p className="text-center sm:text-left">
               {footer("rights", {
                 year: String(new Date().getFullYear()),
-                company: COMPANY.nameMn,
+                // The registered Mongolian name on Mongolian pages; its Latin
+                // form everywhere else (no Mongolian on a translated page).
+                company: locale === "mn" ? COMPANY.nameMn : COMPANY.nameEn,
               })}
             </p>
             <a

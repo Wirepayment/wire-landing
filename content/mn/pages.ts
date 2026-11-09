@@ -63,12 +63,10 @@ export const PAGES: Record<PublicPath, PageCopy> = {
     description:
       "Мерчантуудаа API-аар бүртгүүлж, тэдний өмнөөс төлбөр үүсгэ. Мерчант бүр төлбөрөө өөрийн данс руу шууд авна.",
   },
-  // TEMP until translations (B8 writes the Mongolian version): English copy
-  // of content/en/pages.ts.
   "/payments-in-mongolia": {
-    title: "How to accept online payments in Mongolia",
+    title: "Монголд онлайн төлбөр хэрхэн хүлээн авах вэ",
     description:
-      "Sign up, verify once, activate an operator and take payments in MNT with hosted checkout, payment links or the Wire REST API.",
+      "Бүртгүүлж, нэг удаа баталгаажуулаад оператороо идэвхжүүл. Төлбөрийн хуудас, төлбөрийн линк эсвэл Wire REST API-аар төгрөгөөр (MNT) төлбөр хүлээн ав.",
   },
   "/terms": {
     title: "Үйлчилгээний нөхцөл",
