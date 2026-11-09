@@ -103,17 +103,72 @@ const SOURCES = {
 const CYRILLIC = /\p{Script=Cyrillic}/u;
 const BANNED_CHARS = /[\u00AB\u00BB\u2020]/;
 
-/** ICU arguments ({count}, {n, plural, …}) and rich-text tags (<hl>) a
- *  message uses: the code fills in exactly these, so a translation must keep
- *  the same set. */
+const BRANCHED = new Set(["plural", "select", "selectordinal"]);
+
+/** What the code fills into a message, so a translation must keep exactly
+ *  the same: ICU arguments ("{name}"), the branch keys of each
+ *  plural/select ("{n,plural:one|other}") and rich-text tags ("<hl>").
+ *  Branch text is copy, not arguments; arguments and tags inside a branch
+ *  still count. */
 function slots(message: string): string[] {
-  const args = [...message.matchAll(/\{\s*([A-Za-z_]\w*)\s*[,}]/g)].map(
-    (m) => `{${m[1]}}`,
-  );
-  const tags = [...message.matchAll(/<([A-Za-z][\w-]*)>/g)].map(
-    (m) => `<${m[1]}>`,
-  );
-  return [...new Set([...args, ...tags])].sort();
+  const s = message;
+  const out = new Set<string>();
+  let i = 0;
+  const skipSpace = () => {
+    while (i < s.length && /\s/.test(s[i]!)) i++;
+  };
+  const word = () => {
+    skipSpace();
+    const start = i;
+    while (i < s.length && !/[\s,{}]/.test(s[i]!)) i++;
+    return s.slice(start, i);
+  };
+  // Message text up to an unmatched "}" or the end.
+  const text = (): void => {
+    while (i < s.length && s[i] !== "}") {
+      const tag = /^<([A-Za-z][\w-]*)>/.exec(s.slice(i));
+      if (s[i] === "{") argument();
+      else if (tag) {
+        out.add(`<${tag[1]}>`);
+        i += tag[0].length;
+      } else i++;
+    }
+  };
+  // One "{…}" argument, i at its "{".
+  const argument = (): void => {
+    i++;
+    const name = word();
+    out.add(`{${name}}`);
+    skipSpace();
+    if (s[i] === ",") i++;
+    const type = word();
+    skipSpace();
+    if (BRANCHED.has(type) && s[i] === ",") {
+      i++;
+      const keys: string[] = [];
+      for (;;) {
+        const key = word();
+        skipSpace();
+        if (key.startsWith("offset:")) continue;
+        if (!key || s[i] !== "{") break;
+        i++;
+        text();
+        i++;
+        keys.push(key);
+      }
+      out.add(`{${name},${type}:${keys.sort().join("|")}}`);
+    }
+    // Skip to this argument's closing "}" (a number/date style, or the end).
+    for (let depth = 1; i < s.length && depth > 0; i++) {
+      if (s[i] === "{") depth++;
+      else if (s[i] === "}") depth--;
+    }
+  };
+  while (i < s.length) {
+    text();
+    i++;
+  }
+  return [...out].sort();
 }
 
 /** The one Cyrillic word allowed outside Mongolian: the language picker's
@@ -133,10 +188,30 @@ describe("Mongolian source copy", () => {
     },
   );
 
-  it("enables only languages translated from Mongolian", () => {
+  it("enables only languages translated from Mongolian, each once", () => {
     for (const l of ENABLED_LOCALES) {
       expect(TRANSLATED_LOCALES as readonly Locale[]).toContain(l);
     }
+    expect(new Set(ENABLED_LOCALES).size).toBe(ENABLED_LOCALES.length);
+  });
+});
+
+describe("slots()", () => {
+  it("lists arguments and tags", () => {
+    expect(slots("© {year} {company} <hl>a</hl> <link>{email}</link>")).toEqual(
+      ["<hl>", "<link>", "{company}", "{email}", "{year}"],
+    );
+  });
+
+  it("lists branch keys, not branch text, as slots", () => {
+    expect(
+      slots(
+        "{n, plural, =0 {none} one {# item} other {{name} has <b>#</b> items}}",
+      ),
+    ).toEqual(["<b>", "{n,plural:=0|one|other}", "{name}", "{n}"]);
+    expect(
+      slots("{kind, select, card {Card} other {Other}} {d, date, short}"),
+    ).toEqual(["{d}", "{kind,select:card|other}", "{kind}"]);
   });
 });
 
@@ -196,9 +271,8 @@ for (const locale of TRANSLATED_LOCALES) {
             expect(hits.map(([k]) => k)).toEqual([]);
           });
 
-          it.skipIf(source !== "messages")(
-            "keeps every ICU argument and rich-text tag",
-            () => {
+          if (source === "messages")
+            it("keeps every ICU argument and rich-text tag", () => {
               const { mn, tr } = load();
               const drift = strings(mn)
                 .filter(([k, v]) => {
@@ -209,8 +283,7 @@ for (const locale of TRANSLATED_LOCALES) {
                 })
                 .map(([k]) => k);
               expect(drift).toEqual([]);
-            },
-          );
+            });
         },
       );
     },
@@ -228,7 +301,7 @@ function files(dir: string): string[] {
   });
 }
 
-describe.skipIf(ENABLED_LOCALES.length < TRANSLATED_LOCALES.length)(
+describe.skipIf(!TRANSLATED_LOCALES.every((l) => ENABLED_LOCALES.includes(l)))(
   "translation fallbacks",
   () => {
     it("leaves no TEMP marker in messages/, content/, i18n/ or lib/", () => {

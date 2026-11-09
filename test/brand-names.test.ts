@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { CONNECTORS } from "@/lib/connectors";
-import { brandNames } from "./brand-names";
+import { CJK_MAX_LENGTH, brandNames } from "./brand-names";
 
 // Forbidden names are spelled backwards here so the repo never holds them in
 // clear. Connector names are public on wire.mn and written as they are.
@@ -49,6 +49,34 @@ describe("brandNames()", () => {
       brandNames(`${back("오카카")} ${back("이페")}로 결제합니다`),
     ).toHaveLength(1);
     expect(brandNames(`${back("트롬골")} 은행 계좌`)).toHaveLength(1);
+  });
+
+  it("finds a spaced Korean name at a word end or before a particle", () => {
+    expect(brandNames(`${back("오카카")} ${back("이페")}`)).toHaveLength(1);
+    expect(brandNames(`${back("오카카")} ${back("이페")}와 카드`)).toHaveLength(
+      1,
+    );
+    expect(
+      brandNames(`${back("오카카")} ${back("이페")}에서 결제`),
+    ).toHaveLength(1);
+    expect(brandNames(`${back("이페오카카")}지원`)).toHaveLength(1);
+  });
+
+  // Eight hashed names end in the Korean "pay"; a word ending glued to the
+  // next word ("pay" + "지" = "page") is not a name.
+  it("does not join a word end to the next word into a name", () => {
+    for (const phrase of [
+      "다니합유공 서에지이페 셜소",
+      "지이페 버이네",
+      "지이페 이하상",
+      "다니입보정 정행 은칸 이",
+    ]) {
+      expect(brandNames(back(phrase)), back(phrase)).toEqual([]);
+    }
+  });
+
+  it("checks names up to the longest one hashed (5 characters)", () => {
+    expect(CJK_MAX_LENGTH).toBeGreaterThanOrEqual(5);
   });
 
   it("finds a Latin name glued to Chinese or Korean", () => {

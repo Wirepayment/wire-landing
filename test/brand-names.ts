@@ -48,11 +48,14 @@ const PREFIX: ReadonlyArray<readonly [number, string]> = [
 
 // Chinese and Korean names (2026-11-09, spec §7.7). CJK text has no spaces
 // between words and Korean adds particles straight onto a name, so these
-// match as a substring of any CJK run — whitespace between two CJK characters
-// is dropped first, so a name written with a space still matches. Two groups:
-// the large Chinese and Korean QR/wallet brands, and the Chinese/Korean
-// spellings of the Mongolian banks and operators forbidden above. Hash the
-// name the same way; keep it at most CJK_MAX_LENGTH characters.
+// match as a substring of a CJK word. A name may also be written with a
+// space inside it; such a hit counts only when it starts where a word starts
+// and ends where a word ends (or only a particle follows), so word ends glued
+// to the next word ("<…pay>" + "지" = "page") are not names. Two groups: the
+// large Chinese and Korean QR/wallet brands, and the Chinese/Korean spellings
+// of the Mongolian banks and operators forbidden above. Hash the name the
+// same way. A name longer than CJK_MAX_LENGTH characters never matches —
+// raise the cap (and its test) before adding one.
 const CJK_SUBSTRING = new Set([
   // Chinese and Korean wallets, in Chinese.
   "276a8bc458036a1a",
@@ -84,12 +87,30 @@ const CJK_SUBSTRING = new Set([
   "4fd555c72cdee0a1",
   "d843223bab87074a",
 ]);
-const CJK_MAX_LENGTH = 8;
+export const CJK_MAX_LENGTH = 8;
 
 const CJK =
   "\\p{Script=Han}\\p{Script=Hangul}\\p{Script=Hiragana}\\p{Script=Katakana}";
-const CJK_RUN = new RegExp(`[${CJK}]+`, "gu");
-const CJK_SPACE = new RegExp(`(?<=[${CJK}])\\s+(?=[${CJK}])`, "gu");
+// CJK words separated only by whitespace: one run, checked across the spaces.
+const CJK_RUN = new RegExp(`[${CJK}]+(?:\\s+[${CJK}]+)*`, "gu");
+// Korean particles that may follow a name written with a space.
+const PARTICLES = new Set([
+  "은",
+  "는",
+  "이",
+  "가",
+  "을",
+  "를",
+  "로",
+  "으로",
+  "와",
+  "과",
+  "의",
+  "에",
+  "에서",
+  "도",
+  "만",
+]);
 const SCRIPT_PIECE = new RegExp(`[${CJK}]+|[^${CJK}]+`, "gu");
 
 const digest = (s: string) =>
@@ -103,14 +124,33 @@ function latinOrCyrillicHit(candidate: string): boolean {
   );
 }
 
+/** Forbidden CJK names in text. A hit inside one word always counts (Korean
+ *  glues particles onto a name); a hit across a space must start at a word
+ *  start and end at a word end, or be followed only by a particle. */
 function cjkHits(text: string): string[] {
   const hits: string[] = [];
-  for (const [run] of text.replace(CJK_SPACE, "").matchAll(CJK_RUN)) {
-    const chars = [...run];
+  for (const [run] of text.matchAll(CJK_RUN)) {
+    const words = run.split(/\s+/).map((w) => [...w]);
+    const chars = words.flat();
+    const wordOf = words.flatMap((w, k) => w.map(() => k));
+    const startsWord = (i: number) => i === 0 || wordOf[i] !== wordOf[i - 1];
+    /** What follows position `end` in its word ("" at a word end). */
+    const rest = (end: number) => {
+      const k = wordOf[end - 1]!;
+      return words[k]!.slice(end - wordOf.indexOf(k)).join("");
+    };
     for (let i = 0; i < chars.length; i++) {
       for (let n = 1; n <= CJK_MAX_LENGTH && i + n <= chars.length; n++) {
-        const sub = chars.slice(i, i + n).join("");
-        if (CJK_SUBSTRING.has(digest(sub))) hits.push(sub);
+        const end = i + n;
+        const sub = chars.slice(i, end).join("");
+        if (!CJK_SUBSTRING.has(digest(sub))) continue;
+        const oneWord = wordOf[i] === wordOf[end - 1];
+        const after = rest(end);
+        if (
+          oneWord ||
+          (startsWord(i) && (after === "" || PARTICLES.has(after)))
+        )
+          hits.push(sub);
       }
     }
   }
