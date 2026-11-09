@@ -138,11 +138,41 @@ describe("landingRedirect", () => {
       { pathname: "/english", country: "US" },
       "/en/english",
     ],
+    // Ruling 23: a saved choice wins over the URL's (unprefixed = Mongolian)
+    // language; a saved Mongolian choice wins over the IP.
     ["cookie mn beats country US", { cookie: "mn", country: "US" }, null],
-    ["cookie ko never redirects", { cookie: "ko" }, null],
-    ["cookie ko with country US", { cookie: "ko", country: "US" }, null],
+    ["cookie mn, no country", { cookie: "mn" }, null],
+    ["cookie ko, GET /", { cookie: "ko" }, "/ko"],
+    ["cookie ko beats country US", { cookie: "ko", country: "US" }, "/ko"],
+    [
+      "cookie en beats country MN",
+      { cookie: "en", country: "MN", pathname: "/features" },
+      "/en/features",
+    ],
+    [
+      "cookie zh keeps the query",
+      { cookie: "zh", pathname: "/links", search: "?a=1" },
+      "/zh/links?a=1",
+    ],
+    [
+      "cookie zh, bot",
+      { cookie: "zh", userAgent: "Mozilla/5.0 (compatible; Googlebot/2.1)" },
+      null,
+    ],
+    [
+      "cookie en, prefixed /zh/features",
+      { cookie: "en", pathname: "/zh/features" },
+      null,
+    ],
+    ["cookie en, POST /", { cookie: "en", method: "POST" }, null],
+    [
+      "cookie en, HEAD /",
+      { cookie: "en", method: "HEAD", country: "MN" },
+      "/en",
+    ],
     ["garbage cookie counts as absent", { cookie: "xx", country: "US" }, "/en"],
     ["empty cookie counts as absent", { cookie: "", country: "CN" }, "/zh"],
+    ["garbage cookie, country MN", { cookie: "EN", country: "MN" }, null],
     [
       "Googlebot from US",
       {

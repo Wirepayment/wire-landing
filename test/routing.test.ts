@@ -117,6 +117,19 @@ describe("proxy", () => {
     expect(res.headers.get("location")).toBeNull();
   });
 
+  it("sends a saved en/zh/ko choice to its language (Ruling 23)", async () => {
+    const res = await proxy(
+      request("/features?x=1", {
+        headers: { "x-wire-country": "MN", cookie: "wire_lang=en" },
+      }),
+    );
+    expect(res.status).toBe(307);
+    expect(res.headers.get("location")).toBe(
+      "http://localhost:3000/en/features?x=1",
+    );
+    expect(res.headers.get("cache-control")).toBe("private, no-store");
+  });
+
   it("never redirects a prefixed URL", async () => {
     const res = await proxy(
       request("/zh/features", { headers: { "x-wire-country": "KR" } }),

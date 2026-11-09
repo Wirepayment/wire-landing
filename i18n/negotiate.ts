@@ -32,9 +32,11 @@ function hasLocalePrefix(pathname: string): boolean {
   return isLocale(first);
 }
 
-// Returns the 307 target for a first visit from abroad, or null to serve the
-// page as asked. A prefixed URL, a saved choice (wire_lang), a crawler or a
-// Mongolian IP is never redirected — crawlers must keep indexing Mongolian.
+// Returns the 307 target for an unprefixed (Mongolian) URL, or null to serve
+// the page as asked. A saved choice (wire_lang) decides first: en/zh/ko go to
+// their twin, mn stays (Ruling 23 — the choice always wins, spec §6.1). With
+// no valid cookie the IP decides. A prefixed URL or a crawler is never
+// redirected — crawlers must keep indexing Mongolian.
 export function landingRedirect(req: {
   method: string;
   pathname: string;
@@ -47,9 +49,10 @@ export function landingRedirect(req: {
   const method = req.method.toUpperCase();
   if (method !== "GET" && method !== "HEAD") return null;
   if (hasLocalePrefix(req.pathname)) return null;
-  if (isLocale(req.cookie)) return null;
   if (isBot(req.userAgent)) return null;
-  const locale = localeFromCountry(req.country);
+  const locale = isLocale(req.cookie)
+    ? req.cookie
+    : localeFromCountry(req.country);
   if (locale === "mn") return null;
   const path = req.pathname === "/" ? "" : req.pathname;
   return `/${locale}${path}${req.search}`;

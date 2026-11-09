@@ -5,8 +5,8 @@ import { routing } from "@/i18n/routing";
 
 const intl = createMiddleware(routing);
 
-// Our IP rule decides first (spec §6.2); next-intl then maps the unprefixed
-// Mongolian URLs onto the [locale] segment.
+// Our redirect rule (saved choice, then IP — spec §6.1–6.2) decides first;
+// next-intl then maps the unprefixed Mongolian URLs onto the [locale] segment.
 export default function proxy(req: NextRequest) {
   const target = landingRedirect({
     method: req.method,
