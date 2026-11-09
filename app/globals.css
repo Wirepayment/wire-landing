@@ -10,11 +10,13 @@
 */
 
 @theme {
-  --font-display: var(--font-comfortaa), ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-comfortaa), ui-sans-serif, system-ui, sans-serif;
+  /* --font-cjk is set only on zh/ko pages (below). Its fallback must be a
+     real family: an empty one would leave "a, , b" and void the whole stack. */
+  --font-display: var(--font-comfortaa), var(--font-cjk, ui-sans-serif), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-comfortaa), var(--font-cjk, ui-sans-serif), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
   /* header voice — same Comfortaa (logo wordmark + nav) */
-  --font-round: var(--font-comfortaa), ui-sans-serif, system-ui, sans-serif;
+  --font-round: var(--font-comfortaa), var(--font-cjk, ui-sans-serif), ui-sans-serif, system-ui, sans-serif;
 
   /* paper (brandbook: warm white) */
   --color-background: #fdfdfc;
@@ -56,6 +58,20 @@
   --color-info: #50504a;
 
   --radius-card: 16px;
+}
+
+/* Comfortaa has no Han or Hangul glyphs, so the browser falls through to
+   these per glyph while Latin stays Comfortaa. System fonts only: zero
+   bytes on every locale, nothing fetched at build time. */
+html:lang(zh-Hans) {
+  --font-cjk:
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC",
+    "Source Han Sans SC", "WenQuanYi Micro Hei";
+}
+html:lang(ko) {
+  --font-cjk:
+    "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans CJK KR", "Noto Sans KR",
+    "Source Han Sans K", "Nanum Gothic";
 }
 
 @layer base {

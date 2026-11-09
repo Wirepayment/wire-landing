@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { readdirSync, readFileSync, statSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
 import { NextRequest } from "next/server";
 import { unstable_doesMiddlewareMatch } from "next/experimental/testing/server";
@@ -128,5 +128,71 @@ describe("proxy", () => {
     const res = await proxy(request("/mn/features"));
     expect(res.status).toBe(307);
     expect(res.headers.get("location")).toBe("http://localhost:3000/features");
+  });
+});
+
+describe("CJK fonts", () => {
+  const read = (rel: string) =>
+    readFileSync(path.resolve(import.meta.dirname, rel), "utf8");
+  const css = read("../app/globals.css");
+
+  it("uses system CJK stacks, never a CJK web font", () => {
+    const layout = read("../app/[locale]/layout.tsx");
+    expect(layout).not.toMatch(/Noto_/);
+  });
+
+  it("sets --font-cjk only for zh and ko", () => {
+    for (const lang of ["zh-Hans", "ko"]) {
+      const block = css.match(
+        new RegExp(`html:lang\\(${lang}\\)\\s*\\{([^}]*)\\}`),
+      );
+      expect(block?.[1], lang).toMatch(/--font-cjk:/);
+    }
+    // One definition per CJK language and none elsewhere.
+    expect(css.match(/--font-cjk:/g)).toHaveLength(2);
+  });
+
+  it("keeps every text stack valid when --font-cjk is unset", () => {
+    for (const token of ["--font-display", "--font-sans", "--font-round"]) {
+      expect(css, token).toMatch(
+        new RegExp(
+          `${token}: var\\(--font-comfortaa\\), var\\(--font-cjk, ui-sans-serif\\),`,
+        ),
+      );
+    }
+    expect(css).not.toMatch(/var\(--font-cjk,\s*\)/);
+  });
+
+  it("links the same stylesheets on every locale (needs pnpm build)", () => {
+    const html = (l: string) => {
+      const file = path.resolve(
+        import.meta.dirname,
+        `../.next/server/app/${l}.html`,
+      );
+      expect(existsSync(file), `${file} missing: run pnpm build`).toBe(true);
+      return readFileSync(file, "utf8");
+    };
+    const sheets = (l: string) =>
+      [...html(l).matchAll(/<link[^>]*rel="stylesheet"[^>]*href="([^"]+)"/g)]
+        .map((m) => m[1] ?? "")
+        .sort();
+    const fontPreloads = (l: string) =>
+      html(l).match(/<link[^>]*rel="preload"[^>]*as="font"[^>]*>/g) ?? [];
+    for (const l of ["en", "zh", "ko"]) {
+      expect(sheets(l), l).toEqual(sheets("mn"));
+      expect(fontPreloads(l), l).toEqual(fontPreloads("mn"));
+    }
+    // No CJK web font is served anywhere (system stacks only).
+    for (const href of sheets("mn")) {
+      const sheet = readFileSync(
+        path.resolve(
+          import.meta.dirname,
+          "../.next",
+          href.replace("/_next/", ""),
+        ),
+        "utf8",
+      );
+      expect(sheet, href).not.toMatch(/@font-face\s*\{[^}]*Noto/);
+    }
   });
 });
