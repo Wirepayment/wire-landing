@@ -1,7 +1,7 @@
 import type { Locale } from "@/i18n/locales";
 
-// Locales whose translation has landed, so the cross-locale guards in
-// test/translations.test.ts run for them. All three are translated.
+// Locales whose translation has landed. translations.test.ts asserts this
+// equals TRANSLATED_LOCALES, so dropping one fails loudly.
 export const ENABLED_LOCALES: Locale[] = ["en", "zh", "ko"];
 
 /** Every language translated from Mongolian. */

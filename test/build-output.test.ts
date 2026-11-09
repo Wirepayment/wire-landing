@@ -7,7 +7,6 @@ import {
   LOCALES,
   LOCALE_NAMES,
 } from "@/i18n/locales";
-import { ENABLED_LOCALES } from "./translated-locales";
 
 // Checks on the prerendered pages in .next/ — run after `pnpm build` (the
 // verify command builds before it tests).
@@ -124,25 +123,20 @@ describe("visibleText", () => {
 // Spec §7.7: a translated page shows no Mongolian. The only Cyrillic allowed
 // is the language picker's own name for Mongolian.
 for (const locale of LOCALES.filter((l) => l !== DEFAULT_LOCALE)) {
-  describe.skipIf(!ENABLED_LOCALES.includes(locale))(
-    `built ${locale} pages`,
-    () => {
-      it(`show no Cyrillic but ${LOCALE_NAMES.mn}`, () => {
-        const pages = pagesOf(locale);
-        expect(pages.length).toBeGreaterThan(10);
-        const hits = pages.flatMap((file) => {
-          expect(existsSync(file), `${file} missing: run pnpm build`).toBe(
-            true,
-          );
-          const text = visibleText(readFileSync(file, "utf8"))
-            .split(LOCALE_NAMES.mn)
-            .join(" ");
-          return [...text.matchAll(CYRILLIC_RUN)].map(
-            (m) => `${path.relative(nextDir, file)}: ${m[0].trim()}`,
-          );
-        });
-        expect(hits).toEqual([]);
+  describe(`built ${locale} pages`, () => {
+    it(`show no Cyrillic but ${LOCALE_NAMES.mn}`, () => {
+      const pages = pagesOf(locale);
+      expect(pages.length).toBeGreaterThan(10);
+      const hits = pages.flatMap((file) => {
+        expect(existsSync(file), `${file} missing: run pnpm build`).toBe(true);
+        const text = visibleText(readFileSync(file, "utf8"))
+          .split(LOCALE_NAMES.mn)
+          .join(" ");
+        return [...text.matchAll(CYRILLIC_RUN)].map(
+          (m) => `${path.relative(nextDir, file)}: ${m[0].trim()}`,
+        );
       });
-    },
-  );
+      expect(hits).toEqual([]);
+    });
+  });
 }

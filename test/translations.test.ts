@@ -25,8 +25,8 @@ import { ENABLED_LOCALES, TRANSLATED_LOCALES } from "./translated-locales";
 // Guards for translated copy (spec §7.7): messages/<locale>.json and
 // content/<locale>/*.ts mirror Mongolian key for key, hold no Mongolian, and
 // keep every public-copy rule (#9 brands, banned characters, register
-// number) in every language. A locale is checked once it is in
-// ENABLED_LOCALES (test/translated-locales.ts).
+// number) in every language — every locale in TRANSLATED_LOCALES
+// (test/translated-locales.ts), with no skips.
 
 const root = path.resolve(import.meta.dirname, "..");
 
@@ -187,11 +187,10 @@ describe("Mongolian source copy", () => {
     },
   );
 
-  it("enables only languages translated from Mongolian, each once", () => {
-    for (const l of ENABLED_LOCALES) {
-      expect(TRANSLATED_LOCALES as readonly Locale[]).toContain(l);
-    }
-    expect(new Set(ENABLED_LOCALES).size).toBe(ENABLED_LOCALES.length);
+  // The guards below run for every translated language, with no skips; a
+  // language dropped from ENABLED_LOCALES fails here, loudly.
+  it("enables exactly the languages translated from Mongolian", () => {
+    expect(ENABLED_LOCALES).toEqual([...TRANSLATED_LOCALES]);
   });
 });
 
@@ -215,78 +214,75 @@ describe("slots()", () => {
 });
 
 for (const locale of TRANSLATED_LOCALES) {
-  describe.skipIf(!ENABLED_LOCALES.includes(locale))(
-    `${locale} translation`,
-    () => {
-      describe.each(Object.keys(SOURCES) as (keyof typeof SOURCES)[])(
-        "%s",
-        (source) => {
-          const load = () => ({
-            mn: SOURCES[source]("mn"),
-            tr: SOURCES[source](locale),
-          });
+  describe(`${locale} translation`, () => {
+    describe.each(Object.keys(SOURCES) as (keyof typeof SOURCES)[])(
+      "%s",
+      (source) => {
+        const load = () => ({
+          mn: SOURCES[source]("mn"),
+          tr: SOURCES[source](locale),
+        });
 
-          it("has every Mongolian key and no other", () => {
+        it("has every Mongolian key and no other", () => {
+          const { mn, tr } = load();
+          expect([...tr.keys()].sort()).toEqual([...mn.keys()].sort());
+        });
+
+        // Even where Mongolian is empty: terms.legalNotice is "" in
+        // Mongolian (it prevails) and the notice itself everywhere else.
+        it("leaves no string empty", () => {
+          const { mn, tr } = load();
+          // A non-string leaf (a count, a flag) must equal Mongolian's.
+          const bad = [...tr].filter(([k, v]) =>
+            typeof v === "string" ? v.trim() === "" : v !== mn.get(k),
+          );
+          expect(bad.map(([k]) => k)).toEqual([]);
+        });
+
+        it("holds no Cyrillic (except the picker name Монгол)", () => {
+          const hits = strings(load().tr).filter(([, v]) =>
+            CYRILLIC.test(withoutAllowedCyrillic(v)),
+          );
+          expect(hits).toEqual([]);
+        });
+
+        it("holds no guillemet or dagger", () => {
+          const hits = strings(load().tr).filter(([, v]) =>
+            BANNED_CHARS.test(v),
+          );
+          expect(hits.map(([k]) => k)).toEqual([]);
+        });
+
+        it("names no brand but the six connectors (rule #9)", () => {
+          const hits = strings(load().tr)
+            .map(([k, v]) => [k, brandNames(v)] as const)
+            .filter(([, names]) => names.length > 0);
+          expect(hits.map(([k]) => k)).toEqual([]);
+        });
+
+        it("never shows the register number", () => {
+          const hits = strings(load().tr).filter(([, v]) =>
+            v.includes(COMPANY.registerNo),
+          );
+          expect(hits.map(([k]) => k)).toEqual([]);
+        });
+
+        if (source === "messages")
+          it("keeps every ICU argument and rich-text tag", () => {
             const { mn, tr } = load();
-            expect([...tr.keys()].sort()).toEqual([...mn.keys()].sort());
+            const drift = strings(mn)
+              .filter(([k, v]) => {
+                const t = tr.get(k);
+                return typeof t === "string"
+                  ? slots(t).join() !== slots(v).join()
+                  : false;
+              })
+              .map(([k]) => k);
+            expect(drift).toEqual([]);
           });
-
-          // Even where Mongolian is empty: terms.legalNotice is "" in
-          // Mongolian (it prevails) and the notice itself everywhere else.
-          it("leaves no string empty", () => {
-            const { mn, tr } = load();
-            // A non-string leaf (a count, a flag) must equal Mongolian's.
-            const bad = [...tr].filter(([k, v]) =>
-              typeof v === "string" ? v.trim() === "" : v !== mn.get(k),
-            );
-            expect(bad.map(([k]) => k)).toEqual([]);
-          });
-
-          it("holds no Cyrillic (except the picker name Монгол)", () => {
-            const hits = strings(load().tr).filter(([, v]) =>
-              CYRILLIC.test(withoutAllowedCyrillic(v)),
-            );
-            expect(hits).toEqual([]);
-          });
-
-          it("holds no guillemet or dagger", () => {
-            const hits = strings(load().tr).filter(([, v]) =>
-              BANNED_CHARS.test(v),
-            );
-            expect(hits.map(([k]) => k)).toEqual([]);
-          });
-
-          it("names no brand but the six connectors (rule #9)", () => {
-            const hits = strings(load().tr)
-              .map(([k, v]) => [k, brandNames(v)] as const)
-              .filter(([, names]) => names.length > 0);
-            expect(hits.map(([k]) => k)).toEqual([]);
-          });
-
-          it("never shows the register number", () => {
-            const hits = strings(load().tr).filter(([, v]) =>
-              v.includes(COMPANY.registerNo),
-            );
-            expect(hits.map(([k]) => k)).toEqual([]);
-          });
-
-          if (source === "messages")
-            it("keeps every ICU argument and rich-text tag", () => {
-              const { mn, tr } = load();
-              const drift = strings(mn)
-                .filter(([k, v]) => {
-                  const t = tr.get(k);
-                  return typeof t === "string"
-                    ? slots(t).join() !== slots(v).join()
-                    : false;
-                })
-                .map(([k]) => k);
-              expect(drift).toEqual([]);
-            });
-        },
-      );
-    },
-  );
+      },
+    );
+  });
 }
 
 // Every TEMP fallback (en, zh and ko showing Mongolian) is gone once all
@@ -300,22 +296,19 @@ function files(dir: string): string[] {
   });
 }
 
-describe.skipIf(!TRANSLATED_LOCALES.every((l) => ENABLED_LOCALES.includes(l)))(
-  "translation fallbacks",
-  () => {
-    it("leaves no TEMP marker in messages/, content/, i18n/ or lib/", () => {
-      const hits = ["messages", "content", "i18n", "lib"]
-        .flatMap((d) => files(path.join(root, d)))
-        .filter((f) => readFileSync(f, "utf8").includes(TEMP_MARKER))
-        .map((f) => path.relative(root, f));
-      expect(hits).toEqual([]);
-    });
-  },
-);
+describe("translation fallbacks", () => {
+  it("leaves no TEMP marker in messages/, content/, i18n/ or lib/", () => {
+    const hits = ["messages", "content", "i18n", "lib"]
+      .flatMap((d) => files(path.join(root, d)))
+      .filter((f) => readFileSync(f, "utf8").includes(TEMP_MARKER))
+      .map((f) => path.relative(root, f));
+    expect(hits).toEqual([]);
+  });
+});
 
 // Mongolian URLs serve Mongolian: a guide answer left in English (as
 // /payments-in-mongolia was until B8) is caught here once English is on.
-describe.skipIf(!ENABLED_LOCALES.includes("en"))("Mongolian guides", () => {
+describe("Mongolian guides", () => {
   it.each(mnGuides.GUIDES.map((g) => [g.slug, g.answer] as const))(
     "%s answers in Mongolian",
     (_slug, answer) => {
