@@ -3,6 +3,7 @@ import {
   DEFAULT_LOCALE,
   HTML_LANG,
   LOCALES,
+  localizedPath,
   type Locale,
 } from "@/i18n/locales";
 import { PAGES as MN_PAGES, SITE as MN_SITE } from "@/content/mn/pages";
@@ -113,12 +114,8 @@ export function absoluteUrl(path: string): string {
   return path === "/" ? SITE_URL : `${SITE_URL}${path}`;
 }
 
-/** A page's URL path in one language: Mongolian keeps the bare path, the
- *  others gain /en, /zh or /ko ("/" becomes "/en"). */
-export function localizedPath(locale: Locale, path: string): string {
-  if (locale === DEFAULT_LOCALE) return path;
-  return `/${locale}${path === "/" ? "" : path}`;
-}
+// Lives in i18n/locales.ts (no page copy) so client components can use it.
+export { localizedPath };
 
 /** hreflang map for a page: every language, x-default = the Mongolian URL. */
 function languageAlternates(path: string): Record<string, string> {

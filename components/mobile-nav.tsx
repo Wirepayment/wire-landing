@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { DOCS_URL } from "@/lib/links";
+import { LanguageLinks } from "@/components/language-picker";
 
 const ITEMS = [
   { href: "/", label: "home" },
@@ -52,6 +53,7 @@ export function MobileNav() {
 
       {open && (
         <div className="absolute inset-x-0 top-16 z-50 border-b border-[var(--color-border)] bg-[var(--color-background)] shadow-[var(--shadow-pop,0_12px_32px_rgba(26,26,26,0.14))]">
+          <LanguageLinks className="mx-auto max-w-6xl border-b border-[var(--color-border)] px-8 pt-4 pb-3 text-[15px] text-[var(--color-muted)]" />
           <nav className="mx-auto max-w-6xl px-5 py-3">
             {ITEMS.map((item) => {
               const active = pathname === item.href;

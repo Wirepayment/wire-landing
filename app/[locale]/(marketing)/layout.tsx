@@ -5,6 +5,7 @@ import { Logo, LogoMark } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { NavLinks } from "@/components/nav-links";
 import { MobileNav } from "@/components/mobile-nav";
+import { LanguageLinks, LanguagePicker } from "@/components/language-picker";
 import { DASHBOARD_URL, DOCS_URL } from "@/lib/links";
 import { COMPANY, CONTACT } from "@/lib/company";
 import { guidesFor } from "@/lib/guides";
@@ -61,6 +62,7 @@ export default async function MarketingLayout({
             >
               {common("docs")}
             </a>
+            <LanguagePicker />
             <Button asChild size="sm" variant="dark" className="ml-1">
               <a href={DASHBOARD_URL}>{nav("signIn")}</a>
             </Button>
@@ -182,7 +184,9 @@ export default async function MarketingLayout({
             </div>
           </div>
 
-          <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-[var(--color-border)] pt-6 text-xs text-[var(--color-faint)] sm:flex-row">
+          <LanguageLinks className="mt-12 text-sm text-[var(--color-muted)]" />
+
+          <div className="mt-6 flex flex-col items-center justify-between gap-3 border-t border-[var(--color-border)] pt-6 text-xs text-[var(--color-faint)] sm:flex-row">
             <p className="text-center sm:text-left">
               {footer("rights", {
                 year: String(new Date().getFullYear()),

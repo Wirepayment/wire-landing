@@ -24,3 +24,10 @@ export const LOCALE_NAMES: Record<Locale, string> = {
   zh: "中文",
   ko: "한국어",
 };
+
+/** A page's URL path in one language: Mongolian keeps the bare path, the
+ *  others gain /en, /zh or /ko ("/" becomes "/en"). */
+export function localizedPath(locale: Locale, path: string): string {
+  if (locale === DEFAULT_LOCALE) return path;
+  return `/${locale}${path === "/" ? "" : path}`;
+}
