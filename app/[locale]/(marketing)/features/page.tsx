@@ -24,14 +24,21 @@ import { SectionHeading } from "@/components/home/section-heading";
 import { FinalCta } from "@/components/home/final-cta";
 import { DASHBOARD_URL } from "@/lib/links";
 import {
-  CONNECTORS,
-  CONNECTOR_MODES,
   connectorLogo,
+  connectorModesFor,
+  connectorsFor,
   type ConnectorGroup,
 } from "@/lib/connectors";
 import type { Locale } from "@/i18n/locales";
 
-export const metadata: Metadata = pageMetadata("/features");
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale, "/features");
+}
 
 // Payment-method groups, each with the live connectors behind it
 // (lib/connectors.ts) — so the page lists only what a merchant can turn on.
@@ -60,6 +67,8 @@ export default async function FeaturesPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("features");
+  const connectors = connectorsFor(locale);
+  const modes = connectorModesFor(locale);
   return (
     <>
       <PageIntro
@@ -99,37 +108,44 @@ export default async function FeaturesPage({
                   {t(`rails.${r.group}.desc`)}
                 </p>
                 <ul className="mt-5 space-y-2 border-t border-[var(--color-border)] pt-4">
-                  {CONNECTORS.filter((c) => c.group === r.group).map((c) => (
-                    <li key={c.id} className="flex items-center gap-2.5">
-                      <Image
-                        src={connectorLogo(c.id)}
-                        alt={t("logoAlt", { name: c.name })}
-                        width={28}
-                        height={28}
-                        className="size-7 shrink-0 rounded-lg border border-[var(--color-border)]"
-                      />
-                      <span className="text-sm font-semibold whitespace-nowrap">
-                        {c.name}
-                      </span>
-                      <span className="ml-auto whitespace-nowrap text-[11px] text-[var(--color-faint)]">
-                        {CONNECTOR_MODES[c.mode].short}
-                      </span>
-                    </li>
-                  ))}
+                  {connectors
+                    .filter((c) => c.group === r.group)
+                    .map((c) => (
+                      <li key={c.id} className="flex items-center gap-2.5">
+                        <Image
+                          src={connectorLogo(c.id)}
+                          alt={t("logoAlt", { name: c.name })}
+                          width={28}
+                          height={28}
+                          className="size-7 shrink-0 rounded-lg border border-[var(--color-border)]"
+                        />
+                        <span className="text-sm font-semibold whitespace-nowrap">
+                          {c.name}
+                        </span>
+                        <span className="ml-auto whitespace-nowrap text-[11px] text-[var(--color-faint)]">
+                          {modes[c.mode].short}
+                        </span>
+                      </li>
+                    ))}
                 </ul>
               </Reveal>
             ))}
           </div>
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
-            {Object.values(CONNECTOR_MODES).map((m) => (
+            {Object.values(modes).map((m) => (
               <p
                 key={m.label}
                 className="text-[13px] leading-relaxed text-[var(--color-muted)]"
               >
-                <span className="font-semibold text-[var(--color-foreground)]">
-                  {m.label}
-                </span>{" "}
-                — {m.hint}
+                {t.rich("modeLine", {
+                  label: m.label,
+                  hint: m.hint,
+                  b: (chunks) => (
+                    <span className="font-semibold text-[var(--color-foreground)]">
+                      {chunks}
+                    </span>
+                  ),
+                })}
               </p>
             ))}
           </div>

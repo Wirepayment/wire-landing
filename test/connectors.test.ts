@@ -5,7 +5,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 
 import { CONNECTORS, connectorLogo } from "@/lib/connectors";
 import { Connectors } from "@/components/home/connectors";
-import { FAQS } from "@/lib/faq";
+import { faqsFor } from "@/lib/faq";
 import { llmsTxt } from "@/lib/llms";
 import { brandNames } from "./brand-names";
 
@@ -17,6 +17,7 @@ vi.mock("next-intl/server", async () => {
   return {
     getTranslations: async (namespace: "home.connectors") =>
       createTranslator({ locale: "mn", messages, namespace }),
+    getLocale: async () => "mn",
   };
 });
 
@@ -80,7 +81,9 @@ describe("connectors", () => {
   });
 
   it("are named in the visible FAQ and in llms.txt", () => {
-    const faq = FAQS.map((f) => f.a).join("\n");
+    const faq = faqsFor("mn")
+      .map((f) => f.a)
+      .join("\n");
     const txt = llmsTxt();
     for (const c of CONNECTORS) {
       expect(faq, c.name).toContain(c.name);

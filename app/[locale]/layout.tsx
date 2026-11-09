@@ -5,14 +5,14 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import "../globals.css";
 import { GoogleAnalytics } from "@/components/analytics";
-import { HTML_LANG, LOCALES, isLocale } from "@/i18n/locales";
 import {
-  HOME_DESCRIPTION as DESCRIPTION,
-  HOME_TITLE as TITLE,
-  SITE_KEYWORDS,
-  SITE_NAME,
-  SITE_URL,
-} from "@/lib/seo";
+  DEFAULT_LOCALE,
+  HTML_LANG,
+  LOCALES,
+  isLocale,
+  type Locale,
+} from "@/i18n/locales";
+import { OG_LOCALE, SITE_NAME, SITE_URL, pagesFor, siteFor } from "@/lib/seo";
 
 const comfortaa = Comfortaa({
   subsets: ["latin", "cyrillic"],
@@ -26,31 +26,42 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: { default: TITLE, template: "%s · WireMN" },
-  description: DESCRIPTION,
-  applicationName: SITE_NAME,
-  keywords: SITE_KEYWORDS,
-  authors: [{ name: "Buildry" }],
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large" },
-  },
-  openGraph: {
-    type: "website",
-    siteName: SITE_NAME,
-    title: TITLE,
-    description: DESCRIPTION,
-    locale: "mn_MN",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: TITLE,
-    description: DESCRIPTION,
-  },
-};
+/** Defaults for every page in this language; each page overrides title,
+ *  description, URL and openGraph through pageMetadata(). */
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale: raw } = await params;
+  const locale: Locale = isLocale(raw) ? raw : DEFAULT_LOCALE;
+  const { title, description } = pagesFor(locale)["/"];
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: { default: title, template: "%s · WireMN" },
+    description,
+    applicationName: SITE_NAME,
+    keywords: siteFor(locale).keywords,
+    authors: [{ name: "Buildry" }],
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { index: true, follow: true, "max-image-preview": "large" },
+    },
+    openGraph: {
+      type: "website",
+      siteName: SITE_NAME,
+      title,
+      description,
+      locale: OG_LOCALE[locale],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+  };
+}
 
 export function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }));

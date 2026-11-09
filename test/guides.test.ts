@@ -1,45 +1,42 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import path from "node:path";
-import { GUIDES } from "@/lib/guides";
-import { PUBLIC_PAGES, absoluteUrl, pageMetadata } from "@/lib/seo";
+import { guidesFor } from "@/lib/guides";
+import { PUBLIC_PAGES, absoluteUrl, localizedPath } from "@/lib/seo";
 import { guideJsonLd } from "@/lib/structured-data";
 import { llmsTxt } from "@/lib/llms";
+import { LOCALES } from "@/i18n/locales";
 import mn from "@/messages/mn.json";
 import { brandNames } from "./brand-names";
 
-const registered = new Map<string, (typeof PUBLIC_PAGES)[number]>(
-  PUBLIC_PAGES.map((p) => [p.path, p]),
-);
+const registered = new Set<string>(PUBLIC_PAGES.map((p) => p.path));
 const layout = readFileSync(
   path.resolve(import.meta.dirname, "../app/[locale]/(marketing)/layout.tsx"),
   "utf8",
 );
 
-describe("answer pages", () => {
-  it("are all registered for sitemap/llms, in the right language", () => {
-    for (const g of GUIDES) {
-      const page = registered.get(g.path);
-      expect(page, g.path).toBeDefined();
-      expect(page && "lang" in page ? page.lang : "mn").toBe(g.lang);
-    }
+describe.each(LOCALES)("answer pages (%s)", (locale) => {
+  const guides = guidesFor(locale);
+
+  it("are all registered for sitemap/llms", () => {
+    for (const g of guides) expect(registered.has(g.slug), g.slug).toBe(true);
   });
 
   it("answer a question properly: short answer, steps, at least 4 FAQs", () => {
-    for (const g of GUIDES) {
-      expect(g.answer.length, g.path).toBeGreaterThan(120);
-      expect(g.answer.length, g.path).toBeLessThan(480);
-      expect(g.steps.length, g.path).toBeGreaterThanOrEqual(3);
-      expect(g.faqs.length, g.path).toBeGreaterThanOrEqual(4);
+    for (const g of guides) {
+      expect(g.answer.length, g.slug).toBeGreaterThan(120);
+      expect(g.answer.length, g.slug).toBeLessThan(480);
+      expect(g.steps.length, g.slug).toBeGreaterThanOrEqual(3);
+      expect(g.faqs.length, g.slug).toBeGreaterThanOrEqual(4);
       expect(new Set(g.faqs.map((f) => f.q)).size).toBe(g.faqs.length);
     }
   });
 
   it("link only to registered pages or absolute URLs", () => {
-    for (const g of GUIDES) {
+    for (const g of guides) {
       for (const l of [...g.related, g.cta]) {
         if (l.href.startsWith("/")) {
-          expect(registered.has(l.href), `${g.path} -> ${l.href}`).toBe(true);
+          expect(registered.has(l.href), `${g.slug} -> ${l.href}`).toBe(true);
         } else {
           expect(l.href).toMatch(/^(https?:|mailto:)/);
         }
@@ -47,23 +44,21 @@ describe("answer pages", () => {
     }
   });
 
-  it("are reachable from the footer (Mongolian pages + English entry)", () => {
-    expect(layout).toContain('GUIDES.filter((g) => g.lang === "mn")');
-    expect(layout).toContain('href="/en"');
-  });
-
   it("name no competitor or non-connector brand", () => {
-    expect(brandNames(JSON.stringify(GUIDES))).toEqual([]);
+    expect(brandNames(JSON.stringify(guides))).toEqual([]);
   });
 
   it("emit FAQPage JSON-LD identical to the visible FAQ", () => {
-    for (const g of GUIDES) {
-      const graph = guideJsonLd(g)["@graph"] as { "@type": string }[];
+    for (const g of guides) {
+      const graph = guideJsonLd(locale, g)["@graph"] as { "@type": string }[];
       expect(graph.map((n) => n["@type"])).toEqual([
         "WebPage",
         "BreadcrumbList",
         "FAQPage",
       ]);
+      expect(graph[0]).toMatchObject({
+        url: absoluteUrl(localizedPath(locale, g.slug)),
+      });
       const faq = graph[2] as unknown as {
         mainEntity: { name: string; acceptedAnswer: { text: string } }[];
       };
@@ -73,25 +68,23 @@ describe("answer pages", () => {
       expect(JSON.stringify(graph)).not.toMatch(/aggregateRating|"review"/i);
     }
   });
+});
 
-  it("put each short answer in llms.txt with its URL", () => {
-    const txt = llmsTxt();
-    for (const g of GUIDES) {
-      expect(txt).toContain(g.answer);
-      expect(txt).toContain(absoluteUrl(g.path));
-    }
+describe("answer pages everywhere", () => {
+  it("are reachable from the footer in the visitor's language", () => {
+    expect(layout).toContain("guidesFor(locale).map(");
+    // The language picker replaces the old hard-coded English link.
+    expect(layout).not.toContain('href="/en"');
   });
 
-  it("pair the home page with /en via hreflang, English pages as en_US", () => {
-    expect(pageMetadata("/").alternates?.languages).toEqual({
-      mn: "https://wire.mn",
-      en: "https://wire.mn/en",
-      "x-default": "https://wire.mn",
-    });
-    expect(pageMetadata("/en").openGraph).toMatchObject({ locale: "en_US" });
-    expect(
-      pageMetadata("/guides/platform").alternates?.languages,
-    ).toBeUndefined();
+  it("put each Mongolian and English short answer in llms.txt with its URL", () => {
+    const txt = llmsTxt();
+    for (const locale of ["mn", "en"] as const) {
+      for (const g of guidesFor(locale)) {
+        expect(txt).toContain(g.answer);
+        expect(txt).toContain(absoluteUrl(localizedPath(locale, g.slug)));
+      }
+    }
   });
 });
 

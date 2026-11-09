@@ -16,7 +16,14 @@ import { SectionHeading } from "@/components/home/section-heading";
 import { FinalCta } from "@/components/home/final-cta";
 import type { Locale } from "@/i18n/locales";
 
-export const metadata: Metadata = pageMetadata("/verification");
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale, "/verification");
+}
 
 const promises = [
   { icon: Lock, key: "encrypted" },

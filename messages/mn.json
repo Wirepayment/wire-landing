@@ -264,6 +264,7 @@
       }
     },
     "logoAlt": "{name} лого",
+    "modeLine": "<b>{label}</b> — {hint}",
     "grid": {
       "badge": "Боломжууд",
       "line1": "API-гаас цаашхи",

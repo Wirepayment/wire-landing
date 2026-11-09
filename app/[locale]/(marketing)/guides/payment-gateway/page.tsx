@@ -1,9 +1,17 @@
+import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { GuidePage } from "@/components/guide-page";
 import { pageMetadata } from "@/lib/seo";
 import type { Locale } from "@/i18n/locales";
 
-export const metadata = pageMetadata("/guides/payment-gateway");
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale, "/guides/payment-gateway");
+}
 
 export default async function Page({
   params,
@@ -12,5 +20,5 @@ export default async function Page({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <GuidePage path="/guides/payment-gateway" />;
+  return <GuidePage locale={locale} slug="/guides/payment-gateway" />;
 }

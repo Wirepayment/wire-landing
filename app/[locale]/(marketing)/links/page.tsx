@@ -10,7 +10,14 @@ import { FinalCta } from "@/components/home/final-cta";
 import { DASHBOARD_URL } from "@/lib/links";
 import type { Locale } from "@/i18n/locales";
 
-export const metadata: Metadata = pageMetadata("/links");
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale, "/links");
+}
 
 const perks = ["fast", "amount", "reusable", "share", "live"] as const;
 

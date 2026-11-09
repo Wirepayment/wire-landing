@@ -19,7 +19,14 @@ import { FinalCta } from "@/components/home/final-cta";
 import { DASHBOARD_URL, DOCS_URL } from "@/lib/links";
 import type { Locale } from "@/i18n/locales";
 
-export const metadata: Metadata = pageMetadata("/developers");
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale, "/developers");
+}
 
 const devFeatures = [
   { icon: Code2, key: "rest" },

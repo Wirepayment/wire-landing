@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Logo } from "@/components/logo";
 import { pageMetadata } from "@/lib/seo";
@@ -6,7 +7,15 @@ import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/locales";
 
 export const dynamic = "force-dynamic";
-export const metadata = pageMetadata("/status");
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale, "/status");
+}
 
 type Health = "operational" | "degraded" | "down";
 

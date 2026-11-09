@@ -5,14 +5,17 @@ import {
   PUBLIC_PAGES,
   SITE_URL,
   absoluteUrl,
+  localizedPath,
   pageMetadata,
+  pagesFor,
   sitemapEntries,
 } from "@/lib/seo";
+import { LOCALES } from "@/i18n/locales";
 import robots from "@/app/robots";
 import { ALLOWED_CRAWLERS } from "@/lib/crawlers";
 import { llmsTxt } from "@/lib/llms";
 import { homeJsonLd } from "@/lib/structured-data";
-import { FAQS } from "@/lib/faq";
+import { faqsFor } from "@/lib/faq";
 import { brandNames } from "./brand-names";
 
 const appDir = path.resolve(import.meta.dirname, "../app");
@@ -34,46 +37,40 @@ function pageRoutes(dir = appDir): { route: string; file: string }[] {
   return out;
 }
 
-// The English pages are still registered under /en (lib/seo.ts is reworked for
-// four languages later); their files now live once under app/[locale].
-const withoutLocale = (p: string) =>
-  p.replace(/^\/(?:en|zh|ko)(?=\/|$)/, "") || "/";
-
 describe("public page registry", () => {
   it("lists every page.tsx, and every page uses pageMetadata", () => {
     const routes = pageRoutes();
-    const registered = [
-      ...new Set(PUBLIC_PAGES.map((p) => withoutLocale(p.path))),
-    ].sort();
-    expect(routes.map((r) => r.route).sort()).toEqual(registered);
+    expect(routes.map((r) => r.route).sort()).toEqual(
+      PUBLIC_PAGES.map((p) => p.path).sort(),
+    );
     for (const { route, file } of routes) {
       const src = readFileSync(file, "utf8");
-      const calls = PUBLIC_PAGES.filter(
-        (p) => withoutLocale(p.path) === route,
-      ).map((p) => `pageMetadata("${p.path}")`);
-      expect(
-        calls.some((c) => src.includes(c)),
-        file,
-      ).toBe(true);
+      expect(src, file).toContain(`pageMetadata(locale, "${route}")`);
     }
   });
 
   it("gives each page its own canonical and og:url (not the homepage)", () => {
-    for (const p of PUBLIC_PAGES) {
-      const meta = pageMetadata(p.path);
-      const url = p.path === "/" ? SITE_URL : `${SITE_URL}${p.path}`;
-      expect(meta.alternates?.canonical).toBe(url);
-      expect(meta.openGraph?.url).toBe(url);
-      // A page-level openGraph drops the root's file-based share image.
-      expect(JSON.stringify(meta.openGraph)).toContain("/opengraph-image");
-      expect(JSON.stringify(meta.twitter)).toContain("/opengraph-image");
+    for (const l of LOCALES) {
+      for (const p of PUBLIC_PAGES) {
+        const meta = pageMetadata(l, p.path);
+        const url = absoluteUrl(localizedPath(l, p.path));
+        expect(meta.alternates?.canonical).toBe(url);
+        expect(meta.openGraph?.url).toBe(url);
+        // A page-level openGraph drops the root's file-based share image.
+        expect(JSON.stringify(meta.openGraph)).toContain("/opengraph-image");
+        expect(JSON.stringify(meta.twitter)).toContain("/opengraph-image");
+      }
     }
   });
 
   it("keeps descriptions in the length search engines display", () => {
-    for (const p of PUBLIC_PAGES) {
-      expect(p.description.length, p.path).toBeGreaterThan(50);
-      expect(p.description.length, p.path).toBeLessThanOrEqual(260);
+    for (const l of LOCALES) {
+      for (const [path, page] of Object.entries(pagesFor(l))) {
+        expect(page.description.length, `${l} ${path}`).toBeGreaterThan(50);
+        expect(page.description.length, `${l} ${path}`).toBeLessThanOrEqual(
+          260,
+        );
+      }
     }
   });
 
@@ -86,10 +83,12 @@ describe("public page registry", () => {
 });
 
 describe("sitemap.xml", () => {
-  it("lists every public page with a stable, valid lastmod", () => {
+  it("lists every public page in every locale with a stable, valid lastmod", () => {
     const entries = sitemapEntries();
-    expect(entries.map((e) => e.url)).toEqual(
-      PUBLIC_PAGES.map((p) => absoluteUrl(p.path)),
+    expect(entries.map((e) => e.url).sort()).toEqual(
+      LOCALES.flatMap((l) =>
+        PUBLIC_PAGES.map((p) => absoluteUrl(localizedPath(l, p.path))),
+      ).sort(),
     );
     for (const e of entries) {
       const d = e.lastModified as Date;
@@ -120,15 +119,19 @@ describe("robots.txt", () => {
 describe("llms.txt", () => {
   const txt = llmsTxt();
 
-  it("links every public page and the docs llms files", () => {
-    for (const p of PUBLIC_PAGES) expect(txt).toContain(absoluteUrl(p.path));
+  it("links every public page (Mongolian and English) and the docs llms files", () => {
+    for (const l of ["mn", "en"] as const) {
+      for (const p of PUBLIC_PAGES) {
+        expect(txt).toContain(`(${absoluteUrl(localizedPath(l, p.path))})`);
+      }
+    }
     expect(txt).toContain("https://docs.wire.mn/llms.txt");
     expect(txt).toContain("https://docs.wire.mn/llms-full.txt");
     expect(txt.startsWith("# Wire")).toBe(true);
   });
 
-  it("carries the visible FAQ verbatim", () => {
-    for (const f of FAQS) {
+  it("carries the visible Mongolian and English FAQ verbatim", () => {
+    for (const f of [...faqsFor("mn"), ...faqsFor("en")]) {
       expect(txt).toContain(f.q);
       expect(txt).toContain(f.a);
     }
@@ -139,8 +142,8 @@ describe("llms.txt", () => {
   });
 });
 
-describe("home JSON-LD", () => {
-  const ld = homeJsonLd();
+describe.each(LOCALES)("home JSON-LD (%s)", (locale) => {
+  const ld = homeJsonLd(locale);
   const json = JSON.stringify(ld);
   const graph = ld["@graph"] as { "@type": string }[];
 
@@ -158,7 +161,7 @@ describe("home JSON-LD", () => {
       mainEntity: { name: string; acceptedAnswer: { text: string } }[];
     };
     expect(faq.mainEntity.map((q) => [q.name, q.acceptedAnswer.text])).toEqual(
-      FAQS.map((f) => [f.q, f.a]),
+      faqsFor(locale).map((f) => [f.q, f.a]),
     );
   });
 

@@ -7,9 +7,9 @@ import { NavLinks } from "@/components/nav-links";
 import { MobileNav } from "@/components/mobile-nav";
 import { DASHBOARD_URL, DOCS_URL } from "@/lib/links";
 import { COMPANY, CONTACT } from "@/lib/company";
-import { GUIDES } from "@/lib/guides";
+import { guidesFor } from "@/lib/guides";
 import { Link } from "@/i18n/navigation";
-import { LOCALE_NAMES, isLocale } from "@/i18n/locales";
+import { isLocale } from "@/i18n/locales";
 
 /** FacebookMark — lucide v1 dropped brand glyphs, so the one brand icon the
  *  footer needs lives here inline. */
@@ -116,19 +116,13 @@ export default async function MarketingLayout({
                 {footer("solutionsHeading")}
               </p>
               <ul className="mt-3 space-y-2 text-sm text-[var(--color-muted)]">
-                {GUIDES.filter((g) => g.lang === "mn").map((g) => (
-                  <li key={g.path}>
-                    <Link href={g.path} className={FOOTER_LINK}>
+                {guidesFor(locale).map((g) => (
+                  <li key={g.slug}>
+                    <Link href={g.slug} className={FOOTER_LINK}>
                       {g.label}
                     </Link>
                   </li>
                 ))}
-                <li>
-                  {/* Plain anchor: a locale-aware Link would prefix /en again. */}
-                  <a href="/en" hrefLang="en" className={FOOTER_LINK}>
-                    {LOCALE_NAMES.en}
-                  </a>
-                </li>
               </ul>
             </div>
 

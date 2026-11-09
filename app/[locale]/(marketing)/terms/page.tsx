@@ -5,7 +5,14 @@ import { FileText } from "lucide-react";
 import { CONTACT } from "@/lib/company";
 import type { Locale } from "@/i18n/locales";
 
-export const metadata: Metadata = pageMetadata("/terms");
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale, "/terms");
+}
 
 // Mirrors the dashboard terms dialog (apps/dashboard/components/terms-dialog.tsx)
 // — update both together. Operator-agnostic (CLAUDE.md critical rule #9).

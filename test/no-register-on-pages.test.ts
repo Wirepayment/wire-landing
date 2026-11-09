@@ -17,7 +17,7 @@ function walk(dir: string): string[] {
 }
 
 describe("register number stays off the pages", () => {
-  const files = ["app", "components", "lib"].flatMap((d) =>
+  const files = ["app", "components", "content", "lib"].flatMap((d) =>
     walk(path.join(root, d)),
   );
 

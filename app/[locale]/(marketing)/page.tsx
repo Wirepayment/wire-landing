@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { Hero } from "@/components/home/hero";
 import { GetStarted } from "@/components/home/get-started";
@@ -14,7 +15,14 @@ import { homeJsonLd } from "@/lib/structured-data";
 import { pageMetadata } from "@/lib/seo";
 import type { Locale } from "@/i18n/locales";
 
-export const metadata = pageMetadata("/");
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale, "/");
+}
 
 /** Home — the "clear sky" storyboard (billow-style reference): centered
  *  serif hero over a glowing cloud + dashboard screenshot, the five-minute
@@ -29,7 +37,7 @@ export default async function LandingPage({
   setRequestLocale(locale);
   return (
     <>
-      <JsonLd data={homeJsonLd()} />
+      <JsonLd data={homeJsonLd(locale)} />
       <Hero />
       <GetStarted />
       <Connectors />

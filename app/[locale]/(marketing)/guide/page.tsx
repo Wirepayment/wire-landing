@@ -9,7 +9,14 @@ import { FinalCta } from "@/components/home/final-cta";
 import { RICH } from "@/components/rich";
 import type { Locale } from "@/i18n/locales";
 
-export const metadata: Metadata = pageMetadata("/guide");
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return pageMetadata(locale, "/guide");
+}
 
 /* Steps are a real sequence — the numbering carries the order a new merchant
  * actually walks. Screenshots ship pre-masked (register, address, keys). */
