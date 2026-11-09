@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { Check, ChevronDown, Globe } from "lucide-react";
+import { Check, ChevronDown } from "lucide-react";
+import { Flag } from "@/components/flag";
 import { usePathname } from "@/i18n/navigation";
 import { HTML_LANG, LOCALES, LOCALE_NAMES, type Locale } from "@/i18n/locales";
 import { langCookie, switchHref } from "@/lib/lang-cookie";
@@ -109,7 +110,7 @@ export function LanguagePicker({ className = "" }: { className?: string }) {
         }}
         className="flex h-9 items-center gap-1.5 rounded-full px-2.5 font-[family-name:var(--font-round)] text-[13.5px] font-semibold text-[var(--color-muted)] transition-colors outline-none hover:text-[var(--color-foreground)] focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]"
       >
-        <Globe className="size-4 shrink-0" aria-hidden />
+        <Flag locale={current} className="size-[18px]" />
         <span lang={HTML_LANG[current]} className="hidden sm:inline">
           {LOCALE_NAMES[current]}
         </span>
@@ -147,7 +148,10 @@ export function LanguagePicker({ className = "" }: { className?: string }) {
                     : "text-[var(--color-muted)]"
                 }`}
               >
-                {LOCALE_NAMES[l]}
+                <span className="flex items-center gap-2.5">
+                  <Flag locale={l} className="size-[18px]" />
+                  {LOCALE_NAMES[l]}
+                </span>
                 {checked && (
                   <Check
                     className="size-4 text-[var(--color-primary)]"
@@ -179,13 +183,14 @@ export function LanguageLinks({ className = "" }: { className?: string }) {
               href={switchHref(l, pathname, "")}
               aria-current={l === current ? "true" : undefined}
               onClick={(e) => choose(l, e)}
-              className={
+              className={`inline-flex items-center gap-1.5 ${
                 l === current
                   ? "font-semibold text-[var(--color-foreground)]"
-                  : "underline decoration-[var(--color-border-strong)] underline-offset-4 transition-colors hover:text-[var(--color-foreground)]"
-              }
+                  : "transition-colors hover:text-[var(--color-foreground)] [&>span]:underline [&>span]:decoration-[var(--color-border-strong)] [&>span]:underline-offset-4"
+              }`}
             >
-              {LOCALE_NAMES[l]}
+              <Flag locale={l} />
+              <span>{LOCALE_NAMES[l]}</span>
             </a>
           </li>
         ))}
