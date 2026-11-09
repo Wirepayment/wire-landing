@@ -27,6 +27,6 @@ describe("CONTACT", () => {
   });
 
   it("uses the wire.mn support inbox", () => {
-    expect(CONTACT.email).toBe("support@wire.mn");
+    expect(CONTACT.email).toBe("usukhbayar@buildry.cloud");
   });
 });
