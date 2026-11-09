@@ -48,6 +48,27 @@ describe("built pages", () => {
   });
 });
 
+describe("[locale] segment", () => {
+  // A dotted single-segment path (/favicon.ico, /wp-login.php, /.env) skips
+  // proxy.ts, so without dynamicParams=false it rendered as [locale] and
+  // pageMetadata threw → 500. fallback:false is what dynamicParams=false
+  // compiles to: only the prerendered locales exist, anything else is 404.
+  it("serves only the prerendered locales (dynamicParams = false)", () => {
+    const file = path.join(nextDir, "prerender-manifest.json");
+    expect(existsSync(file), `${file} missing: run pnpm build`).toBe(true);
+    const manifest = JSON.parse(readFileSync(file, "utf8")) as {
+      dynamicRoutes: Record<string, { fallback: unknown }>;
+    };
+    const routes = Object.entries(manifest.dynamicRoutes).filter(([r]) =>
+      r.startsWith("/[locale]"),
+    );
+    expect(routes.length).toBeGreaterThan(10);
+    for (const [route, { fallback }] of routes) {
+      expect(fallback, route).toBe(false);
+    }
+  });
+});
+
 /** Every prerendered page of one locale: <locale>.html and <locale>/**.html. */
 function pagesOf(locale: string): string[] {
   const appDir = path.join(nextDir, "server/app");

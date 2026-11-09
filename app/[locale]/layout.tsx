@@ -67,6 +67,11 @@ export function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }));
 }
 
+// Only the four locales exist. A dotted single-segment path (/favicon.ico,
+// /wp-login.php) skips proxy.ts; without this it rendered as [locale] and
+// threw a 500 — now it is a 404.
+export const dynamicParams = false;
+
 export default async function LocaleLayout({
   children,
   params,

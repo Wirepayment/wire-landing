@@ -125,6 +125,17 @@ describe("proxy", () => {
     expect(res.headers.get("location")).toBeNull();
   });
 
+  // next-intl's HTTP Link header disagreed with the HTML alternates
+  // (hreflang="zh" vs zh-Hans, www host, alternates on 404s); the pages'
+  // own <link rel="alternate"> tags (pageMetadata) are the one source.
+  it.each(["/", "/features", "/en/features", "/zh", "/ko/guides/qr-payments"])(
+    "sends no Link header on %s",
+    async (url) => {
+      const res = await proxy(request(url));
+      expect(res.headers.get("link")).toBeNull();
+    },
+  );
+
   it("drops the redundant /mn prefix", async () => {
     const res = await proxy(request("/mn/features"));
     expect(res.status).toBe(307);
