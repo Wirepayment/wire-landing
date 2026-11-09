@@ -93,7 +93,8 @@ const CJK =
   "\\p{Script=Han}\\p{Script=Hangul}\\p{Script=Hiragana}\\p{Script=Katakana}";
 // CJK words separated only by whitespace: one run, checked across the spaces.
 const CJK_RUN = new RegExp(`[${CJK}]+(?:\\s+[${CJK}]+)*`, "gu");
-// Korean particles that may follow a name written with a space.
+// Korean particles and copulas that may follow a name written with a space
+// (the whole rest of the word, so "페이지" = "pay" + "지" is not one).
 const PARTICLES = new Set([
   "은",
   "는",
@@ -110,6 +111,22 @@ const PARTICLES = new Set([
   "에서",
   "도",
   "만",
+  "나",
+  "이나",
+  "까지",
+  "로도",
+  "으로도",
+  "에서도",
+  "보다",
+  "처럼",
+  "에게",
+  "한테",
+  "랑",
+  "이랑",
+  "입니다",
+  "이며",
+  "이고",
+  "이다",
 ]);
 const SCRIPT_PIECE = new RegExp(`[${CJK}]+|[^${CJK}]+`, "gu");
 
