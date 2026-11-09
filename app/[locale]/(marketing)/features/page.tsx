@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { pageMetadata } from "@/lib/seo";
 import {
   ArrowRight,
@@ -16,7 +17,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Hl } from "@/components/hl";
+import { RICH } from "@/components/rich";
 import { Reveal } from "@/components/reveal";
 import { PageIntro } from "@/components/page-intro";
 import { SectionHeading } from "@/components/home/section-heading";
@@ -28,99 +29,48 @@ import {
   connectorLogo,
   type ConnectorGroup,
 } from "@/lib/connectors";
+import type { Locale } from "@/i18n/locales";
 
 export const metadata: Metadata = pageMetadata("/features");
 
 // Payment-method groups, each with the live connectors behind it
 // (lib/connectors.ts) — so the page lists only what a merchant can turn on.
-const rails: {
-  icon: LucideIcon;
-  group: ConnectorGroup;
-  label: string;
-  items: string;
-  desc: string;
-}[] = [
-  {
-    icon: QrCode,
-    group: "qr",
-    label: "QR · Банк",
-    items: "QR код · Банкны апп",
-    desc: "QR уншуулаад л болоо — утсан дээр банкны апп шууд нээгдэнэ.",
-  },
-  {
-    icon: CreditCard,
-    group: "card",
-    label: "Карт",
-    items: "Visa · Mastercard · Дотоодын карт",
-    desc: "Худалдан авагч картаараа төлбөрийн хуудсан дээрээс шууд төлнө.",
-  },
-  {
-    icon: Wallet,
-    group: "wallet",
-    label: "Цахим хэтэвч",
-    items: "Хэтэвчийн апп",
-    desc: "Худалдан авагч QR, deeplink эсвэл утасны дугаараараа хэтэвчийн аппаар төлнө.",
-  },
-  {
-    icon: Coins,
-    group: "installment",
-    label: "Хуваан төлөх",
-    items: "Хуваан төлөх · Зээл",
-    desc: "Худалдан авагч худалдан авалтаа хувааж төлнө.",
-  },
+const rails: { icon: LucideIcon; group: ConnectorGroup }[] = [
+  { icon: QrCode, group: "qr" },
+  { icon: CreditCard, group: "card" },
+  { icon: Wallet, group: "wallet" },
+  { icon: Coins, group: "installment" },
 ];
 
 const features = [
-  {
-    icon: Zap,
-    title: "Авто-routing",
-    desc: "Суваг заагаагүй төлбөр сүүлийн 24 цагийн амжилт, хурд, дүнгийн хязгаараар хамгийн тохиромжтой суваг руу автоматаар чиглэж, саатсан сувгийг алгасна.",
-  },
-  {
-    icon: RefreshCw,
-    title: "3 давхар баталгаа",
-    desc: "Webhook + идэвхтэй шалгалт + өдөр тутмын тулгалт — төлбөр алдагдахгүй.",
-  },
-  {
-    icon: BellRing,
-    title: "Бодит цагийн мэдэгдэл",
-    desc: "Төлбөр орж ирмэгц имэйл + webhook. Сонголтоо өөрөө удирдана.",
-  },
-  {
-    icon: BarChart3,
-    title: "Тайлан, түүх",
-    desc: "Гүйлгээ, нэхэмжлэх, буцаалт — бүгд нэг dashboard-д, шүүж хайж болно.",
-  },
-  {
-    icon: Banknote,
-    title: "MNT бүрэн дэмжлэг",
-    desc: "Бүх дүн төгрөгөөр, бутархайгүй. Тооцоо нийлэхэд төөрөгдөлгүй.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Баталгаажсан экосистем",
-    desc: "Эзэмшигч бүр утас + ДАН-аар баталгаажсан — найдвартай түншүүдтэй ажиллана.",
-  },
-];
+  { icon: Zap, key: "routing" },
+  { icon: RefreshCw, key: "guarantee" },
+  { icon: BellRing, key: "notifications" },
+  { icon: BarChart3, key: "reports" },
+  { icon: Banknote, key: "mnt" },
+  { icon: ShieldCheck, key: "ecosystem" },
+] as const;
 
 /** Features — what the unified gateway gives a merchant, beyond the API. */
-export default function FeaturesPage() {
+export default async function FeaturesPage({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("features");
   return (
     <>
       <PageIntro
-        badge="Олон суваг · нэг интеграц"
-        line1="Бүх суваг,"
-        line2="нэг холболтод."
-        lead={
-          <>
-            QR, банкны апп, карт, цахим хэтэвч, хуваан төлөх — худалдан авагч
-            аль нь ч сонгосон, <Hl>та нэг л холболт удирдана</Hl>.
-          </>
-        }
+        badge={t("intro.badge")}
+        line1={t("intro.line1")}
+        line2={t("intro.line2")}
+        lead={t.rich("intro.lead", RICH)}
       >
         <Button asChild size="lg">
           <a href={DASHBOARD_URL}>
-            Эхлэх
+            {t("start")}
             <ArrowRight />
           </a>
         </Button>
@@ -140,18 +90,20 @@ export default function FeaturesPage() {
                   <r.icon className="size-5" />
                 </span>
                 <p className="mt-4 text-[12px] font-semibold tracking-wide text-[var(--color-faint)] uppercase">
-                  {r.label}
+                  {t(`rails.${r.group}.label`)}
                 </p>
-                <h3 className="display mt-1 text-[21px]">{r.items}</h3>
+                <h3 className="display mt-1 text-[21px]">
+                  {t(`rails.${r.group}.items`)}
+                </h3>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-[var(--color-muted)]">
-                  {r.desc}
+                  {t(`rails.${r.group}.desc`)}
                 </p>
                 <ul className="mt-5 space-y-2 border-t border-[var(--color-border)] pt-4">
                   {CONNECTORS.filter((c) => c.group === r.group).map((c) => (
                     <li key={c.id} className="flex items-center gap-2.5">
                       <Image
                         src={connectorLogo(c.id)}
-                        alt={`${c.name} лого`}
+                        alt={t("logoAlt", { name: c.name })}
                         width={28}
                         height={28}
                         className="size-7 shrink-0 rounded-lg border border-[var(--color-border)]"
@@ -188,15 +140,15 @@ export default function FeaturesPage() {
       <section className="bg-[var(--color-background)]">
         <div className="mx-auto w-full max-w-6xl px-5 py-14 sm:py-20">
           <SectionHeading
-            badge="Боломжууд"
-            line1="API-гаас цаашхи"
-            line2="бүх зүйл."
-            lead="Оператор бүрд тусдаа техникийн холболт барих шаардлагагүй — нэг л холболт хангалттай."
+            badge={t("grid.badge")}
+            line1={t("grid.line1")}
+            line2={t("grid.line2")}
+            lead={t("grid.lead")}
           />
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((f, i) => (
               <Reveal
-                key={f.title}
+                key={f.key}
                 delay={(i % 3) * 90}
                 className="rounded-2xl border border-[var(--color-border)] bg-white p-6 shadow-[0_1px_3px_rgba(10,10,10,0.04)] transition-shadow hover:shadow-[0_16px_40px_-20px_rgba(16,185,129,0.35)]"
               >
@@ -204,10 +156,10 @@ export default function FeaturesPage() {
                   <f.icon className="size-4.5" />
                 </span>
                 <h3 className="mt-4 text-base font-semibold tracking-tight">
-                  {f.title}
+                  {t(`items.${f.key}.title`)}
                 </h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-[var(--color-muted)]">
-                  {f.desc}
+                  {t(`items.${f.key}.desc`)}
                 </p>
               </Reveal>
             ))}

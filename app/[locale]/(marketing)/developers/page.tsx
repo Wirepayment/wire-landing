@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { pageMetadata } from "@/lib/seo";
 import {
   ArrowRight,
@@ -9,68 +10,50 @@ import {
   Webhook,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Hl } from "@/components/hl";
+import { RICH } from "@/components/rich";
 import { Reveal } from "@/components/reveal";
 import { PageIntro } from "@/components/page-intro";
 import { SectionHeading } from "@/components/home/section-heading";
 import { ApiMock } from "@/components/home/feature-blocks";
 import { FinalCta } from "@/components/home/final-cta";
 import { DASHBOARD_URL, DOCS_URL } from "@/lib/links";
+import type { Locale } from "@/i18n/locales";
 
 export const metadata: Metadata = pageMetadata("/developers");
 
 const devFeatures = [
-  {
-    icon: Code2,
-    title: "REST API",
-    desc: "PaymentIntent / Charge / Refund — таамаглахуйц resource загвар, OpenAPI 3.1.",
-  },
-  {
-    icon: Boxes,
-    title: "8 SDK",
-    desc: "Go · Python · Node · PHP · Ruby · .NET + checkout JS/iOS — registry-д амьд.",
-  },
-  {
-    icon: Webhook,
-    title: "Webhook with signature",
-    desc: "HMAC-SHA256, retry + dead-letter, тогтмол egress IP whitelist.",
-  },
-  {
-    icon: Layers,
-    title: "Платформ / reseller",
-    desc: "Нэг түлхүүрээр олон merchant холболт хийж, нэг сувгаар төлбөр цуглуул.",
-  },
-  {
-    icon: KeyRound,
-    title: "Idempotency",
-    desc: "Аюулгүй давталт — Idempotency-Key-ээр давхар цэнэглэлтээс сэргийлнэ.",
-  },
-];
+  { icon: Code2, key: "rest" },
+  { icon: Boxes, key: "sdk" },
+  { icon: Webhook, key: "webhooks" },
+  { icon: Layers, key: "platform" },
+  { icon: KeyRound, key: "idempotency" },
+] as const;
 
 /** Developers — the build surface: REST API, SDKs, webhooks, platform mode. */
-export default function DevelopersPage() {
+export default async function DevelopersPage({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("developers");
   return (
     <>
       <PageIntro
-        badge="10 минутад эхний төлбөр"
-        line1="Хөгжүүлэгчдэд"
-        line2="зориулав."
-        lead={
-          <>
-            Ойлгомжтой REST API, 6 хэл дээрх бэлэн SDK (Go, Python, Node, PHP,
-            Ruby, .NET), төлбөр бүрийг автоматаар мэдэгдэх webhook —{" "}
-            <Hl>холболтоо хэдхэн минутад эхлүүлнэ</Hl>.
-          </>
-        }
+        badge={t("intro.badge")}
+        line1={t("intro.line1")}
+        line2={t("intro.line2")}
+        lead={t.rich("intro.lead", RICH)}
       >
         <Button asChild size="lg">
           <a href={DOCS_URL}>
-            Баримт бичиг үзэх
+            {t("docs")}
             <ArrowRight />
           </a>
         </Button>
         <Button asChild size="lg" variant="outline">
-          <a href={DASHBOARD_URL}>API key авах</a>
+          <a href={DASHBOARD_URL}>{t("apiKey")}</a>
         </Button>
       </PageIntro>
 
@@ -87,15 +70,15 @@ export default function DevelopersPage() {
       <section className="bg-[var(--color-background)]">
         <div className="mx-auto w-full max-w-6xl px-5 py-14 sm:py-20">
           <SectionHeading
-            badge="API · SDK · платформ"
-            line1="Хүчтэй API."
-            line2="Хялбар интеграц."
-            lead="Цэвэр REST API, бэлэн SDK, signature бүхий webhook. Платформ нэг түлхүүрээр олон merchant холболт хийж, нэг сувгаар төлбөр цуглуулах боломжтой."
+            badge={t("grid.badge")}
+            line1={t("grid.line1")}
+            line2={t("grid.line2")}
+            lead={t("grid.lead")}
           />
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {devFeatures.map((f, i) => (
               <Reveal
-                key={f.title}
+                key={f.key}
                 delay={(i % 3) * 90}
                 className="rounded-2xl border border-[var(--color-border)] bg-white p-6 shadow-[0_1px_3px_rgba(10,10,10,0.04)] transition-shadow hover:shadow-[0_16px_40px_-20px_rgba(16,185,129,0.35)]"
               >
@@ -103,10 +86,10 @@ export default function DevelopersPage() {
                   <f.icon className="size-4.5" />
                 </span>
                 <h3 className="mt-4 text-base font-semibold tracking-tight">
-                  {f.title}
+                  {t(`items.${f.key}.title`)}
                 </h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-[var(--color-muted)]">
-                  {f.desc}
+                  {t(`items.${f.key}.desc`)}
                 </p>
               </Reveal>
             ))}

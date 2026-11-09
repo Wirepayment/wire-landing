@@ -5,6 +5,7 @@ import { GUIDES } from "@/lib/guides";
 import { PUBLIC_PAGES, absoluteUrl, pageMetadata } from "@/lib/seo";
 import { guideJsonLd } from "@/lib/structured-data";
 import { llmsTxt } from "@/lib/llms";
+import mn from "@/messages/mn.json";
 import { brandNames } from "./brand-names";
 
 const registered = new Map<string, (typeof PUBLIC_PAGES)[number]>(
@@ -100,6 +101,8 @@ describe("closing CTA", () => {
       path.resolve(import.meta.dirname, "../components/home/final-cta.tsx"),
       "utf8",
     );
-    expect(cta).toContain('{ label: "Картын төлбөр" }');
+    // Live items have no roadmap flag; the label itself is in the messages.
+    expect(cta).toContain('{ label: "cards" }');
+    expect(mn.home.finalCta.items.cards).toBe("Картын төлбөр");
   });
 });

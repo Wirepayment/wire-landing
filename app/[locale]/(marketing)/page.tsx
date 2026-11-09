@@ -1,3 +1,4 @@
+import { setRequestLocale } from "next-intl/server";
 import { Hero } from "@/components/home/hero";
 import { GetStarted } from "@/components/home/get-started";
 import { Connectors } from "@/components/home/connectors";
@@ -11,6 +12,7 @@ import { FinalCta } from "@/components/home/final-cta";
 import { JsonLd } from "@/components/json-ld";
 import { homeJsonLd } from "@/lib/structured-data";
 import { pageMetadata } from "@/lib/seo";
+import type { Locale } from "@/i18n/locales";
 
 export const metadata = pageMetadata("/");
 
@@ -18,7 +20,13 @@ export const metadata = pageMetadata("/");
  *  serif hero over a glowing cloud + dashboard screenshot, the five-minute
  *  start trio, the payment connectors grid, the platform feature blocks,
  *  two closing panels, FAQ and the cloud-band CTA. */
-export default function LandingPage() {
+export default async function LandingPage({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   return (
     <>
       <JsonLd data={homeJsonLd()} />

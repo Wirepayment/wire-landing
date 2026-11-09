@@ -1,7 +1,6 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
-import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 
 import { CONNECTORS, connectorLogo } from "@/lib/connectors";
@@ -9,6 +8,17 @@ import { Connectors } from "@/components/home/connectors";
 import { FAQS } from "@/lib/faq";
 import { llmsTxt } from "@/lib/llms";
 import { brandNames } from "./brand-names";
+
+// Server components read their copy with getTranslations; here it comes
+// straight from the Mongolian messages, as on a statically rendered page.
+vi.mock("next-intl/server", async () => {
+  const { createTranslator } = await import("next-intl");
+  const { default: messages } = await import("@/messages/mn.json");
+  return {
+    getTranslations: async (namespace: "home.connectors") =>
+      createTranslator({ locale: "mn", messages, namespace }),
+  };
+});
 
 const root = path.resolve(import.meta.dirname, "..");
 const read = (rel: string) => readFileSync(path.join(root, rel), "utf8");
@@ -45,8 +55,8 @@ describe("connectors", () => {
     }
   });
 
-  it("are all shown, with their logos, in the home connectors section", () => {
-    const html = renderToStaticMarkup(createElement(Connectors));
+  it("are all shown, with their logos, in the home connectors section", async () => {
+    const html = renderToStaticMarkup(await Connectors());
     for (const c of CONNECTORS) {
       expect(html).toContain(`>${c.name}</h3>`);
       expect(html).toContain(encodeURIComponent(connectorLogo(c.id)));

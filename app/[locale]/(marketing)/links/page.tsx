@@ -1,35 +1,32 @@
 import type { Metadata } from "next";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { pageMetadata } from "@/lib/seo";
 import { ArrowRight, Check, Copy, Link2, QrCode } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Hl } from "@/components/hl";
+import { RICH } from "@/components/rich";
 import { Reveal } from "@/components/reveal";
 import { PageIntro } from "@/components/page-intro";
 import { FinalCta } from "@/components/home/final-cta";
 import { DASHBOARD_URL } from "@/lib/links";
+import type { Locale } from "@/i18n/locales";
 
 export const metadata: Metadata = pageMetadata("/links");
 
-const perks = [
-  "Dashboard дотроос секундэд үүсгэнэ",
-  "Тогтсон эсвэл нээлттэй (худалдан авагч дүнгээ оруулна) дүн",
-  "Дахин ашиглагдах — нэг линк, олон төлбөр",
-  "QR код, хуулах товч, FB/Instagram/LinkedIn-д зурагтай share",
-  "Төлөлт бүр бодит цагт dashboard + мэдэгдэлд",
-];
+const perks = ["fast", "amount", "reusable", "share", "live"] as const;
 
 /* mock: a live payment link with its QR and running stats */
-function LinkShowcase() {
+async function LinkShowcase() {
+  const t = await getTranslations("links.showcase");
   return (
     <div className="screen-card overflow-hidden">
       <div className="flex items-center justify-between border-b border-[var(--color-border)] px-5 py-3">
         <span className="flex items-center gap-2 text-[13px] font-bold">
           <Link2 className="size-4 text-[var(--color-primary)]" />
-          Сарын гишүүнчлэл
+          {t("title")}
         </span>
         <span className="flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-semibold text-emerald-600">
           <span className="size-1.5 animate-pulse rounded-full bg-emerald-500" />
-          Идэвхтэй
+          {t("active")}
         </span>
       </div>
 
@@ -41,7 +38,7 @@ function LinkShowcase() {
           />
         </div>
         <div className="min-w-0 flex-1">
-          <p className="text-[10px] text-[var(--color-faint)]">Дүн</p>
+          <p className="text-[10px] text-[var(--color-faint)]">{t("amount")}</p>
           <p className="tabular text-[26px] font-bold">₮50,000</p>
           <div className="mt-3 flex items-center gap-2 rounded-full border border-[var(--color-border)] py-1.5 pr-1.5 pl-3.5">
             <span className="tabular min-w-0 flex-1 truncate text-[12px] font-semibold">
@@ -49,7 +46,7 @@ function LinkShowcase() {
             </span>
             <span className="flex items-center gap-1 rounded-full bg-[var(--color-primary-soft)] px-2.5 py-1 text-[10px] font-semibold text-[var(--color-primary)]">
               <Copy className="size-3" />
-              Хуулах
+              {t("copy")}
             </span>
           </div>
         </div>
@@ -57,8 +54,8 @@ function LinkShowcase() {
 
       <div className="grid grid-cols-2 gap-px border-t border-[var(--color-border)] bg-[var(--color-border)]">
         {[
-          ["128", "төлөлт"],
-          ["₮6,400,000", "цуглуулсан"],
+          ["128", t("payments")],
+          ["₮6,400,000", t("collected")],
         ].map(([v, l]) => (
           <div key={l} className="bg-white px-5 py-3.5">
             <p className="tabular text-[18px] font-bold">{v}</p>
@@ -71,24 +68,25 @@ function LinkShowcase() {
 }
 
 /** Links — the ready-made product: create a payment link, share it anywhere. */
-export default function LinksPage() {
+export default async function LinksPage({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("links");
   return (
     <>
       <PageIntro
-        badge="Хүн болгонд · хялбар"
-        line1="Линк үүсгээд"
-        line2="хуваалцаарай."
-        lead={
-          <>
-            Жижиг дэлгүүр, үйлчилгээ, фрилансер —{" "}
-            <Hl>программист шаардлагагүй</Hl>. Линкээ үүсгээд чат, пост,
-            имэйлээр илгээхэд л төлбөр чинь цуглана.
-          </>
-        }
+        badge={t("intro.badge")}
+        line1={t("intro.line1")}
+        line2={t("intro.line2")}
+        lead={t.rich("intro.lead", RICH)}
       >
         <Button asChild size="lg">
           <a href={DASHBOARD_URL}>
-            Линк үүсгэх
+            {t("create")}
             <ArrowRight />
           </a>
         </Button>
@@ -98,9 +96,9 @@ export default function LinksPage() {
         <div className="mx-auto grid w-full max-w-6xl items-center gap-12 px-5 py-14 sm:py-20 lg:grid-cols-2 lg:gap-16">
           <Reveal>
             <h2 className="display text-[clamp(28px,3.8vw,44px)]">
-              Нэг линк.
+              {t("line1")}
               <br />
-              <span className="display-dim">Олон төлбөр.</span>
+              <span className="display-dim">{t("line2")}</span>
             </h2>
             <ul className="mt-7 space-y-3">
               {perks.map((p) => (
@@ -109,7 +107,7 @@ export default function LinksPage() {
                     <Check className="size-3" strokeWidth={3.5} />
                   </span>
                   <span className="text-sm text-[var(--color-foreground)]">
-                    {p}
+                    {t(`perks.${p}`)}
                   </span>
                 </li>
               ))}

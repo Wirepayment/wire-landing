@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { Building2, KeyRound } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import { Reveal } from "@/components/reveal";
-import { Hl } from "@/components/hl";
+import { RICH } from "@/components/rich";
 import { SectionHeading } from "@/components/home/section-heading";
 import {
   CONNECTORS,
@@ -34,20 +35,16 @@ function ModePill({ mode }: { mode: ConnectorMode }) {
   );
 }
 
-export function Connectors() {
+export async function Connectors() {
+  const t = await getTranslations("home.connectors");
   return (
     <section id="connectors" className="bg-[var(--color-background)]">
       <div className="mx-auto w-full max-w-6xl px-5 py-14 sm:py-20">
         <SectionHeading
-          badge="Төлбөрийн сувгууд"
-          line1="Зургаан суваг."
-          line2="Нэг холболт."
-          lead={
-            <>
-              QR, карт, цахим хэтэвч, хуваан төлөх — бүх сувгийн гүйлгээ{" "}
-              <Hl>нэг API, нэг dashboard-д</Hl> нэгдэнэ.
-            </>
-          }
+          badge={t("badge")}
+          line1={t("line1")}
+          line2={t("line2")}
+          lead={t.rich("lead", RICH)}
         />
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -60,7 +57,7 @@ export function Connectors() {
               <div className="flex items-center gap-3.5">
                 <Image
                   src={connectorLogo(c.id)}
-                  alt={`${c.name} лого`}
+                  alt={t("logoAlt", { name: c.name })}
                   width={44}
                   height={44}
                   className="size-11 shrink-0 rounded-xl border border-[var(--color-border)]"

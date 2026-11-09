@@ -1,6 +1,9 @@
-import Link from "next/link";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Logo } from "@/components/logo";
 import { pageMetadata } from "@/lib/seo";
+import { CONTACT } from "@/lib/company";
+import { Link } from "@/i18n/navigation";
+import type { Locale } from "@/i18n/locales";
 
 export const dynamic = "force-dynamic";
 export const metadata = pageMetadata("/status");
@@ -8,7 +11,7 @@ export const metadata = pageMetadata("/status");
 type Health = "operational" | "degraded" | "down";
 
 interface Component {
-  name: string;
+  name: "api" | "dashboard" | "checkout" | "website";
   url: string;
   detail: string;
 }
@@ -17,22 +20,22 @@ interface Component {
 // production. A reachable response (even a redirect) counts as operational.
 const COMPONENTS: Component[] = [
   {
-    name: "API",
+    name: "api",
     url: process.env.STATUS_API_URL ?? "https://api.wire.mn/healthz",
     detail: "api.wire.mn",
   },
   {
-    name: "Dashboard",
+    name: "dashboard",
     url: process.env.STATUS_DASHBOARD_URL ?? "https://app.wire.mn",
     detail: "app.wire.mn",
   },
   {
-    name: "Checkout",
+    name: "checkout",
     url: process.env.STATUS_CHECKOUT_URL ?? "https://pay.wire.mn",
     detail: "pay.wire.mn",
   },
   {
-    name: "Website",
+    name: "website",
     url: process.env.STATUS_LANDING_URL ?? "https://wire.mn",
     detail: "wire.mn",
   },
@@ -60,19 +63,24 @@ async function probe(url: string): Promise<{ health: Health; ms: number }> {
   }
 }
 
-const LABEL: Record<Health, string> = {
-  operational: "Хэвийн",
-  degraded: "Сааталтай",
-  down: "Доголдолтой",
-};
-
 const DOT: Record<Health, string> = {
   operational: "var(--color-success)",
   degraded: "var(--color-warning)",
   down: "var(--color-coral)",
 };
 
-export default async function StatusPage() {
+export default async function StatusPage({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const [t, common, nav] = await Promise.all([
+    getTranslations("status"),
+    getTranslations("common"),
+    getTranslations("nav"),
+  ]);
   const components = await Promise.all(
     COMPONENTS.map(async (c) => ({ ...c, ...(await probe(c.url)) })),
   );
@@ -83,12 +91,7 @@ export default async function StatusPage() {
       ? "degraded"
       : "operational";
 
-  const overallText =
-    overall === "operational"
-      ? "Бүх систем хэвийн ажиллаж байна"
-      : overall === "degraded"
-        ? "Зарим систем сааталтай байна"
-        : "Зарим систем доголдолтой байна";
+  const overallText = t(`overall.${overall}`);
 
   const checkedAt = new Intl.DateTimeFormat("en-CA", {
     year: "numeric",
@@ -107,16 +110,18 @@ export default async function StatusPage() {
     <div className="flex min-h-dvh flex-col">
       <header className="border-b border-[var(--color-border)]">
         <div className="mx-auto flex h-16 max-w-2xl items-center justify-between px-5">
-          <Link href="/" aria-label="wire нүүр">
+          <Link href="/" aria-label={nav("homeAria")}>
             <Logo />
           </Link>
-          <span className="text-sm text-[var(--color-muted)]">Статус</span>
+          <span className="text-sm text-[var(--color-muted)]">
+            {common("status")}
+          </span>
         </div>
       </header>
 
       <main className="mx-auto w-full max-w-2xl flex-1 px-5 py-10">
         <h1 className="display text-center text-[clamp(28px,4vw,40px)]">
-          Системийн статус.
+          {t("heading")}
         </h1>
         <div
           className="mt-8 flex items-center gap-3 rounded-2xl border p-5"
@@ -138,7 +143,7 @@ export default async function StatusPage() {
           <div>
             <p className="font-semibold">{overallText}</p>
             <p className="text-sm text-[var(--color-muted)]">
-              Шинэчилсэн: {checkedAt} (Улаанбаатар)
+              {t("checked", { checkedAt })}
             </p>
           </div>
         </div>
@@ -150,7 +155,7 @@ export default async function StatusPage() {
               className="flex items-center justify-between gap-3 px-5 py-4"
             >
               <div>
-                <p className="font-medium">{c.name}</p>
+                <p className="font-medium">{t(`components.${c.name}`)}</p>
                 <p className="tabular text-xs text-[var(--color-muted)]">
                   {c.detail}
                 </p>
@@ -165,21 +170,24 @@ export default async function StatusPage() {
                   className="size-2.5 rounded-full"
                   style={{ background: DOT[c.health] }}
                 />
-                <span className="text-sm">{LABEL[c.health]}</span>
+                <span className="text-sm">{t(`health.${c.health}`)}</span>
               </div>
             </li>
           ))}
         </ul>
 
         <p className="mt-6 text-center text-xs text-[var(--color-faint)]">
-          Хуудсыг сэргээх бүрт системүүдийг шууд шалгана. Доголдол үргэлжилбэл{" "}
-          <a
-            href="mailto:support@wire.mn"
-            className="text-[var(--color-primary)] hover:underline"
-          >
-            support@wire.mn
-          </a>
-          .
+          {t.rich("footer", {
+            email: CONTACT.email,
+            link: (chunks) => (
+              <a
+                href={`mailto:${CONTACT.email}`}
+                className="text-[var(--color-primary)] hover:underline"
+              >
+                {chunks}
+              </a>
+            ),
+          })}
         </p>
       </main>
     </div>

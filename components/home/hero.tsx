@@ -1,15 +1,17 @@
-import Link from "next/link";
 import Image from "next/image";
+import { getTranslations } from "next-intl/server";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Hl } from "@/components/hl";
 import { DashboardMock } from "@/components/home/dashboard-mock";
+import { RICH } from "@/components/rich";
 import { DASHBOARD_URL } from "@/lib/links";
+import { Link } from "@/i18n/navigation";
 
 /* Hero — the centered "sky" opening: badge pill, masthead serif headline,
  * pill CTAs, then the dashboard screenshot rising out of a glowing mint
  * cloud (kie.ai-generated imagery + CSS glow). */
-export function Hero() {
+export async function Hero() {
+  const t = await getTranslations("home.hero");
   return (
     <section className="relative overflow-hidden">
       <div className="mx-auto w-full max-w-6xl px-5 pt-14 text-center sm:pt-20">
@@ -17,32 +19,30 @@ export function Hero() {
           href="/features"
           className="rise-in badge-pill transition-colors hover:text-[var(--color-foreground)]"
         >
-          All-in-one Payment Gateway
+          {t("badge")}
           <ChevronRight className="size-3.5 text-[var(--color-faint)]" />
         </Link>
 
         <h1 className="display rise-in mx-auto mt-6 max-w-4xl text-[clamp(44px,7.5vw,92px)] [animation-delay:80ms]">
-          Бүх төлбөр,
+          {t("titleLine1")}
           <br />
-          нэг гарцаар.
+          {t("titleLine2")}
         </h1>
 
         <p className="rise-in mx-auto mt-6 max-w-xl text-[15px] leading-relaxed text-[var(--color-muted)] [animation-delay:160ms] sm:text-[17px]">
-          Wire QR, банкны апп, карт, цахим хэтэвч, хуваан төлөх сувгуудыг{" "}
-          <Hl>нэг холболтод нэгтгэнэ</Hl>. Бэлэн линк эсвэл API — орлогоо нэг
-          dashboard-оос хянаарай.
+          {t.rich("lead", RICH)}
         </p>
 
         <div className="rise-in mt-8 flex flex-wrap items-center justify-center gap-3 [animation-delay:240ms]">
           <Button asChild size="lg">
             <a href={DASHBOARD_URL}>
-              Эхлэх
+              {t("start")}
               <ArrowRight />
             </a>
           </Button>
           <Button asChild size="lg" variant="outline">
             <Link href="/features">
-              Хэрхэн ажилладаг вэ
+              {t("howItWorks")}
               <ChevronRight className="text-[var(--color-faint)]" />
             </Link>
           </Button>
@@ -74,7 +74,7 @@ export function Hero() {
         <div className="relative">
           <span className="badge-pill mb-3 !bg-white/85">
             <span className="size-1.5 rounded-full bg-[var(--color-primary)]" />
-            Реал цагийн dashboard
+            {t("dashboardBadge")}
           </span>
           <DashboardMock />
         </div>

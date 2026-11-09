@@ -1,6 +1,7 @@
 import { ArrowRight, Check, Copy, Link2, QrCode } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
-import { Hl } from "@/components/hl";
+import { RICH } from "@/components/rich";
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/home/section-heading";
 import { DASHBOARD_URL, DOCS_URL } from "@/lib/links";
@@ -37,25 +38,26 @@ function BlockHead({
 }
 
 /* ── mock: payment-link builder ── */
-export function LinkMock() {
+export async function LinkMock() {
+  const t = await getTranslations("home.featureBlocks.linkMock");
   return (
     <div className="screen-card grid gap-0 overflow-hidden md:grid-cols-[1fr_1.1fr]">
       <div className="space-y-3 border-b border-[var(--color-border)] p-6 md:border-r md:border-b-0">
-        <p className="text-[12px] font-bold">Шинэ төлбөрийн линк</p>
+        <p className="text-[12px] font-bold">{t("title")}</p>
         <div>
-          <p className="text-[10px] text-[var(--color-faint)]">Нэр</p>
+          <p className="text-[10px] text-[var(--color-faint)]">{t("name")}</p>
           <div className="mt-1 rounded-lg border border-[var(--color-border)] bg-white px-3 py-2 text-[12px]">
-            Захиалга #1024
+            {t("nameValue")}
           </div>
         </div>
         <div>
-          <p className="text-[10px] text-[var(--color-faint)]">Дүн</p>
+          <p className="text-[10px] text-[var(--color-faint)]">{t("amount")}</p>
           <div className="tabular mt-1 rounded-lg border border-[var(--color-primary)] bg-white px-3 py-2 text-[12px] font-semibold ring-2 ring-[var(--color-primary-soft)]">
             ₮25,000
           </div>
         </div>
         <div className="pill-glow w-fit rounded-full bg-[linear-gradient(180deg,#2fd695_0%,#059669_100%)] px-4 py-2 text-[11px] font-semibold text-white">
-          Линк үүсгэх
+          {t("create")}
         </div>
       </div>
       <div className="flex flex-col items-center justify-center gap-3 bg-[var(--color-surface)]/50 p-6">
@@ -66,7 +68,7 @@ export function LinkMock() {
           </span>
           <span className="flex items-center gap-1 rounded-full bg-[var(--color-primary-soft)] px-2.5 py-1 text-[10px] font-semibold text-[var(--color-primary)]">
             <Copy className="size-3" />
-            Хуулах
+            {t("copy")}
           </span>
         </div>
         <div className="flex size-28 items-center justify-center rounded-2xl border border-[var(--color-border)] bg-white shadow-[0_8px_24px_-12px_rgba(10,10,10,0.2)]">
@@ -75,9 +77,7 @@ export function LinkMock() {
             strokeWidth={1.2}
           />
         </div>
-        <p className="text-[10px] text-[var(--color-faint)]">
-          Чат, пост, имэйл — хаана ч хуваалцаарай
-        </p>
+        <p className="text-[10px] text-[var(--color-faint)]">{t("share")}</p>
       </div>
     </div>
   );
@@ -95,7 +95,8 @@ const CODE = [
   { t: '  "status": "requires_payment_method"', c: "text-white/50" },
 ] as const;
 
-export function ApiMock() {
+export async function ApiMock() {
+  const t = await getTranslations("home.featureBlocks.apiMock");
   return (
     <div className="screen-card grid gap-0 overflow-hidden md:grid-cols-[1.2fr_1fr]">
       <div className="bg-[var(--color-ink)] p-6">
@@ -114,10 +115,12 @@ export function ApiMock() {
       </div>
       <div className="flex items-center justify-center bg-[var(--color-surface)]/50 p-6">
         <div className="w-full max-w-[240px] rounded-2xl border border-[var(--color-border)] bg-white p-4 shadow-[0_12px_32px_-16px_rgba(10,10,10,0.25)]">
-          <p className="text-[10px] text-[var(--color-faint)]">Төлөх дүн</p>
+          <p className="text-[10px] text-[var(--color-faint)]">
+            {t("amountDue")}
+          </p>
           <p className="tabular text-[22px] font-bold">₮49,900</p>
           <div className="mt-3 space-y-1.5">
-            {["Банкны апп", "Цахим хэтэвч", "QR төлбөр"].map((c, i) => (
+            {(["bankApp", "wallet", "qr"] as const).map((c, i) => (
               <div
                 key={c}
                 className={`flex items-center justify-between rounded-lg border px-3 py-2 text-[11px] font-medium ${
@@ -126,7 +129,7 @@ export function ApiMock() {
                     : "border-[var(--color-border)] text-[var(--color-muted)]"
                 }`}
               >
-                {c}
+                {t(`channels.${c}`)}
                 <span
                   className={`flex size-3.5 items-center justify-center rounded-full border ${
                     i === 0
@@ -142,7 +145,7 @@ export function ApiMock() {
             ))}
           </div>
           <div className="pill-glow mt-3 rounded-full bg-[linear-gradient(180deg,#2fd695_0%,#059669_100%)] py-2 text-center text-[11px] font-semibold text-white">
-            Төлөх
+            {t("pay")}
           </div>
         </div>
       </div>
@@ -157,14 +160,15 @@ const EVENTS = [
   { e: "payment.expired", ref: "ORD-1019", t: "12:30:44", ok: false },
 ] as const;
 
-function WebhookMock() {
+async function WebhookMock() {
+  const t = await getTranslations("home.featureBlocks.webhookMock");
   return (
     <div className="screen-card overflow-hidden">
       <div className="flex items-center justify-between border-b border-[var(--color-border)] px-5 py-3">
-        <p className="text-[12px] font-bold">Webhook events</p>
+        <p className="text-[12px] font-bold">{t("title")}</p>
         <span className="flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-semibold text-emerald-600">
           <span className="size-1.5 animate-pulse rounded-full bg-emerald-500" />
-          Signature verified
+          {t("verified")}
         </span>
       </div>
       {EVENTS.map((ev) => (
@@ -188,7 +192,7 @@ function WebhookMock() {
               {ev.t}
             </span>
             <span className="rounded-full bg-[var(--color-primary-soft)] px-2.5 py-1 text-[10px] font-semibold text-[var(--color-primary)]">
-              Delivered
+              {t("delivered")}
             </span>
           </div>
         </div>
@@ -197,25 +201,21 @@ function WebhookMock() {
   );
 }
 
-export function FeatureBlocks() {
+export async function FeatureBlocks() {
+  const t = await getTranslations("home.featureBlocks");
   return (
     <section className="bg-[var(--color-background)]">
       <div className="mx-auto w-full max-w-6xl px-5 py-16 sm:py-24">
         <SectionHeading
-          badge="Платформ"
-          line1="Линкээс API хүртэл."
-          line2="Бүгд нэг дор."
-          lead={
-            <>
-              Худалдаа, захиалга, нэхэмжлэх — төлбөр хүлээн авах бүх хэлбэр нэг
-              гарцад. <Hl>Суваг нэмэгдэхэд код өөрчлөх шаардлагагүй.</Hl>
-            </>
-          }
+          badge={t("badge")}
+          line1={t("line1")}
+          line2={t("line2")}
+          lead={t.rich("lead", RICH)}
         />
         <Reveal delay={150} className="mt-8 text-center">
           <Button asChild size="lg">
             <a href={DASHBOARD_URL}>
-              Эхлэх
+              {t("start")}
               <ArrowRight />
             </a>
           </Button>
@@ -224,14 +224,9 @@ export function FeatureBlocks() {
         <div className="mt-20 space-y-20 sm:mt-28 sm:space-y-28">
           <div>
             <BlockHead
-              line1="Төлбөрийн линк."
-              line2="Секундэд бэлэн."
-              copy={
-                <>
-                  Dashboard-аас линк үүсгээд чат, пост, имэйлээр хуваалцаарай —{" "}
-                  <Hl>хэнд ч хялбар</Hl>. Төлбөр төлөгдмөгц мэдэгдэл ирнэ.
-                </>
-              }
+              line1={t("links.line1")}
+              line2={t("links.line2")}
+              copy={t.rich("links.copy", RICH)}
             />
             <Reveal delay={120} className="mt-8">
               <LinkMock />
@@ -240,15 +235,9 @@ export function FeatureBlocks() {
 
           <div>
             <BlockHead
-              line1="Нэг API."
-              line2="Олон суваг."
-              copy={
-                <>
-                  Цэвэр REST API, SDK, signature-тэй webhook.{" "}
-                  <Hl>Нэг интеграцаар</Hl> акаунтад идэвхжсэн бүх сувгаар төлбөр
-                  хүлээн авна.
-                </>
-              }
+              line1={t("api.line1")}
+              line2={t("api.line2")}
+              copy={t.rich("api.copy", RICH)}
             />
             <Reveal delay={120} className="mt-8">
               <ApiMock />
@@ -258,21 +247,16 @@ export function FeatureBlocks() {
                 href={DOCS_URL}
                 className="text-sm font-semibold text-[var(--color-primary)] transition-opacity hover:opacity-75"
               >
-                Хөгжүүлэгчийн баримт бичиг →
+                {t("docsLink")}
               </a>
             </Reveal>
           </div>
 
           <div>
             <BlockHead
-              line1="Бодит цагийн"
-              line2="мэдэгдэл."
-              copy={
-                <>
-                  <Hl>Төлбөр орж ирмэгц имэйл + webhook.</Hl> Event бүр
-                  signature-тэй тул мэдэгдэл бүрийг баталгаатай шалгаж болно.
-                </>
-              }
+              line1={t("webhooks.line1")}
+              line2={t("webhooks.line2")}
+              copy={t.rich("webhooks.copy", RICH)}
             />
             <Reveal delay={120} className="mt-8">
               <WebhookMock />

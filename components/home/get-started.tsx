@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { Check, ChevronDown, ShieldCheck, Smartphone } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import { Reveal } from "@/components/reveal";
-import { Hl } from "@/components/hl";
+import { RICH } from "@/components/rich";
 import { SectionHeading } from "@/components/home/section-heading";
 
 /* GetStarted — the "first win" trio: three rounded sky-topped cards, each
@@ -63,48 +64,50 @@ function MiniRow({ label, done }: { label: string; done?: boolean }) {
   );
 }
 
-function TimeChip({ children }: { children: React.ReactNode }) {
+function TimeChip({
+  children,
+  unit,
+}: {
+  children: React.ReactNode;
+  unit: string;
+}) {
   return (
     <span className="pill-glow absolute top-4 right-4 z-10 flex size-11 flex-col items-center justify-center rounded-full bg-[linear-gradient(180deg,#2fd695_0%,#059669_100%)] text-white">
       <span className="text-[13px] leading-none font-bold">{children}</span>
-      <span className="text-[7px] font-medium opacity-80">мин</span>
+      <span className="text-[7px] font-medium opacity-80">{unit}</span>
     </span>
   );
 }
 
-export function GetStarted() {
+export async function GetStarted() {
+  const t = await getTranslations("home.getStarted");
   return (
     <section className="bg-[var(--color-background)]">
       <div className="mx-auto w-full max-w-6xl px-5 py-16 sm:py-24">
         <SectionHeading
-          badge="Эхлэх"
-          line1="Эхний төлбөр тань"
-          line2="таван минутын цаана."
-          lead={
-            <>
-              Урт онбординг, төвөгтэй тохиргоо байхгүй — бүртгэл, данс холболт,
-              dashboard <Hl>бүгд үнэ төлбөргүй</Hl>.
-            </>
-          }
+          badge={t("badge")}
+          line1={t("line1")}
+          line2={t("line2")}
+          lead={t.rich("lead", RICH)}
         />
 
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           <CardShell
             delay={0}
-            title="Бүртгүүлээд баталгаажуул"
-            desc="Үнэ төлбөргүй бүртгэл. Утас + ДАН (KYC)-аар нэг л удаа баталгаажуулна — дараа нь дахин шаардахгүй."
+            title={t("signup.title")}
+            desc={t("signup.desc")}
             visual={
               <div className="absolute inset-x-8 top-8">
-                <TimeChip>3</TimeChip>
+                <TimeChip unit={t("minutes")}>3</TimeChip>
                 <div className="screen-card space-y-2 p-4">
                   <p className="flex items-center gap-1.5 text-[11px] font-bold">
                     <ShieldCheck className="size-3.5 text-[var(--color-primary)]" />
-                    Баталгаажуулалт
+                    {t("signup.heading")}
                   </p>
-                  <MiniRow label="Утасны дугаар" done />
-                  <MiniRow label="ДАН (KYC)" done />
+                  <MiniRow label={t("signup.phone")} done />
+                  <MiniRow label={t("signup.dan")} done />
                   <div className="rounded-lg bg-[var(--color-primary-soft)] px-3 py-2 text-center text-[10px] font-semibold text-[var(--color-primary)]">
-                    Баталгаажлаа ✓
+                    {t("signup.done")}
                   </div>
                 </div>
               </div>
@@ -113,20 +116,20 @@ export function GetStarted() {
 
           <CardShell
             delay={110}
-            title="Дансаа холбо"
-            desc="Орлого хүлээн авах дансаа заана. Гэрээний урьдчилгаа, тохиргооны төлбөр байхгүй."
+            title={t("account.title")}
+            desc={t("account.desc")}
             visual={
               <div className="absolute inset-x-8 top-8">
-                <TimeChip>2</TimeChip>
+                <TimeChip unit={t("minutes")}>2</TimeChip>
                 <div className="screen-card space-y-2 p-4">
                   <p className="flex items-center gap-1.5 text-[11px] font-bold">
                     <Smartphone className="size-3.5 text-[var(--color-primary)]" />
-                    Данс холбох
+                    {t("account.heading")}
                   </p>
-                  <MiniRow label="Банк сонгох" />
+                  <MiniRow label={t("account.chooseBank")} />
                   <MiniRow label="5049 •••• 1207" done />
                   <div className="pill-glow rounded-full bg-[linear-gradient(180deg,#2fd695_0%,#059669_100%)] px-3 py-2 text-center text-[10px] font-semibold text-white">
-                    Холбох
+                    {t("account.connect")}
                   </div>
                 </div>
               </div>
@@ -135,8 +138,8 @@ export function GetStarted() {
 
           <CardShell
             delay={220}
-            title="Орлогоо хүлээн ав"
-            desc="Бэлэн линк эсвэл API-аар төлбөр авч, гүйлгээ бүр dashboard-д бодит цагт харагдана."
+            title={t("revenue.title")}
+            desc={t("revenue.desc")}
             visual={
               <div className="absolute inset-x-8 top-10">
                 <div className="screen-card p-4">
@@ -149,7 +152,7 @@ export function GetStarted() {
                     </span>
                   </div>
                   <p className="text-[9px] text-[var(--color-faint)]">
-                    Өнөөдрийн орлого
+                    {t("revenue.today")}
                   </p>
                   <svg viewBox="0 0 220 70" className="mt-2 w-full" aria-hidden>
                     <path
@@ -171,7 +174,9 @@ export function GetStarted() {
                   </svg>
                 </div>
                 <div className="pill-glow relative z-10 mx-auto -mt-3 w-fit rounded-xl bg-[linear-gradient(180deg,#2fd695_0%,#059669_100%)] px-3 py-1.5 text-center text-white">
-                  <p className="text-[8px] opacity-80">Шинэ төлбөр</p>
+                  <p className="text-[8px] opacity-80">
+                    {t("revenue.newPayment")}
+                  </p>
                   <p className="tabular text-[12px] font-bold">+₮52,500</p>
                 </div>
               </div>

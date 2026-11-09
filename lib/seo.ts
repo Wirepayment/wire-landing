@@ -16,6 +16,20 @@ export const HOME_TITLE = "Wire — All-in-one Payment Gateway";
 export const HOME_DESCRIPTION =
   "Бүх төлбөрөө нэг гарцаар. QPay, PayLink (карт), Toki, MonPay, StorePay, Pocket Zero — QR, карт, цахим хэтэвч, хуваан төлөх нэг холболтоор. Бэлэн линк эсвэл API, орлого нэг dashboard-д. All-in-one payment gateway for Mongolia.";
 
+/** Site-wide <meta name="keywords"> (root layout). */
+export const SITE_KEYWORDS = [
+  "WireMN",
+  "Wire",
+  "wire.mn",
+  "payment gateway",
+  "Монгол төлбөр",
+  "цахим хэтэвч",
+  "BNPL",
+  "payment API",
+  "merchant",
+  "Buildry",
+];
+
 export interface PublicPage {
   path: string;
   title: string;

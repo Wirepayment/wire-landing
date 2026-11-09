@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { pageMetadata } from "@/lib/seo";
 import {
   Ban,
@@ -9,30 +10,19 @@ import {
   UserCheck,
 } from "lucide-react";
 import { Reveal } from "@/components/reveal";
-import { Hl } from "@/components/hl";
+import { RICH } from "@/components/rich";
 import { PageIntro } from "@/components/page-intro";
 import { SectionHeading } from "@/components/home/section-heading";
 import { FinalCta } from "@/components/home/final-cta";
+import type { Locale } from "@/i18n/locales";
 
 export const metadata: Metadata = pageMetadata("/verification");
 
 const promises = [
-  {
-    icon: Lock,
-    title: "Шифрлэгдсэн хадгалалт",
-    desc: "Иргэний мэдээлэл AES-256 шифрлэлттэй. Дэлгэцэд зөвхөн нэр + register дугаарын эхний болон сүүлийн хэсэг (masked) харагдана.",
-  },
-  {
-    icon: UserCheck,
-    title: "Нэг иргэн = нэг аккаунт",
-    desc: "Нэг иргэний мэдээллээр зөвхөн нэг аккаунт баталгаажна — давхар бүртгэл, залилангаас сэргийлнэ.",
-  },
-  {
-    icon: Ban,
-    title: "Гуравдагч этгээдэд өгөхгүй",
-    desc: "Таны мэдээллийг зар сурталчилгаанд ашиглахгүй, худалдахгүй. Зөвхөн KYC-д шаардлагатай хэмжээнд хэрэглэнэ.",
-  },
-];
+  { icon: Lock, key: "encrypted" },
+  { icon: UserCheck, key: "oneCitizen" },
+  { icon: Ban, key: "noThirdParty" },
+] as const;
 
 function StepHead({
   chip,
@@ -78,15 +68,18 @@ function StepHead({
 }
 
 /* mock: the one-SMS phone verification */
-function PhoneMock() {
+async function PhoneMock() {
+  const t = await getTranslations("verification.phoneMock");
   return (
     <div className="screen-card mx-auto w-full max-w-sm p-5">
       <p className="flex items-center gap-1.5 text-[12px] font-bold">
         <MessageSquare className="size-3.5 text-[var(--color-primary)]" />
-        Утас баталгаажуулах
+        {t("title")}
       </p>
       <div className="mt-3 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]/60 p-3">
-        <p className="text-[10px] text-[var(--color-faint)]">Таны дугаар</p>
+        <p className="text-[10px] text-[var(--color-faint)]">
+          {t("yourNumber")}
+        </p>
         <p className="tabular text-[16px] font-bold">88** ** 07</p>
       </div>
       <div className="mt-2.5 flex justify-end">
@@ -95,14 +88,14 @@ function PhoneMock() {
         </div>
       </div>
       <p className="mt-1 text-right text-[9px] text-[var(--color-faint)]">
-        Богино дугаар руу илгээгдлээ
+        {t("sent")}
       </p>
       <div className="mt-3 flex items-center gap-2 rounded-xl bg-[var(--color-primary-soft)] px-3 py-2.5">
         <span className="flex size-5 items-center justify-center rounded-full bg-[var(--color-primary)] text-white">
           <Check className="size-3" strokeWidth={3.5} />
         </span>
         <span className="text-[12px] font-semibold text-[var(--color-primary-deep)]">
-          30 секундэд автоматаар танигдлаа
+          {t("recognized")}
         </span>
       </div>
     </div>
@@ -110,31 +103,36 @@ function PhoneMock() {
 }
 
 /* mock: the ДАН government SSO handoff */
-function DanMock() {
+async function DanMock() {
+  const t = await getTranslations("verification.danMock");
   return (
     <div className="screen-card mx-auto w-full max-w-sm overflow-hidden">
       <div className="flex items-center justify-between border-b border-[var(--color-border)] bg-[var(--color-surface)]/60 px-4 py-2.5">
         <span className="flex items-center gap-1.5 text-[11px] font-bold">
           <ShieldCheck className="size-3.5 text-[var(--color-primary)]" />
-          ДАН — sso.gov.mn
+          {t("title")}
         </span>
         <span className="rounded-full bg-[var(--color-primary-soft)] px-2 py-0.5 text-[9px] font-semibold text-[var(--color-primary)]">
-          Төрийн систем
+          {t("gov")}
         </span>
       </div>
       <div className="space-y-2.5 p-4">
         <div className="rounded-xl border border-[var(--color-border)] p-3">
-          <p className="text-[10px] text-[var(--color-faint)]">Нэр</p>
-          <p className="text-[13px] font-semibold">Б. Тэмүүлэн</p>
+          <p className="text-[10px] text-[var(--color-faint)]">{t("name")}</p>
+          <p className="text-[13px] font-semibold">{t("nameValue")}</p>
         </div>
         <div className="rounded-xl border border-[var(--color-border)] p-3">
-          <p className="text-[10px] text-[var(--color-faint)]">Регистр</p>
-          <p className="tabular text-[13px] font-semibold">УК92******91</p>
+          <p className="text-[10px] text-[var(--color-faint)]">
+            {t("register")}
+          </p>
+          <p className="tabular text-[13px] font-semibold">
+            {t("registerValue")}
+          </p>
         </div>
         <div className="flex items-center gap-2 rounded-xl bg-[var(--color-primary-soft)] px-3 py-2.5">
           <Lock className="size-3.5 text-[var(--color-primary-deep)]" />
           <span className="text-[11px] font-medium text-[var(--color-primary-deep)]">
-            Wire таны нууц үгийг хэзээ ч харахгүй
+            {t("noPassword")}
           </span>
         </div>
       </div>
@@ -144,20 +142,21 @@ function DanMock() {
 
 /** Verification — why and how Wire verifies every owner: phone (SMS) first,
  *  then citizen identity through the government SSO (ДАН). */
-export default function VerificationPage() {
+export default async function VerificationPage({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("verification");
   return (
     <>
       <PageIntro
-        badge="KYC · 2 алхам · ~2 минут"
-        line1="Эзэмшигч бүр"
-        line2="баталгаажсан."
-        lead={
-          <>
-            Wire бол төлбөр хүлээн авах санхүүгийн үйлчилгээ. Тиймээс данс нээх
-            бүр утас + иргэний баталгаажуулалт хийдэг —{" "}
-            <Hl>таныг ч, таны хэрэглэгчдийг ч хамгаална</Hl>.
-          </>
-        }
+        badge={t("intro.badge")}
+        line1={t("intro.line1")}
+        line2={t("intro.line2")}
+        lead={t.rich("intro.lead", RICH)}
       />
 
       {/* step 1 — phone */}
@@ -165,22 +164,15 @@ export default function VerificationPage() {
         <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-5 py-14 lg:grid-cols-2 lg:gap-16">
           <Reveal>
             <StepHead
-              chip="Алхам 1 · Утас"
+              chip={t("phone.chip")}
               icon={MessageSquare}
-              line1="Утасны дугаар."
-              line2="Нэг SMS."
-              copy={
-                <>
-                  Дугаараа оруулаад, заасан богино дугаар руу{" "}
-                  <Hl>нэг SMS илгээхэд л баталгаажна</Hl>. Код цээжлэх, апп
-                  суулгах шаардлагагүй — таны өөрийн утаснаас илгээсэн мессеж
-                  өөрөө баталгаа болно.
-                </>
-              }
+              line1={t("phone.line1")}
+              line2={t("phone.line2")}
+              copy={t.rich("phone.copy", RICH)}
               bullets={[
-                "Нэг утасны дугаар = нэг аккаунт",
-                "Ихэвчлэн 30 секундэд автоматаар танигдана",
-                "Мэдэгдэл, чухал сэрэмжлүүлэг энэ дугаарт холбогдоно",
+                t("phone.bullets.oneAccount"),
+                t("phone.bullets.auto"),
+                t("phone.bullets.alerts"),
               ]}
             />
           </Reveal>
@@ -195,22 +187,15 @@ export default function VerificationPage() {
         <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-5 py-14 lg:grid-cols-2 lg:gap-16">
           <Reveal className="lg:order-2">
             <StepHead
-              chip="Алхам 2 · ДАН"
+              chip={t("dan.chip")}
               icon={ShieldCheck}
-              line1="Иргэний баталгаажуулалт."
-              line2="Төрийн ДАН-аар."
-              copy={
-                <>
-                  Төрийн нэгдсэн нэвтрэлт ДАН (sso.gov.mn) руу шилжиж, өөрийн
-                  зөвшөөрлөөр нэвтэрнэ.{" "}
-                  <Hl>Wire таны нууц үгийг хэзээ ч харахгүй</Hl> — зөвхөн
-                  баталгаажсан үр дүн (нэр, регистр) бидэнд ирдэг.
-                </>
-              }
+              line1={t("dan.line1")}
+              line2={t("dan.line2")}
+              copy={t.rich("dan.copy", RICH)}
               bullets={[
-                "Албан ёсны төрийн систем — нэмэлт бичиг баримт илгээхгүй",
-                "Нэг удаа, ~1 минут — дахин давтагдахгүй",
-                "Гарын үсэгтэй (signed) суваг — өгөгдөл замдаа өөрчлөгдөхгүй",
+                t("dan.bullets.official"),
+                t("dan.bullets.once"),
+                t("dan.bullets.signed"),
               ]}
             />
           </Reveal>
@@ -224,14 +209,14 @@ export default function VerificationPage() {
       <section className="bg-[var(--color-background)]">
         <div className="mx-auto w-full max-w-6xl px-5 py-14 sm:py-20">
           <SectionHeading
-            badge="Нууцлал"
-            line1="Таны мэдээлэл"
-            line2="таных хэвээр."
+            badge={t("privacy.badge")}
+            line1={t("privacy.line1")}
+            line2={t("privacy.line2")}
           />
           <div className="mt-12 grid gap-5 sm:grid-cols-3">
             {promises.map((p, i) => (
               <Reveal
-                key={p.title}
+                key={p.key}
                 delay={i * 110}
                 className="rounded-2xl border border-[var(--color-border)] bg-white p-6 shadow-[0_1px_3px_rgba(10,10,10,0.04)]"
               >
@@ -239,10 +224,10 @@ export default function VerificationPage() {
                   <p.icon className="size-4.5" />
                 </span>
                 <h3 className="mt-4 text-base font-semibold tracking-tight">
-                  {p.title}
+                  {t(`privacy.items.${p.key}.title`)}
                 </h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-[var(--color-muted)]">
-                  {p.desc}
+                  {t(`privacy.items.${p.key}.desc`)}
                 </p>
               </Reveal>
             ))}

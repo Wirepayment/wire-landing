@@ -1,38 +1,54 @@
 import Image from "next/image";
 import { ArrowRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getTranslations } from "next-intl/server";
 import { Reveal } from "@/components/reveal";
-import { Hl } from "@/components/hl";
+import { RICH } from "@/components/rich";
 import { LogoMark } from "@/components/logo";
 import { DASHBOARD_URL } from "@/lib/links";
 
 /* FinalCta — the closing cloud band: app-icon tile, big serif line, the
  * capability checklist with "Удахгүй / Roadmap" pills, one blue CTA. */
 
-type Item = { label: string; soon?: string };
+type ItemKey =
+  | "paymentLink"
+  | "dashboard"
+  | "qr"
+  | "projects"
+  | "api"
+  | "webhooks"
+  | "idempotency"
+  | "platform"
+  | "routing"
+  | "cards"
+  | "export"
+  | "insights";
+
+type Item = { label: ItemKey; roadmap?: boolean };
 
 const COLUMNS: Item[][] = [
   [
-    { label: "Төлбөрийн линк" },
-    { label: "Реал цагийн dashboard" },
-    { label: "QR төлбөр" },
-    { label: "Олон төсөл, олон данс" },
+    { label: "paymentLink" },
+    { label: "dashboard" },
+    { label: "qr" },
+    { label: "projects" },
   ],
   [
-    { label: "REST API + SDK" },
-    { label: "Webhook + signature" },
-    { label: "Idempotency" },
-    { label: "Платформ модуль" },
+    { label: "api" },
+    { label: "webhooks" },
+    { label: "idempotency" },
+    { label: "platform" },
   ],
   [
-    { label: "Авто-routing" },
-    { label: "Картын төлбөр" },
-    { label: "Тайлан экспорт" },
-    { label: "Smart insights", soon: "Roadmap" },
+    { label: "routing" },
+    { label: "cards" },
+    { label: "export" },
+    { label: "insights", roadmap: true },
   ],
 ];
 
-export function FinalCta() {
+export async function FinalCta() {
+  const t = await getTranslations("home.finalCta");
   return (
     <section className="bg-[var(--color-background)] px-3 pb-4 sm:px-5">
       <div className="relative mx-auto w-full max-w-[1400px] overflow-hidden rounded-[32px]">
@@ -54,11 +70,10 @@ export function FinalCta() {
 
           <Reveal delay={80}>
             <h2 className="display mt-7 text-[clamp(36px,5.5vw,64px)]">
-              Бүх төлбөрөө нэг гарцаар.
+              {t("heading")}
             </h2>
             <p className="mx-auto mt-4 max-w-md text-[15px] leading-relaxed text-[var(--color-muted)]">
-              Бүртгэл үнэгүй. Дансаа холбоод л төлбөр хүлээн авч эхэлнэ —{" "}
-              <Hl>шимтгэл зөвхөн амжилттай гүйлгээнээс</Hl>.
+              {t.rich("lead", RICH)}
             </p>
           </Reveal>
 
@@ -70,7 +85,7 @@ export function FinalCta() {
                     <li key={it.label} className="flex items-center gap-2.5">
                       <span
                         className={`flex size-5 shrink-0 items-center justify-center rounded-full ${
-                          it.soon
+                          it.roadmap
                             ? "bg-[var(--color-primary-soft)] text-[var(--color-primary)]"
                             : "bg-[var(--color-primary)] text-white"
                         }`}
@@ -79,16 +94,16 @@ export function FinalCta() {
                       </span>
                       <span
                         className={`text-sm font-medium ${
-                          it.soon
+                          it.roadmap
                             ? "text-[var(--color-faint)]"
                             : "text-[var(--color-foreground)]"
                         }`}
                       >
-                        {it.label}
+                        {t(`items.${it.label}`)}
                       </span>
-                      {it.soon ? (
+                      {it.roadmap ? (
                         <span className="rounded-full bg-white/80 px-2 py-0.5 text-[10px] font-semibold text-[var(--color-muted)] shadow-[0_1px_2px_rgba(10,10,10,0.08)]">
-                          {it.soon}
+                          {t("roadmap")}
                         </span>
                       ) : null}
                     </li>
@@ -101,7 +116,7 @@ export function FinalCta() {
           <Reveal delay={240} className="mt-12">
             <Button asChild size="lg">
               <a href={DASHBOARD_URL}>
-                Эхлэх
+                {t("start")}
                 <ArrowRight />
               </a>
             </Button>

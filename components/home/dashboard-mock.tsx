@@ -12,6 +12,7 @@ import {
   Settings,
   SlidersHorizontal,
 } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import { LogoMark } from "@/components/logo";
 import { cn } from "@/lib/utils";
 
@@ -20,54 +21,57 @@ import { cn } from "@/lib/utils";
  * cards, latest payments). Pure markup so it stays crisp at any DPI. */
 
 const NAV = [
-  { icon: LayoutDashboard, label: "Хяналт", active: true },
-  { icon: CreditCard, label: "Гүйлгээ" },
-  { icon: Link2, label: "Төлбөрийн линк" },
+  { icon: LayoutDashboard, label: "overview", active: true },
+  { icon: CreditCard, label: "transactions" },
+  { icon: Link2, label: "paymentLinks" },
 ] as const;
 
 const NAV_FINANCE = [
-  { icon: Landmark, label: "Данс" },
-  { icon: BarChart3, label: "Тайлан" },
+  { icon: Landmark, label: "accounts" },
+  { icon: BarChart3, label: "reports" },
 ] as const;
 
 const NAV_SETTINGS = [
-  { icon: SlidersHorizontal, label: "Суваг" },
-  { icon: Settings, label: "Тохиргоо" },
+  { icon: SlidersHorizontal, label: "channels" },
+  { icon: Settings, label: "settings" },
 ] as const;
 
 const STATS = [
-  { label: "Өнөөдрийн орлого", value: "₮1,254,000" },
-  { label: "Амжилттай гүйлгээ", value: "96%" },
-  { label: "Идэвхтэй линк", value: "12" },
-  { label: "Холбогдсон суваг", value: "4" },
+  { label: "todayRevenue", value: "₮1,254,000" },
+  { label: "successRate", value: "96%" },
+  { label: "activeLinks", value: "12" },
+  { label: "connectedChannels", value: "4" },
 ] as const;
 
 const ROWS = [
   {
     id: "PAY-1024",
-    channel: "Банкны апп",
+    channel: "bankApp",
     amount: "₮176,000",
     date: "2026-07-30 14:05",
-    status: "Амжилттай",
+    status: "succeeded",
     ok: true,
   },
   {
     id: "PAY-1023",
-    channel: "Цахим хэтэвч",
+    channel: "wallet",
     amount: "₮19,900",
     date: "2026-07-30 13:47",
-    status: "Амжилттай",
+    status: "succeeded",
     ok: true,
   },
   {
     id: "PAY-1022",
-    channel: "QR төлбөр",
+    channel: "qr",
     amount: "₮52,500",
     date: "2026-07-30 13:12",
-    status: "Хүлээгдэж буй",
+    status: "pending",
     ok: false,
   },
 ] as const;
+
+// Chart axis: the eight months up to the current one.
+const MONTHS = [12, 1, 2, 3, 4, 5, 6, 7] as const;
 
 function SideItem({
   icon: Icon,
@@ -158,7 +162,8 @@ function ChartSvg() {
   );
 }
 
-export function DashboardMock({ className }: { className?: string }) {
+export async function DashboardMock({ className }: { className?: string }) {
+  const t = await getTranslations("home.dashboardMock");
   return (
     <div
       className={cn(
@@ -172,24 +177,24 @@ export function DashboardMock({ className }: { className?: string }) {
         <div className="flex items-center justify-between rounded-lg border border-[var(--color-border)] bg-white px-2.5 py-1.5">
           <span className="flex items-center gap-1.5 text-[12px] font-semibold">
             <LogoMark className="size-4" />
-            Wire Store
+            {t("storeName")}
           </span>
           <ChevronsUpDown className="size-3 text-[var(--color-faint)]" />
         </div>
         <div className="flex items-center gap-2 px-2.5 text-[12px] text-[var(--color-faint)]">
           <Search className="size-3.5" />
-          Хайх
+          {t("search")}
         </div>
         <div>
           <p className="px-2.5 pb-1 text-[10px] font-medium tracking-wide text-[var(--color-faint)] uppercase">
-            Үйл ажиллагаа
+            {t("groups.operations")}
           </p>
           <div className="space-y-0.5">
             {NAV.map((n) => (
               <SideItem
                 key={n.label}
                 icon={n.icon}
-                label={n.label}
+                label={t(`nav.${n.label}`)}
                 active={"active" in n && n.active}
               />
             ))}
@@ -197,36 +202,46 @@ export function DashboardMock({ className }: { className?: string }) {
         </div>
         <div>
           <p className="px-2.5 pb-1 text-[10px] font-medium tracking-wide text-[var(--color-faint)] uppercase">
-            Санхүү
+            {t("groups.finance")}
           </p>
           <div className="space-y-0.5">
             {NAV_FINANCE.map((n) => (
-              <SideItem key={n.label} icon={n.icon} label={n.label} />
+              <SideItem
+                key={n.label}
+                icon={n.icon}
+                label={t(`nav.${n.label}`)}
+              />
             ))}
           </div>
         </div>
         <div>
           <p className="px-2.5 pb-1 text-[10px] font-medium tracking-wide text-[var(--color-faint)] uppercase">
-            Тохиргоо
+            {t("groups.settings")}
           </p>
           <div className="space-y-0.5">
             {NAV_SETTINGS.map((n) => (
-              <SideItem key={n.label} icon={n.icon} label={n.label} />
+              <SideItem
+                key={n.label}
+                icon={n.icon}
+                label={t(`nav.${n.label}`)}
+              />
             ))}
           </div>
         </div>
         <div className="mt-auto flex items-center gap-2 rounded-lg border border-[var(--color-border)] bg-white px-2.5 py-1.5">
           <span className="flex size-5 items-center justify-center rounded-full bg-[var(--color-primary-soft)] text-[9px] font-bold text-[var(--color-primary)]">
-            БТ
+            {t("userInitials")}
           </span>
-          <span className="text-[11px] font-semibold">Б. Тэмүүлэн</span>
+          <span className="text-[11px] font-semibold">{t("userName")}</span>
         </div>
       </div>
 
       {/* main */}
       <div className="bg-white">
         <div className="flex items-center justify-between border-b border-[var(--color-border)] px-4 py-2.5">
-          <p className="text-[12px] text-[var(--color-muted)]">Хяналт</p>
+          <p className="text-[12px] text-[var(--color-muted)]">
+            {t("pageTitle")}
+          </p>
           <div className="flex items-center gap-1.5">
             <span className="flex size-6 items-center justify-center rounded-md border border-[var(--color-border)] text-[var(--color-faint)]">
               <RefreshCw className="size-3" />
@@ -240,11 +255,11 @@ export function DashboardMock({ className }: { className?: string }) {
         <div className="grid gap-4 p-4 xl:grid-cols-[1fr_230px]">
           <div>
             <p className="text-[11px] text-[var(--color-muted)]">
-              Энэ сарын орлого
+              {t("monthRevenue")}
             </p>
             <div className="mt-1 flex items-center gap-2">
               <span className="tabular text-[26px] font-bold text-[var(--color-foreground)]">
-                ₮48.2 сая
+                {t("monthRevenueValue")}
               </span>
               <span className="flex items-center gap-0.5 rounded-full bg-emerald-50 px-1.5 py-0.5 text-[10px] font-semibold text-emerald-600">
                 <ArrowUpRight className="size-2.5" />
@@ -252,36 +267,27 @@ export function DashboardMock({ className }: { className?: string }) {
               </span>
             </div>
             <p className="text-[10px] text-[var(--color-faint)]">
-              Өмнөх сараас ₮9.1 саяар өссөн
+              {t("growth")}
             </p>
             <div className="mt-3">
               <ChartSvg />
               <div className="mt-1 flex justify-between text-[9px] text-[var(--color-faint)]">
-                {[
-                  "12 сар",
-                  "1 сар",
-                  "2 сар",
-                  "3 сар",
-                  "4 сар",
-                  "5 сар",
-                  "6 сар",
-                  "7 сар",
-                ].map((m) => (
-                  <span key={m}>{m}</span>
+                {MONTHS.map((m) => (
+                  <span key={m}>{t("month", { n: String(m) })}</span>
                 ))}
               </div>
             </div>
 
             <p className="mt-4 text-[12px] font-bold text-[var(--color-foreground)]">
-              Сүүлийн гүйлгээ
+              {t("latest")}
             </p>
             <div className="mt-2 overflow-hidden rounded-xl border border-[var(--color-border)]">
               <div className="grid grid-cols-[1fr_1fr_1fr_1fr_auto] gap-2 border-b border-[var(--color-border)] bg-[var(--color-surface)]/60 px-3 py-1.5 text-[10px] text-[var(--color-faint)]">
-                <span>Гүйлгээ</span>
-                <span>Суваг</span>
-                <span>Дүн</span>
-                <span className="hidden sm:block">Огноо</span>
-                <span>Төлөв</span>
+                <span>{t("columns.transaction")}</span>
+                <span>{t("columns.channel")}</span>
+                <span>{t("columns.amount")}</span>
+                <span className="hidden sm:block">{t("columns.date")}</span>
+                <span>{t("columns.status")}</span>
               </div>
               {ROWS.map((r) => (
                 <div
@@ -289,7 +295,9 @@ export function DashboardMock({ className }: { className?: string }) {
                   className="grid grid-cols-[1fr_1fr_1fr_1fr_auto] items-center gap-2 border-b border-[var(--color-border)] px-3 py-2 text-[11px] last:border-b-0"
                 >
                   <span className="tabular text-[10px]">{r.id}</span>
-                  <span className="text-[var(--color-muted)]">{r.channel}</span>
+                  <span className="text-[var(--color-muted)]">
+                    {t(`channels.${r.channel}`)}
+                  </span>
                   <span className="tabular font-semibold">{r.amount}</span>
                   <span className="tabular hidden text-[10px] text-[var(--color-faint)] sm:block">
                     {r.date}
@@ -302,7 +310,7 @@ export function DashboardMock({ className }: { className?: string }) {
                         : "bg-amber-50 text-amber-600",
                     )}
                   >
-                    {r.status}
+                    {t(`statuses.${r.status}`)}
                   </span>
                 </div>
               ))}
@@ -316,7 +324,7 @@ export function DashboardMock({ className }: { className?: string }) {
                 className="rounded-xl border border-[var(--color-border)] bg-white p-3 shadow-[0_1px_2px_rgba(10,10,10,0.04)]"
               >
                 <p className="text-[10px] text-[var(--color-faint)]">
-                  {s.label}
+                  {t(`stats.${s.label}`)}
                 </p>
                 <p className="tabular mt-1 text-[18px] font-bold">{s.value}</p>
               </div>
