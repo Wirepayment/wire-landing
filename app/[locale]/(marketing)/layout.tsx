@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 import { BookOpen, Mail, Phone } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { Logo, LogoMark } from "@/components/logo";
+import Image from "next/image";
+import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { NavLinks } from "@/components/nav-links";
 import { MobileNav } from "@/components/mobile-nav";
@@ -78,9 +79,13 @@ export default async function MarketingLayout({
         <div className="mx-auto w-full max-w-6xl px-5 pt-16 pb-10">
           <div className="grid gap-10 sm:grid-cols-2 sm:gap-12 lg:grid-cols-[1.3fr_auto_auto_auto_auto] lg:gap-12">
             <div>
-              <div className="flex size-14 items-center justify-center rounded-2xl border border-[var(--color-border)] bg-white shadow-[0_8px_24px_-8px_rgba(16,185,129,0.2)]">
-                <LogoMark className="size-8" />
-              </div>
+              <Image
+                src="/brand/wire-icon.png"
+                alt=""
+                width={256}
+                height={256}
+                className="size-14 rounded-2xl shadow-[0_8px_24px_-8px_rgba(16,185,129,0.35)] mix-blend-multiply"
+              />
               <p className="mt-4 max-w-xs text-sm leading-relaxed text-[var(--color-muted)]">
                 {footer("tagline")}
               </p>
@@ -207,7 +212,13 @@ export default async function MarketingLayout({
               rel="noopener noreferrer"
               className="badge-pill !py-1 text-[11px] transition-colors hover:text-[var(--color-foreground)]"
             >
-              {footer("byBuildry")}
+              {footer.rich("byBuildry", {
+                brand: (chunks) => (
+                  <span className="font-semibold text-[var(--color-buildry)]">
+                    {chunks}
+                  </span>
+                ),
+              })}
             </a>
           </div>
         </div>

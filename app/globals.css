@@ -14,6 +14,8 @@
      real family: an empty one would leave "a, , b" and void the whole stack. */
   --font-display: var(--font-comfortaa), var(--font-cjk, ui-sans-serif), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-comfortaa), var(--font-cjk, ui-sans-serif), ui-sans-serif, system-ui, sans-serif;
+  /* Buildry (parent brand) blue — buildry.cloud --color-brand; only for the "A product by Buildry" credit */
+  --color-buildry: #2563EB;
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
   /* header voice — same Comfortaa (logo wordmark + nav) */
   --font-round: var(--font-comfortaa), var(--font-cjk, ui-sans-serif), ui-sans-serif, system-ui, sans-serif;

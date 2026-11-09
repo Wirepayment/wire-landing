@@ -25,7 +25,7 @@
     "contactHeading": "문의",
     "facebook": "Facebook 페이지",
     "rights": "© {year} {company} · wire.mn. 모든 권리 보유.",
-    "byBuildry": "A product by Buildry ↗"
+    "byBuildry": "A product by <brand>Buildry</brand> ↗"
   },
   "home": {
     "hero": {
