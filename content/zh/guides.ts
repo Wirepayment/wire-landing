@@ -18,11 +18,11 @@ const SETTLEMENT_ANSWER =
 const ACCOUNT_STEPS: GuideStep[] = [
   {
     title: "注册并完成一次验证",
-    body: "登录 app.wire.mn，完成所有者的手机及 DAN（蒙古国政府电子身份认证）验证。只需完成一次——之后无论开设多少企业或项目，都无需重复。",
+    body: "登录 app.wire.mn，完成账户所有人的手机及 DAN（蒙古国政府电子身份认证）验证。只需完成一次——之后无论开设多少企业或项目，都无需重复。",
   },
   {
-    title: "启用运营商",
-    body: "QPay、PayLink：在管理后台中选择运营商并填写表单（注册信息、地址、收款账户）。审核批准后，在线签署电子协议，连接即会启用。Toki、MonPay、StorePay、Pocket Zero：使用您与运营商签订的自有协议和密钥，在管理后台中完成连接。",
+    title: "启用服务商",
+    body: "QPay、PayLink：在管理后台中选择服务商并填写表单（注册信息、地址、收款账户）。审核批准后，在线签署电子协议，连接即会启用。Toki、MonPay、StorePay、Pocket Zero：使用您与服务商签订的自有协议和密钥，在管理后台中完成连接。",
   },
 ];
 
@@ -34,7 +34,7 @@ export const GUIDES: Guide[] = [
     line1: "如何在您的网站上",
     line2: "接受在线支付？",
     answer:
-      "在 Wire 注册并完成验证、启用运营商后，即可从您的网站将买家引导至 Wire 的支付页面，或通过 REST API 进行对接。买家通过您已启用的渠道（二维码、银行 App、银行卡等）付款，收入将转入您绑定的账户。您也可以直接使用现成的支付链接立即开始。",
+      "在 Wire 注册并完成验证、启用服务商后，即可从您的网站将买家引导至 Wire 的支付页面，或通过 REST API 进行对接。买家通过您已启用的渠道（二维码、银行 App、银行卡等）付款，收入将转入您绑定的账户。您也可以直接使用现成的支付链接立即开始。",
     stepsTitle: "5 步完成首笔收款",
     steps: [
       ...ACCOUNT_STEPS,
@@ -154,7 +154,7 @@ export const GUIDES: Guide[] = [
     steps: [
       {
         title: "注册并完成一次验证",
-        body: "登录 app.wire.mn，完成所有者的手机及 DAN（蒙古国政府电子身份认证）验证。",
+        body: "登录 app.wire.mn，完成账户所有人的手机及 DAN（蒙古国政府电子身份认证）验证。",
       },
       {
         title: "选择银行卡支付渠道",
@@ -191,7 +191,7 @@ export const GUIDES: Guide[] = [
     related: [
       { label: "功能", href: "/features" },
       {
-        label: "启用运营商（英文文档）",
+        label: "启用服务商（英文文档）",
         href: `${DOCS_URL}/en/docs/guides/going-live`,
       },
       { label: "注册指南", href: "/guide" },
@@ -205,7 +205,7 @@ export const GUIDES: Guide[] = [
     line1: "如何接入",
     line2: "二维码支付？",
     answer:
-      "Wire 的支付页面会为每笔付款生成二维码和银行 App 深度链接。在电脑上，买家用手机扫描二维码；在手机上，则可直接打开银行 App 付款。通过一个连接，即可接受蒙古国各支付运营商的二维码支付。",
+      "Wire 的支付页面会为每笔付款生成二维码和银行 App 深度链接。在电脑上，买家用手机扫描二维码；在手机上，则可直接打开银行 App 付款。通过一个连接，即可接受蒙古国各支付服务商的二维码支付。",
     stepsTitle: "二维码收款步骤",
     steps: [
       ...ACCOUNT_STEPS,
@@ -225,7 +225,7 @@ export const GUIDES: Guide[] = [
     faqs: [
       {
         q: "可以使用哪些 App 扫描二维码？",
-        a: "您已启用的运营商所支持的银行 App 和电子钱包 App。",
+        a: "您已启用的服务商所支持的银行 App 和电子钱包 App。",
       },
       {
         q: "可以把打印的二维码摆放在收银台吗？",
@@ -258,7 +258,7 @@ export const GUIDES: Guide[] = [
     line1: "什么是",
     line2: "支付网关？",
     answer:
-      "支付网关是将您的企业与各支付运营商连接起来的中间层。您无需与每家运营商分别建立技术连接，只需与 Wire 对接一次，即可通过一个 API、一个管理后台接受银行 App、电子钱包、二维码、银行卡和分期付款。",
+      "支付网关是将您的企业与各支付服务商连接起来的中间层。您无需与每家服务商分别建立技术连接，只需与 Wire 对接一次，即可通过一个 API、一个管理后台接受银行 App、电子钱包、二维码、银行卡和分期付款。",
     stepsTitle: "付款如何流转",
     steps: [
       {
@@ -270,18 +270,18 @@ export const GUIDES: Guide[] = [
         body: "Wire 的支付页面会集中显示您在项目中开启的所有渠道。",
       },
       {
-        title: "运营商处理付款",
-        body: "所选运营商处理付款，收入将转入您绑定的账户。",
+        title: "服务商处理付款",
+        body: "所选服务商处理付款，收入将转入您绑定的账户。",
       },
       {
         title: "Wire 确认状态",
-        body: "运营商通知、主动查询和每日对账三重保障，确保付款不会丢失。结果会通过管理后台、电子邮件和 Webhook 送达您。",
+        body: "服务商通知、主动查询和每日对账三重保障，确保付款不会丢失。结果会通过管理后台、电子邮件和 Webhook 送达您。",
       },
     ],
     points: {
-      title: "与分别对接每家运营商相比",
+      title: "与分别对接每家服务商相比",
       items: [
-        "一个 API、一套 SDK——无需逐一研究每家运营商各不相同的接入方式",
+        "一个 API、一套 SDK——无需逐一研究每家服务商各不相同的接入方式",
         "一个管理后台——所有渠道的交易和报表集中在一处",
         "一个 Webhook——所有渠道的通知格式统一，并带有签名",
         "新增渠道无需修改代码——在管理后台中开启即可",
@@ -290,11 +290,11 @@ export const GUIDES: Guide[] = [
     faqs: [
       {
         q: "Wire 可以接受哪些付款？",
-        a: "二维码、银行 App（QPay）、银行卡（PayLink）、电子钱包（Toki、MonPay）、分期付款（StorePay、Pocket Zero）——即您所连接的蒙古国各支付运营商的渠道。",
+        a: "二维码、银行 App（QPay）、银行卡（PayLink）、电子钱包（Toki、MonPay）、分期付款（StorePay、Pocket Zero）——即您所连接的蒙古国各支付服务商的渠道。",
       },
       {
-        q: "需要与每家运营商签订协议吗？",
-        a: "QPay、PayLink 的协议在管理后台内通过 DAN（蒙古国政府电子身份认证）在线签署。Toki、MonPay、StorePay、Pocket Zero 则使用您与运营商签订的自有协议。无论哪种情况，技术连接都只有一个——Wire。",
+        q: "需要与每家服务商签订协议吗？",
+        a: "QPay、PayLink 的协议在管理后台内通过 DAN（蒙古国政府电子身份认证）在线签署。Toki、MonPay、StorePay、Pocket Zero 则使用您与服务商签订的自有协议。无论哪种情况，技术连接都只有一个——Wire。",
       },
       {
         q: "Wire 由谁运营？",
@@ -347,7 +347,7 @@ export const GUIDES: Guide[] = [
       },
       {
         q: "可以拆分付款并扣除平台佣金吗？",
-        a: "不可以。目前不支持拆分付款或扣除佣金。平台的合作条款需与 Wire 另行商定。",
+        a: "不可以。不支持拆分付款或扣除佣金。平台的合作条款需与 Wire 另行商定。",
       },
       {
         q: "如果商户已在 Wire 注册怎么办？",
@@ -375,16 +375,16 @@ export const GUIDES: Guide[] = [
     line1: "如何在蒙古国",
     line2: "接受在线支付？",
     answer:
-      "Wire 是专为蒙古国打造的支付网关。蒙古国的企业或个人卖家在 app.wire.mn 注册，通过所有者的手机及 DAN（蒙古国政府电子身份认证）完成一次验证，并启用所需的支付运营商。之后，即可通过 Wire 的支付页面、支付链接或 REST API 收款。买家可使用银行 App、电子钱包、二维码、银行卡或分期付款渠道付款，款项直接进入企业的自有账户。",
+      "Wire 是专为蒙古国打造的支付网关。蒙古国的企业或个人卖家在 app.wire.mn 注册，通过账户所有人的手机及 DAN（蒙古国政府电子身份认证）完成一次验证，并启用所需的支付服务商。之后，即可通过 Wire 的支付页面、支付链接或 REST API 收款。买家可使用银行 App、电子钱包、二维码、银行卡或分期付款渠道付款，款项直接进入企业的自有账户。",
     stepsTitle: "从注册到首笔收款",
     steps: [
       {
         title: "注册并完成一次验证",
-        body: "登录 app.wire.mn，完成所有者的手机及 DAN 验证。只需完成一次——之后无论开设多少企业或项目，都无需重复。",
+        body: "登录 app.wire.mn，完成账户所有人的手机及 DAN 验证。只需完成一次——之后无论开设多少企业或项目，都无需重复。",
       },
       {
-        title: "启用运营商",
-        body: "QPay、PayLink：在管理后台中提交企业信息和收款账户。审核批准后，在线签署电子协议，连接即会启用。Toki、MonPay、StorePay、Pocket Zero：在管理后台中输入您与运营商签订的自有协议所对应的密钥。",
+        title: "启用服务商",
+        body: "QPay、PayLink：在管理后台中提交企业信息和收款账户。审核批准后，在线签署电子协议，连接即会启用。Toki、MonPay、StorePay、Pocket Zero：在管理后台中输入您与服务商签订的自有协议所对应的密钥。",
       },
       {
         title: "创建项目并获取 API 密钥",
@@ -402,7 +402,7 @@ export const GUIDES: Guide[] = [
     faqs: [
       {
         q: "买家可以使用哪些付款方式？",
-        a: "二维码、银行 App（QPay），银行卡——Visa、Mastercard、本地银行卡（PayLink），电子钱包（Toki、MonPay），分期付款（StorePay、Pocket Zero）。QPay 和 PayLink 通过 Wire 接入；其他渠道则使用您与运营商签订的自有协议和密钥，在管理后台中连接。",
+        a: "二维码、银行 App（QPay），银行卡——Visa、Mastercard、本地银行卡（PayLink），电子钱包（Toki、MonPay），分期付款（StorePay、Pocket Zero）。QPay 和 PayLink 通过 Wire 接入；其他渠道则使用您与服务商签订的自有协议和密钥，在管理后台中连接。",
       },
       {
         q: "金额使用哪种货币？",

@@ -21,7 +21,7 @@ export const FAQS: Faq[] = [
   },
   {
     q: "可以通过哪些渠道收款？",
-    a: "QPay（二维码、银行 App）、PayLink（Visa、Mastercard、本地银行卡）、Toki 和 MonPay（电子钱包）、StorePay 和 Pocket Zero（分期付款）。QPay 和 PayLink 通过 Wire 接入；其他渠道则使用您与运营商签订的自有协议和密钥，在管理后台中连接。所有渠道的交易都汇集于一个连接、一个管理后台。",
+    a: "QPay（二维码、银行 App）、PayLink（Visa、Mastercard、本地银行卡）、Toki 和 MonPay（电子钱包）、StorePay 和 Pocket Zero（分期付款）。QPay 和 PayLink 通过 Wire 接入；其他渠道则使用您与服务商签订的自有协议和密钥，在管理后台中连接。所有渠道的交易都汇集于一个连接、一个管理后台。",
   },
   {
     q: "收入何时到账？",

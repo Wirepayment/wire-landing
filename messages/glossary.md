@@ -44,7 +44,7 @@ uses older forms (Latin "connector" and "dashboard", "Орлого хүлээн 
 | Term | mn | en | zh | ko | Note |
 |---|---|---|---|---|---|
 | connector | Төлбөрийн суваг / суваг | Payment channel / channel | 支付渠道 / 渠道 | 결제 채널 / 채널 | One of the six live connectors. Code and the API say connector; on screen say channel. |
-| operator | Оператор | Payment operator | 支付运营商 | 결제 사업자 | The provider behind a channel. |
+| operator | Оператор | Payment operator | 支付服务商 | 결제 사업자 | The provider behind a channel. |
 | payment gateway | Төлбөрийн gateway / гарц | Payment gateway | 支付网关 | 결제 게이트웨이 | What Wire is. |
 | merchant | Мерчант / бизнес | Merchant | 商户 | 가맹점 | The registered business that receives the money. |
 | business | Бизнес | Business | 企业 | 사업자 | The merchant as the owner sees it. |

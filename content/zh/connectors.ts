@@ -44,6 +44,6 @@ export const CONNECTOR_MODES: Record<ConnectorMode, ConnectorModeCopy> = {
   byo: {
     label: "使用自有协议（BYO）",
     short: "BYO",
-    hint: "使用您与支付运营商签订的自有协议和密钥，在管理后台中完成连接。款项直接进入您在运营商处的账户，Wire 不经手资金。",
+    hint: "使用您与支付服务商签订的自有协议和密钥，在管理后台中完成连接。款项直接进入您在服务商处的账户，Wire 不经手资金。",
   },
 };

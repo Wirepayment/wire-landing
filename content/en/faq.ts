@@ -14,7 +14,7 @@ export const FAQS: Faq[] = [
   },
   {
     q: "How do I start?",
-    a: "Sign up and verify the owner once with phone and DAN (Mongolia's state e-ID). Then connect the account that receives your revenue and start taking payments with ready-made links or the API.",
+    a: "Sign up and verify the owner once with phone and DAN (state e-ID). Then connect the account that receives your revenue and start taking payments with ready-made links or the API.",
   },
   {
     q: "Do I need a developer?",

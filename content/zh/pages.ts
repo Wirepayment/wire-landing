@@ -26,12 +26,12 @@ export const PAGES: Record<PublicPath, PageCopy> = {
   "/guide": {
     title: "入门指南——从注册到开始收款",
     description:
-      "在 Wire 上注册、完成手机 + DAN（蒙古国政府电子身份认证）验证、创建项目并启用运营商连接的完整流程——20 个步骤，附真实界面截图。",
+      "在 Wire 上注册、完成手机 + DAN（蒙古国政府电子身份认证）验证、创建项目并启用服务商连接的完整流程——20 个步骤，附真实界面截图。",
   },
   "/verification": {
     title: "身份验证——手机 + DAN（KYC）",
     description:
-      "在 Wire 上，每位所有者都通过短信验证手机号码，并通过蒙古国政府 DAN 电子身份认证系统验证个人身份信息。信息均加密存储。",
+      "在 Wire 上，每位账户所有人都通过短信验证手机号码，并通过蒙古国政府 DAN 电子身份认证系统验证个人身份信息。信息均加密存储。",
   },
   "/guides/online-payment": {
     title: "如何在网站上接受在线支付",
@@ -51,12 +51,12 @@ export const PAGES: Record<PublicPath, PageCopy> = {
   "/guides/qr-payments": {
     title: "为您的店铺或 App 接入二维码支付",
     description:
-      "每笔付款都提供二维码和银行 App 深度链接。通过一个连接，接受蒙古国各支付运营商的二维码支付。",
+      "每笔付款都提供二维码和银行 App 深度链接。通过一个连接，接受蒙古国各支付服务商的二维码支付。",
   },
   "/guides/payment-gateway": {
-    title: "什么是支付网关——多家运营商，一个连接",
+    title: "什么是支付网关——多家服务商，一个连接",
     description:
-      "支付网关如何运作，与分别对接每家运营商有何不同。一个 API、一个管理后台、一个 Webhook。",
+      "支付网关如何运作，与分别对接每家服务商有何不同。一个 API、一个管理后台、一个 Webhook。",
   },
   "/guides/platform": {
     title: "平台与电商市场：通过一个 API 为多个商户收款",
@@ -66,7 +66,7 @@ export const PAGES: Record<PublicPath, PageCopy> = {
   "/payments-in-mongolia": {
     title: "如何在蒙古国接受在线支付",
     description:
-      "注册并完成一次验证，然后启用运营商。通过支付页面、支付链接或 Wire REST API，以蒙古图格里克（MNT）收款。",
+      "注册并完成一次验证，然后启用服务商。通过支付页面、支付链接或 Wire REST API，以蒙古图格里克（MNT）收款。",
   },
   "/terms": {
     title: "服务条款",
@@ -95,7 +95,7 @@ export const SITE: SiteCopy = {
   ],
   /** The one-paragraph summary at the top of this language's llms.txt part. */
   summary:
-    "Wire 是为蒙古国企业打造的支付网关：通过一个连接，经由蒙古国各支付运营商接受二维码、银行 App、银行卡、电子钱包、分期付款等付款。提供现成的支付链接或 REST API，所有收入尽在一个管理后台。",
+    "Wire 是为蒙古国企业打造的支付网关：通过一个连接，经由蒙古国各支付服务商接受二维码、银行 App、银行卡、电子钱包、分期付款等付款。提供现成的支付链接或 REST API，所有收入尽在一个管理后台。",
   /** The home page's name in breadcrumbs (JSON-LD). */
   homeCrumb: "首页",
 };
