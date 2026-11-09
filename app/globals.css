@@ -4,16 +4,16 @@
 /*
   Wire — "clear sky" redesign (billow-style layout, brandbook palette).
   Warm-white paper, charcoal ink, Mint Pulse (#10b981) as the single accent
-  carried by gradient pill buttons and glowing mint-cloud imagery. Display
-  voice is a high-contrast serif (Playfair Display, Cyrillic); UI voice is
-  Rubik. Screenshots float in soft-shadow "screen cards" over the clouds.
+  carried by gradient pill buttons and glowing mint-cloud imagery. One voice
+  everywhere: Comfortaa (rounded geometric, Cyrillic) for headings, UI and
+  body (owner 2026-11-09); JetBrains Mono for code and figures. Screenshots float in soft-shadow "screen cards" over the clouds.
 */
 
 @theme {
-  --font-display: var(--font-serif-display), ui-serif, Georgia, serif;
-  --font-sans: var(--font-rubik), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-comfortaa), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-comfortaa), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
-  /* header voice — rounded geometric (logo wordmark + nav) */
+  /* header voice — same Comfortaa (logo wordmark + nav) */
   --font-round: var(--font-comfortaa), ui-sans-serif, system-ui, sans-serif;
 
   /* paper (brandbook: warm white) */
@@ -74,7 +74,7 @@
   h3,
   h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.035em;
+    letter-spacing: -0.02em;
   }
   .tabular {
     font-family: var(--font-mono);
@@ -88,15 +88,15 @@
 }
 
 @layer utilities {
-  /* serif display line — headings are medium-weight high-contrast serif */
+  /* display line — headings in bold rounded Comfortaa */
   .display {
     font-family: var(--font-display);
-    font-weight: 600;
-    letter-spacing: -0.035em;
-    line-height: 1.04;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.12;
     text-wrap: balance;
   }
-  /* the quiet second line of a two-line serif heading */
+  /* the quiet second line of a two-line heading */
   .display-dim {
     color: #6f7a6f;
   }

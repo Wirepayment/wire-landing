@@ -1,10 +1,5 @@
 import type { Metadata } from "next";
-import {
-  Playfair_Display,
-  Rubik,
-  JetBrains_Mono,
-  Comfortaa,
-} from "next/font/google";
+import { JetBrains_Mono, Comfortaa } from "next/font/google";
 import "./globals.css";
 import { GoogleAnalytics } from "@/components/analytics";
 import {
@@ -14,21 +9,9 @@ import {
   SITE_URL,
 } from "@/lib/seo";
 
-const playfair = Playfair_Display({
-  subsets: ["latin", "cyrillic"],
-  variable: "--font-serif-display",
-  display: "swap",
-});
-
 const comfortaa = Comfortaa({
   subsets: ["latin", "cyrillic"],
   variable: "--font-comfortaa",
-  display: "swap",
-});
-
-const rubik = Rubik({
-  subsets: ["latin", "cyrillic"],
-  variable: "--font-rubik",
   display: "swap",
 });
 
@@ -81,10 +64,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="mn"
-      className={`${playfair.variable} ${rubik.variable} ${jetbrains.variable} ${comfortaa.variable}`}
-    >
+    <html lang="mn" className={`${comfortaa.variable} ${jetbrains.variable}`}>
       <body className="min-h-dvh antialiased">{children}</body>
       <GoogleAnalytics />
     </html>
