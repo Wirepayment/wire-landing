@@ -37,10 +37,10 @@ async function LinkShowcase() {
         </span>
       </div>
 
-      <div className="flex items-center gap-5 p-5">
-        <div className="flex size-28 shrink-0 items-center justify-center rounded-2xl border border-[var(--color-border)] bg-white shadow-[0_8px_24px_-12px_rgba(10,10,10,0.2)]">
+      <div className="flex items-center gap-4 p-5 sm:gap-5">
+        <div className="flex size-20 shrink-0 items-center justify-center rounded-2xl border border-[var(--color-border)] bg-white shadow-[0_8px_24px_-12px_rgba(10,10,10,0.2)] sm:size-28">
           <QrCode
-            className="size-16 text-[var(--color-foreground)]"
+            className="size-12 text-[var(--color-foreground)] sm:size-16"
             strokeWidth={1.2}
           />
         </div>
@@ -100,7 +100,7 @@ export default async function LinksPage({
       </PageIntro>
 
       <section className="bg-[var(--color-background)]">
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-12 px-5 py-14 sm:py-20 lg:grid-cols-2 lg:gap-16">
+        <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-12 px-5 py-14 sm:py-20 lg:grid-cols-2 lg:gap-16">
           <Reveal>
             <h2 className="display text-[clamp(28px,3.8vw,44px)]">
               {t("line1")}
