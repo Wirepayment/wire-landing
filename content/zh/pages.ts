@@ -26,7 +26,7 @@ export const PAGES: Record<PublicPath, PageCopy> = {
   "/guide": {
     title: "入门指南——从注册到开始收款",
     description:
-      "在 Wire 上注册、完成电子邮件、手机和 DAN（蒙古国政府电子身份认证）验证、创建项目并启用服务商连接的完整流程——20 个步骤，附真实界面截图。",
+      "在 Wire 上注册、完成电子邮件、手机和 DAN（蒙古国政府电子身份认证）验证、创建项目并开通支付渠道的完整流程——19 个步骤，附真实界面截图。",
   },
   "/verification": {
     title: "身份验证——电子邮件、手机和 DAN（KYC）",

@@ -39,8 +39,7 @@ type StepNo =
   | 16
   | 17
   | 18
-  | 19
-  | 20;
+  | 19;
 
 type Step = {
   n: StepNo;
@@ -48,7 +47,7 @@ type Step = {
   w: number;
   h: number;
   /** Key of the step's note under guide.notes; `warn` shows it as a warning. */
-  note?: "s8" | "s18";
+  note?: "s9" | "s17";
   warn?: boolean;
 };
 
@@ -68,7 +67,7 @@ const PHASES: Phase[] = [
       { n: 1, img: "01-signin.png", w: 1440, h: 900 },
       { n: 2, img: "02-onboarding-phone.png", w: 1440, h: 900 },
       { n: 3, img: "03-onboarding-phone-sms.png", w: 1440, h: 900 },
-      { n: 4, img: "04-onboarding-dan.png", w: 1200, h: 1067 },
+      { n: 4, img: "04-onboarding-dan.png", w: 1440, h: 900 },
       { n: 5, img: "05-dan-sso.png", w: 1200, h: 1067 },
       { n: 6, img: "06-profile-verified.png", w: 1200, h: 1067 },
     ],
@@ -77,35 +76,34 @@ const PHASES: Phase[] = [
     id: "project",
     icon: KeyRound,
     steps: [
-      { n: 7, img: "07-create-project-existing.png", w: 1200, h: 1067 },
+      { n: 7, img: "07-start.png", w: 1440, h: 900 },
+      { n: 8, img: "08-project-home.png", w: 1200, h: 1067 },
       {
-        n: 8,
-        img: "08-create-project-newbiz.png",
+        n: 9,
+        img: "09-create-project.png",
         w: 1200,
         h: 1067,
-        note: "s8",
+        note: "s9",
       },
-      { n: 9, img: "09-project-created-key.png", w: 1200, h: 1067 },
-      { n: 10, img: "10-project-home.png", w: 1200, h: 1067 },
     ],
   },
   {
     id: "connector",
     icon: Workflow,
     steps: [
-      { n: 11, img: "11-connectors.png", w: 1200, h: 1067 },
-      { n: 12, img: "12-connector-start.png", w: 1200, h: 1067 },
-      { n: 13, img: "13-connector-step2-info.png", w: 1200, h: 1067 },
-      { n: 14, img: "14-connector-step3-address.png", w: 1200, h: 1067 },
-      { n: 15, img: "15-connector-step4-account.png", w: 1200, h: 1067 },
-      { n: 16, img: "16-connector-step5-review.png", w: 1200, h: 1534 },
-      { n: 17, img: "17-connector-submit-confirm.png", w: 1200, h: 1067 },
+      { n: 10, img: "10-connectors.png", w: 1200, h: 1067 },
+      { n: 11, img: "11-connector-start.png", w: 1200, h: 1067 },
+      { n: 12, img: "12-connector-step2-info.png", w: 1200, h: 1067 },
+      { n: 13, img: "13-connector-step3-address.png", w: 1200, h: 1067 },
+      { n: 14, img: "14-connector-step4-account.png", w: 1200, h: 1067 },
+      { n: 15, img: "15-connector-step5-review.png", w: 1200, h: 1268 },
+      { n: 16, img: "16-connector-submit-confirm.png", w: 1200, h: 1067 },
       {
-        n: 18,
-        img: "18-connector-pending.png",
+        n: 17,
+        img: "17-connector-pending.png",
         w: 1200,
         h: 1067,
-        note: "s18",
+        note: "s17",
         warn: true,
       },
     ],
@@ -114,8 +112,8 @@ const PHASES: Phase[] = [
     id: "integration",
     icon: PlugZap,
     steps: [
-      { n: 19, img: "19-api-keys.png", w: 1200, h: 1067 },
-      { n: 20, img: "20-webhooks.png", w: 1200, h: 1067 },
+      { n: 18, img: "18-api-keys.png", w: 1200, h: 1067 },
+      { n: 19, img: "19-webhooks.png", w: 1200, h: 1067 },
     ],
   },
 ];

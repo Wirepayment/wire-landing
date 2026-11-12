@@ -26,7 +26,7 @@ export const PAGES: Record<PublicPath, PageCopy> = {
   "/guide": {
     title: "시작 가이드 — 가입부터 결제 수납까지",
     description:
-      "Wire 가입, 이메일·휴대폰·DAN 인증, 프로젝트 생성, 결제 사업자 연결 활성화까지의 전체 과정 — 실제 화면과 함께하는 20단계.",
+      "Wire 가입, 이메일·휴대폰·DAN 인증, 프로젝트 생성, 결제 채널 활성화까지의 전체 과정 — 실제 화면과 함께하는 19단계.",
   },
   "/verification": {
     title: "인증 — 이메일, 휴대폰, DAN(KYC)",

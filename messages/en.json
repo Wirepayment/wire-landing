@@ -369,7 +369,7 @@
       "badge": "Getting started guide",
       "line1": "From sign-up to",
       "line2": "taking payments",
-      "lead": "How a new merchant signs up on Wire, completes verification, creates a project and activates an operator connection — the full sequence, with real screens."
+      "lead": "How a new merchant signs up on Wire, completes verification, creates a project and switches on a payment channel — the full sequence, with real screens."
     },
     "tocAria": "Guide contents",
     "phases": {
@@ -385,13 +385,13 @@
       },
       "connector": {
         "tag": "Stage C",
-        "title": "Connect an operator",
-        "intro": "To take payments, connect at least one payment operator to your business. The flow: <b>fill in and submit the form → review and approval → sign the agreement electronically → payments go live</b>. The agreement is signed <em>after</em> approval — submitting the application needs no agreement. Operator names and numbers are generalised in the screenshots below — your account shows the real names of the operators active for it."
+        "title": "Connect a payment channel",
+        "intro": "To take payments, connect at least one payment channel to your business. The flow matches the four steps on your Overview: <b>send your business details → review and approval → sign the agreement electronically → payments go live</b>. The agreement is signed <em>after</em> approval — submitting the application needs no agreement."
       },
       "integration": {
         "tag": "Stage D",
         "title": "Integration settings",
-        "intro": "Once an operator is active, these two things are needed for a technical integration. You can start using payment links and checkout right away, without writing code."
+        "intro": "Two things a server-side integration needs. You can set up both while your application is in review; once a channel is live you can also start with payment links and checkout right away, without writing code."
       }
     },
     "steps": {
@@ -426,79 +426,74 @@
         "caption": "Profile — fully verified"
       },
       "s7": {
-        "title": "Create a new project — give it a name",
-        "desc": "In the project switcher at the top left, click <ui>Create new project</ui>. Give it a name and choose the business option. Your first project does not show this choice — its business is created along with it.",
-        "caption": "Use the current business (default) — registration, accounts and connections carry over"
+        "title": "Name your first project",
+        "desc": "When verification is done, the <b>Get started</b> page opens and shows the four steps to taking payments: verification → business details → review → agreement. Enter the name of the site, app or shop that will accept payments and click <ui>Continue</ui> — the project and its business are created together, and the business details form opens straight away (step 11).",
+        "caption": "Get started — the 4-step path and the project name"
       },
       "s8": {
-        "title": "Or: register a new business",
-        "desc": "To open a brand-new business for a separate legal entity or another line of activity, take the second option. Email, phone and DAN are not asked again; KYC, bank accounts and operator applications run separately on the new business.",
-        "caption": "Register a new business — its own KYC, accounts and applications"
+        "title": "Project overview",
+        "desc": "At the top of the Overview, the <b>Start accepting payments</b> card always shows how many steps are done and what comes next — <ui>Fill in business details</ui> takes you straight to the form. The left menu leads to transactions, payment links, checkout, accounts, reports and settings.",
+        "caption": "Overview — Start accepting payments, 1/4"
       },
       "s9": {
-        "title": "Store your secret key",
-        "desc": "As soon as the project is created, the <code>sk_live_…</code> secret key is shown <b>only once</b>. Save it in a password manager with the <ui>Copy</ui> or <ui>Download .txt</ui> button — it is never shown again; if you lose it, create a new key.",
-        "caption": "One-time key reveal (the key in the image is invalid)"
+        "title": "Add another project (optional)",
+        "desc": "If another site or app needs its own API key and webhook, click <ui>Create a new project</ui> in the project switcher at the top left and give it a name. The new project is created under your current business, so verification and business details are not asked again.",
+        "caption": "Create a new project — just a name"
       },
       "s10": {
-        "title": "Project overview",
-        "desc": "The new project's home. The left menu leads to transactions, payment links, checkout, accounts, reports and settings.",
-        "caption": "Overview — a new project's start"
+        "title": "Choose from Payment channels",
+        "desc": "Settings → <b>Payment channels</b>. Your first project opens the form directly; to add another channel, choose it from this list. One project can connect several channels, each channel once.",
+        "caption": "Payment channels — the available channels"
       },
       "s11": {
-        "title": "Choose from the Connections page",
-        "desc": "Settings → Channels. Choose which of the operators active for your account to connect. One project can connect several operators, each operator once.",
-        "caption": "Connections — the list of available operators (names generalised)"
+        "title": "Form 1/5 — Registration type",
+        "desc": "The channel page shows the same four-step path at the top. The form has 5 steps; first choose <ui>Individual</ui> or <ui>Company</ui>. If you were already approved on this channel under another business, a <ui>Use your existing merchant registration</ui> card appears above it — choose it and the project works right away, with no new application and no wait.",
+        "caption": "The 4-step path and step 1 of the form"
       },
       "s12": {
-        "title": "Start and the fast track",
-        "desc": "The operator page shows progress in 3 stages. If you were approved before on another business, a <ui>Use your existing merchant registration</ui> card appears — choose it and the connection works right away, with no new application and no wait. For a new business, fill in the 5-step form (Individual / Organisation).",
-        "caption": "The 3 progress stages, the existing-registration card, step 1 of the form (operator No. hidden)"
+        "title": "Form 2/5 — Basic details",
+        "desc": "Register number, surname and name are filled in automatically from your DAN-verified details (<ui>Fill in again</ui> refreshes them). Add the business name payers will see and choose your type of business.",
+        "caption": "2/5 Details — filled in from DAN (register number hidden)"
       },
       "s13": {
-        "title": "Form 2/5 — Basic details",
-        "desc": "Register number, surname and name, business name, type of activity. The <ui>Use</ui> button on the <ui>Fill with DAN-verified details</ui> card fills them in one click.",
-        "caption": "2/5 Details — DAN prefill (register number hidden)"
+        "title": "Form 3/5 — Address and contact",
+        "desc": "City, district and full address come from DAN; phone and email come from your verified profile. Edit them if needed.",
+        "caption": "3/5 Address — two automatic fills (address and email hidden)"
       },
       "s14": {
-        "title": "Form 3/5 — Address and contact",
-        "desc": "City, district, full address, phone, email. You can also fill these in one click from your DAN address and your profile details.",
-        "caption": "3/5 Address — two prefill cards (address hidden)"
-      },
-      "s15": {
         "title": "Form 4/5 — Settlement account",
-        "desc": "Choose the bank account where your revenue lands, or add a new one with <ui>Connect another account</ui>. Accounts you connected before are already listed.",
+        "desc": "Choose the bank account where your revenue lands. With no account yet, enter the bank, account number and account holder's name and click <ui>Link account</ui>; add more with <ui>Link another account</ui>. Enter the account number only — not an IBAN starting with MN.",
         "caption": "4/5 Account (number hidden)"
       },
-      "s16": {
+      "s15": {
         "title": "Form 5/5 — Review and submit",
-        "desc": "Check all your details on one screen and click <ui>Submit request</ui>. The form saves itself at every step, so you can leave it half done and continue later.",
+        "desc": "Check all your details on one screen and click <ui>Send application</ui>. The form saves itself at every step, so you can leave it half done and continue later.",
         "caption": "5/5 Review — summary (personal details hidden)"
       },
-      "s17": {
+      "s16": {
         "title": "Confirm the submission",
-        "desc": "Click <ui>Submit</ui> in the last window and the request goes to review.",
-        "caption": "The Submit request? window — final confirmation"
+        "desc": "Click <ui>Send</ui> in the last window and the application goes to review. It is usually decided within 1 business day, and you are told by email.",
+        "caption": "The confirmation window — final check"
+      },
+      "s17": {
+        "title": "Review → agreement → activation",
+        "desc": "The application shows <ui>Application in review</ui> and the path moves to step 3. Once it is approved, you get an email and a section to <b>sign the agreement electronically</b> appears on the channel page — as soon as you sign it, the connection goes live and you start taking payments.",
+        "caption": "An application in review — you can cancel it, correct it and send it again"
       },
       "s18": {
-        "title": "Review → agreement → activation",
-        "desc": "The request moves to <ui>Under review</ui>. Once it is approved, you get an email and a section to <b>sign the agreement electronically</b> appears on the operator page — as soon as you sign it, the connection goes live and you start taking payments.",
-        "caption": "A request under review — you can cancel it and submit again"
+        "title": "Create and store an API key",
+        "desc": "Settings → API key. Click <ui>Create key</ui> and the <code>sk_live_…</code> secret key is shown <b>only once</b> — save it in a password manager with <ui>Copy</ui>, then click <ui>I've saved it, close</ui>. It is never shown again; if you lose it, create a new key and <ui>Revoke</ui> the old one. Each key reaches only its own project's data.",
+        "caption": "API key — the one-time reveal (the key in the image is hidden)"
       },
       "s19": {
-        "title": "Manage API keys",
-        "desc": "Settings → API key. Rotate a key and revoke the old one. Each key reaches only its own project's data.",
-        "caption": "API key — each project has its own sk_live key"
-      },
-      "s20": {
         "title": "Connect a webhook",
-        "desc": "Settings → Webhook. Register the URL of the server that receives payment events and <b>verify</b> it. Each project has exactly one webhook endpoint; when you change the URL, events keep going to the old address until the new one is verified. Full API reference — docs.wire.mn.",
-        "caption": "Webhook — register and verify an endpoint"
+        "desc": "Settings → Webhook. Click <ui>Add endpoint</ui> and register the URL of the server that receives payment events — its signing secret is shown only once. Then click <ui>Verify</ui> to <b>verify</b> it: events are not sent to an unverified URL. Each project has exactly one webhook endpoint; when you change the URL, events keep going to the old address until the new one is verified. Full API reference — docs.wire.mn.",
+        "caption": "Webhook — an endpoint added and waiting to be verified (secret hidden)"
       }
     },
     "notes": {
-      "s8": "If you chose the wrong option: a project with no data can move to another business through the <ui>Use your existing merchant registration</ui> card on the operator page (step 12).",
-      "s18": "<b>Note:</b> even after approval, the connection stays inactive until you sign the agreement. The most common reason an approved connection does not work is that the agreement step was not done."
+      "s9": "If your business is already connected to a payment channel, a new project's <b>Payment channels</b> page asks one question: keep the current business and turn the channel on with one click, or <ui>Register a new business</ui> for a different owner or register number (its own details, account and approval).",
+      "s17": "<b>Note:</b> even after approval, the connection stays inactive until you sign the agreement. The most common reason an approved connection does not work is that the agreement step was not done."
     }
   },
   "terms": {
