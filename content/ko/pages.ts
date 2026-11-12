@@ -94,6 +94,6 @@ export const SITE: SiteCopy = {
     "Buildry",
   ],
   summary:
-    "Wire는 몽골 사업자를 위한 결제 게이트웨이입니다. 하나의 연결로 몽골 결제 사업자들을 통해 QR 코드와 은행 앱(QPay), 카드(PayLink), 전자지갑(Toki, MonPay), 후불 결제(StorePay, Pocket Zero) 결제를 받습니다. 준비된 결제 링크나 REST API를 제공하며, 모든 수입을 하나의 대시보드에서 관리합니다.",
+    "Wire는 몽골 사업자를 위한 결제 게이트웨이입니다. 하나의 연결로 몽골 결제 사업자들을 통해 QR 코드와 은행 앱(QPay), 카드(PayLink), 전자지갑(Toki, MonPay), 후불 결제(StorePay, Pocket Zero) 결제를 받습니다. 바로 쓸 수 있는 결제 링크나 REST API를 제공하며, 모든 매출을 하나의 대시보드에서 관리합니다.",
   homeCrumb: "홈",
 };
