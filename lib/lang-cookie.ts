@@ -50,3 +50,32 @@ export function switchHref(
   const path = localizedPath(target, pathnameWithoutLocale);
   return query ? `${path}?${query}` : path;
 }
+
+/** The parts of a mouse event a language link looks at. */
+export type LinkClick = {
+  button: number;
+  metaKey: boolean;
+  ctrlKey: boolean;
+  shiftKey: boolean;
+  altKey: boolean;
+};
+
+/** What a click on a language link does. Every way of opening another
+ *  language records the choice first, so the new page (in this tab or a new
+ *  one) is not redirected back by the IP rule:
+ *  - "switch": a plain primary click — record, then navigate in place;
+ *  - "newTab": a middle click (`auxclick`) or a modified click (Ctrl/Cmd/
+ *    Shift/Alt) — record, then let the browser open it;
+ *  - "same": a primary click on the current language — nothing to do;
+ *  - "none": anything else (a right click, a middle click on the current
+ *    language) — leave it to the browser and write nothing. */
+export function clickIntent(
+  target: Locale,
+  current: Locale,
+  e: LinkClick,
+): "switch" | "newTab" | "same" | "none" {
+  if (e.button !== 0 && e.button !== 1) return "none";
+  if (target === current) return e.button === 0 ? "same" : "none";
+  if (e.button === 1) return "newTab";
+  return e.metaKey || e.ctrlKey || e.shiftKey || e.altKey ? "newTab" : "switch";
+}

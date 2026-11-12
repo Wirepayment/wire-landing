@@ -7,26 +7,30 @@ import { Check, ChevronDown } from "lucide-react";
 import { Flag } from "@/components/flag";
 import { usePathname } from "@/i18n/navigation";
 import { HTML_LANG, LOCALES, LOCALE_NAMES, type Locale } from "@/i18n/locales";
-import { langCookie, switchHref } from "@/lib/lang-cookie";
+import { clickIntent, langCookie, switchHref } from "@/lib/lang-cookie";
 
 /** useSwitchLocale — the one way to change language: record the choice in
  *  wire_lang (so the IP redirect never overrides it again), then open the same
  *  page in the target language with the query string kept. Choosing the
- *  current language does nothing. */
+ *  current language does nothing. Wire `choose` to both onClick and
+ *  onAuxClick: a middle click never fires onClick, and a new tab opened
+ *  without the cookie would be redirected by IP. */
 function useSwitchLocale() {
   const router = useRouter();
   const pathname = usePathname();
   const current = useLocale();
 
-  const choose = (target: Locale, e?: MouseEvent) => {
-    if (target === current) {
-      e?.preventDefault();
+  const choose = (target: Locale, e: MouseEvent) => {
+    const intent = clickIntent(target, current, e);
+    if (intent === "none") return;
+    if (intent === "same") {
+      e.preventDefault();
       return;
     }
     document.cookie = langCookie(target, window.location.host);
-    // A modified click (new tab/window) keeps the browser's default.
-    if (e && (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey)) return;
-    e?.preventDefault();
+    // A new tab/window keeps the browser's default.
+    if (intent === "newTab") return;
+    e.preventDefault();
     router.replace(switchHref(target, pathname, window.location.search));
   };
 
@@ -142,6 +146,7 @@ export function LanguagePicker({ className = "" }: { className?: string }) {
                   setOpen(false);
                   choose(l, e);
                 }}
+                onAuxClick={(e) => choose(l, e)}
                 className={`flex items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm outline-none transition-colors hover:bg-[var(--color-surface)] focus:bg-[var(--color-surface)] ${
                   checked
                     ? "font-semibold text-[var(--color-foreground)]"
@@ -183,6 +188,7 @@ export function LanguageLinks({ className = "" }: { className?: string }) {
               href={switchHref(l, pathname, "")}
               aria-current={l === current ? "true" : undefined}
               onClick={(e) => choose(l, e)}
+              onAuxClick={(e) => choose(l, e)}
               className={`inline-flex items-center gap-1.5 ${
                 l === current
                   ? "font-semibold text-[var(--color-foreground)]"

@@ -71,6 +71,15 @@ describe("brandNames()", () => {
     }
   });
 
+  it("finds a spaced Korean name before a vowel-final copula or a compound particle", () => {
+    for (const ending of ["며", "고", "라는", "이라는", "에는", "에서는"]) {
+      expect(
+        brandNames(`${back("오카카")} ${back("이페")}${ending} 결제`),
+        ending,
+      ).toHaveLength(1);
+    }
+  });
+
   // Eight hashed names end in the Korean "pay"; a word ending glued to the
   // next word ("pay" + "지" = "page") is not a name.
   it("does not join a word end to the next word into a name", () => {

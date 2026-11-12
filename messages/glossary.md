@@ -50,6 +50,7 @@ uses older forms (Latin "connector" and "dashboard", "Орлого хүлээн 
 | business | Бизнес | Business | 企业 | 사업자 | The merchant as the owner sees it. |
 | settlement | Орлого хүлээн авах / тооцоо | Settlement | 结算 | 정산 | Money landing in the merchant's own account; Wire never holds it. |
 | settlement account | Хүлээн авах данс | Settlement account | 收款账户 | 정산 계좌 | |
+| revenue | Орлого | Revenue | 收入 | 매출 / 정산금 | ko: 매출 for sales figures (dashboard stats, totals); 정산금 for the money paid out to the merchant's account. Never 수입. |
 | bank account | Банкны данс / данс | Bank account | 银行账户 | 은행 계좌 | |
 | webhook | Webhook | Webhook | Webhook | Webhook | Kept in Latin in every language. |
 | project | Project | Project | 项目 | 프로젝트 | One integration: its own API keys and one webhook. Latin on Mongolian screens. |

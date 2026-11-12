@@ -127,6 +127,14 @@ const PARTICLES = new Set([
   "이며",
   "이고",
   "이다",
+  // After a vowel-final name the copula drops its 이 (2026-11-12).
+  "며",
+  "고",
+  "라는",
+  "이라는",
+  // Particle compounds.
+  "에는",
+  "에서는",
 ]);
 const SCRIPT_PIECE = new RegExp(`[${CJK}]+|[^${CJK}]+`, "gu");
 

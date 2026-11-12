@@ -154,6 +154,27 @@ describe("proxy", () => {
     expect(res.status).toBe(307);
     expect(res.headers.get("location")).toBe("http://localhost:3000/features");
   });
+
+  // Was two 307s: /mn/features -> /features (next-intl) -> /en/features.
+  it("sends /mn/… with a saved en choice to its twin in one redirect", async () => {
+    const res = await proxy(
+      request("/mn/features?x=1", {
+        headers: { "x-wire-country": "MN", cookie: "wire_lang=en" },
+      }),
+    );
+    expect(res.status).toBe(307);
+    const location = res.headers.get("location")!;
+    expect(location).toBe("http://localhost:3000/en/features?x=1");
+    expect(res.headers.get("cache-control")).toBe("private, no-store");
+    // The target is final: following it redirects no further.
+    const next = await proxy(
+      request(new URL(location).pathname + new URL(location).search, {
+        headers: { "x-wire-country": "MN", cookie: "wire_lang=en" },
+      }),
+    );
+    expect(next.status).toBe(200);
+    expect(next.headers.get("location")).toBeNull();
+  });
 });
 
 describe("CJK fonts", () => {

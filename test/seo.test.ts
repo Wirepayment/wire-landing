@@ -126,8 +126,8 @@ describe("sitemap.xml", () => {
         expect(lastmod(l, p.path), `${l}${p.path}`).toBe(want);
       }
     }
-    expect(lastmod("en", "/terms")).toBe("2026-11-09");
-    expect(lastmod("mn", "/terms")).toBe("2026-07-30");
+    expect(lastmod("en", "/verification")).toBe("2026-11-09");
+    expect(lastmod("mn", "/verification")).toBe("2026-07-30");
   });
 });
 

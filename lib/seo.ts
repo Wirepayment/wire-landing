@@ -40,7 +40,7 @@ export const PUBLIC_PAGES = [
   { path: "/features", priority: 0.9, updated: "2026-11-08" },
   { path: "/developers", priority: 0.9, updated: "2026-10-12" },
   { path: "/links", priority: 0.8, updated: "2026-09-09" },
-  { path: "/guide", priority: 0.8, updated: "2026-09-09" },
+  { path: "/guide", priority: 0.8, updated: "2026-11-12" },
   { path: "/verification", priority: 0.7, updated: "2026-07-30" },
   { path: "/guides/online-payment", priority: 0.8, updated: "2026-11-08" },
   { path: "/guides/payment-link", priority: 0.8, updated: "2026-11-08" },
@@ -49,7 +49,7 @@ export const PUBLIC_PAGES = [
   { path: "/guides/payment-gateway", priority: 0.8, updated: "2026-11-08" },
   { path: "/guides/platform", priority: 0.7, updated: "2026-10-25" },
   { path: "/payments-in-mongolia", priority: 0.7, updated: "2026-11-09" },
-  { path: "/terms", priority: 0.4, updated: "2026-07-30" },
+  { path: "/terms", priority: 0.4, updated: "2026-11-12" },
   { path: "/status", priority: 0.3, updated: "2026-07-30" },
 ] as const satisfies readonly PublicPage[];
 

@@ -375,7 +375,7 @@
       "signup": {
         "tag": "Stage A",
         "title": "Sign-up and verification",
-        "intro": "Wire has no separate password — you sign in with your Google account. Because this is a financial service for taking payments, every owner completes two-step verification: phone + DAN (state e-ID). Both are done once — however many businesses or projects you open, they are not asked again."
+        "intro": "Wire has no separate password — you sign in with an email code, your phone, Google or DAN (state e-ID). Because this is a financial service for taking payments, every owner completes two-step verification: phone + DAN. Both are done once — however many businesses or projects you open, they are not asked again."
       },
       "project": {
         "tag": "Stage B",
@@ -395,9 +395,9 @@
     },
     "steps": {
       "s1": {
-        "title": "Sign in with Google",
-        "desc": "Go to <b>app.wire.mn</b> and click <ui>Sign in with Google</ui>. If this is your first sign-in, a new account is created automatically.",
-        "caption": "app.wire.mn/signin — sign in with Google"
+        "title": "Choose how to sign in",
+        "desc": "Go to <b>app.wire.mn</b> and choose how to sign in: a one-time code by email, your phone, Google or DAN. If this is your first sign-in, a new account is created automatically.",
+        "caption": "app.wire.mn/signin — the sign-in page"
       },
       "s2": {
         "title": "Enter your phone number",
@@ -512,7 +512,7 @@
       },
       "account": {
         "title": "2. Account and sign-in",
-        "body": "You sign in with a Google account — we do not store passwords. Your email address is your account's main identifier."
+        "body": "Sign-in is passwordless — you sign in with a one-time code sent to your email, an SMS code from your phone, a Google account or DAN (state e-ID). We do not store passwords. Each email address, phone number and DAN belongs to only one person, and whichever method you use, you sign in to the same account."
       },
       "kyc": {
         "title": "3. Verification (KYC)",
@@ -535,7 +535,7 @@
         "body": "You can delete your projects and leave the service at any time. Under financial record-keeping laws and regulations, some transaction history is kept for the required period."
       }
     },
-    "updated": "Last updated: 2026-06-12 · Questions: <link>{email}</link>"
+    "updated": "Last updated: 2026-11-12 · Questions: <link>{email}</link>"
   },
   "verification": {
     "intro": {
