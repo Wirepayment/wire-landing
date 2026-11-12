@@ -128,11 +128,36 @@ describe("landingRedirect", () => {
     ],
     ["prefixed /zh, MN", { pathname: "/zh", country: "MN" }, null],
     ["prefixed /ko/, US", { pathname: "/ko/", country: "US" }, null],
+    // "/mn/x" is "/x" (next-intl drops the prefix): one hop, not two.
     [
-      "prefixed /mn/features, US",
+      "/mn/features, US",
       { pathname: "/mn/features", country: "US" },
+      "/en/features",
+    ],
+    ["/mn/features, MN", { pathname: "/mn/features", country: "MN" }, null],
+    [
+      "/mn/features, cookie en",
+      { pathname: "/mn/features", search: "?a=1", cookie: "en", country: "MN" },
+      "/en/features?a=1",
+    ],
+    ["/mn, cookie ko", { pathname: "/mn", cookie: "ko" }, "/ko"],
+    ["/mn/, cookie zh", { pathname: "/mn/", cookie: "zh" }, "/zh"],
+    [
+      "/mn/features, cookie mn",
+      { pathname: "/mn/features", cookie: "mn" },
       null,
     ],
+    [
+      "/mn/en/features, cookie zh",
+      { pathname: "/mn/en/features", cookie: "zh" },
+      null,
+    ],
+    [
+      "/mn/features, cookie en, bot",
+      { pathname: "/mn/features", cookie: "en", userAgent: "Googlebot" },
+      null,
+    ],
+    ["/mnx is not a prefix", { pathname: "/mnx", cookie: "en" }, "/en/mnx"],
     [
       "segment that only starts like a locale is not a prefix",
       { pathname: "/english", country: "US" },

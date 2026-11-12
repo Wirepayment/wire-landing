@@ -32,11 +32,20 @@ function hasLocalePrefix(pathname: string): boolean {
   return isLocale(first);
 }
 
+// "/mn/x" is not a page of its own: next-intl sends it to "/x" with a 307.
+// Judge it as "/x" so that when "/x" would be redirected too, the visitor
+// gets one hop to the final URL instead of two.
+function withoutMnPrefix(pathname: string): string {
+  if (pathname === "/mn") return "/";
+  return pathname.startsWith("/mn/") ? pathname.slice(3) : pathname;
+}
+
 // Returns the 307 target for an unprefixed (Mongolian) URL, or null to serve
 // the page as asked. A saved choice (wire_lang) decides first: en/zh/ko go to
 // their twin, mn stays (Ruling 23 — the choice always wins, spec §6.1). With
 // no valid cookie the IP decides. A prefixed URL or a crawler is never
-// redirected — crawlers must keep indexing Mongolian.
+// redirected — crawlers must keep indexing Mongolian. "/mn/…" counts as its
+// unprefixed twin; when this returns null next-intl drops the "/mn" itself.
 export function landingRedirect(req: {
   method: string;
   pathname: string;
@@ -48,12 +57,13 @@ export function landingRedirect(req: {
 }): string | null {
   const method = req.method.toUpperCase();
   if (method !== "GET" && method !== "HEAD") return null;
-  if (hasLocalePrefix(req.pathname)) return null;
+  const pathname = withoutMnPrefix(req.pathname);
+  if (hasLocalePrefix(pathname)) return null;
   if (isBot(req.userAgent)) return null;
   const locale = isLocale(req.cookie)
     ? req.cookie
     : localeFromCountry(req.country);
   if (locale === "mn") return null;
-  const path = req.pathname === "/" ? "" : req.pathname;
+  const path = pathname === "/" ? "" : pathname;
   return `/${locale}${path}${req.search}`;
 }
