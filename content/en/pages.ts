@@ -27,7 +27,7 @@ export const PAGES: Record<PublicPath, PageCopy> = {
   "/guide": {
     title: "Getting started guide — from sign-up to taking payments",
     description:
-      "The full sequence on Wire: sign up, verify with email, phone and DAN, create a project and activate an operator connection — 20 steps with real screens.",
+      "The full sequence on Wire: sign up, verify with email, phone and DAN, create a project and switch on a payment channel — 19 steps with real screens.",
   },
   "/verification": {
     title: "Verification — email, phone and DAN (KYC)",
