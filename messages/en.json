@@ -93,8 +93,9 @@
       "minutes": "min",
       "signup": {
         "title": "Sign up and verify",
-        "desc": "Sign-up is free. Verify once with your phone and DAN (state e-ID) for KYC — you are never asked again.",
+        "desc": "Sign-up is free. Verify once with your email, phone and DAN (state e-ID) for KYC — you are never asked again.",
         "heading": "Verification",
+        "email": "Email address",
         "phone": "Phone number",
         "dan": "DAN (KYC)",
         "done": "Verified ✓"
@@ -295,7 +296,7 @@
       },
       "ecosystem": {
         "title": "Verified ecosystem",
-        "desc": "Every owner is verified with phone + DAN (state e-ID) — you work with trusted partners."
+        "desc": "Every owner is verified with email, phone and DAN (state e-ID) — you work with trusted partners."
       }
     }
   },
@@ -375,7 +376,7 @@
       "signup": {
         "tag": "Stage A",
         "title": "Sign-up and verification",
-        "intro": "Wire has no separate password — you sign in with an email code, your phone, Google or DAN (state e-ID). Because this is a financial service for taking payments, every owner completes two-step verification: phone + DAN. Both are done once — however many businesses or projects you open, they are not asked again."
+        "intro": "Wire has no separate password — you sign in with an email code, your phone, Google or DAN (state e-ID). Because this is a financial service for taking payments, every owner completes three verifications in this order: email, phone, DAN; the one you signed in with already counts. Each is done once — however many businesses or projects you open, they are not asked again."
       },
       "project": {
         "tag": "Stage B",
@@ -401,8 +402,8 @@
       },
       "s2": {
         "title": "Enter your phone number",
-        "desc": "A new user goes straight to the verification page. Enter your phone number and click <ui>Verify</ui>.",
-        "caption": "Verification 1/2 — phone number"
+        "desc": "A new user goes straight to the verification page. The first step, email, is confirmed with a 6-digit code — if you signed in by email or Google, it is already done. Then enter your phone number and click <ui>Verify</ui>.",
+        "caption": "Verification 2/3 — phone number"
       },
       "s3": {
         "title": "Verify by sending an SMS",
@@ -411,8 +412,8 @@
       },
       "s4": {
         "title": "Start DAN verification",
-        "desc": "The second step — verify your personal details through the state DAN system. Click <ui>Verify with DAN</ui>.",
-        "caption": "Verification 2/2 — DAN"
+        "desc": "The third step — verify your personal details through the state DAN system. Click <ui>Verify with DAN</ui>.",
+        "caption": "Verification 3/3 — DAN"
       },
       "s5": {
         "title": "Give consent on sso.gov.mn",
@@ -421,7 +422,7 @@
       },
       "s6": {
         "title": "Check that you are verified",
-        "desc": "On the profile page, check that phone and DAN both show <ui>Verified</ui>. From here on, every feature is open.",
+        "desc": "On the profile page, check that email, phone and DAN all show <ui>Verified</ui>. From here on, every feature is open.",
         "caption": "Profile — fully verified"
       },
       "s7": {
@@ -431,7 +432,7 @@
       },
       "s8": {
         "title": "Or: register a new business",
-        "desc": "To open a brand-new business for a separate legal entity or another line of activity, take the second option. Phone and DAN are not asked again; KYC, bank accounts and operator applications run separately on the new business.",
+        "desc": "To open a brand-new business for a separate legal entity or another line of activity, take the second option. Email, phone and DAN are not asked again; KYC, bank accounts and operator applications run separately on the new business.",
         "caption": "Register a new business — its own KYC, accounts and applications"
       },
       "s9": {
@@ -516,7 +517,7 @@
       },
       "kyc": {
         "title": "3. Verification (KYC)",
-        "body": "Because this is a financial service, every owner verifies (a) their phone number by SMS and (b) their personal details through the state DAN e-ID system (sso.gov.mn). The details received from DAN (name, register number, address) are stored encrypted. One citizen can verify only one account."
+        "body": "Because this is a financial service, every owner verifies (a) their email address with a one-time code or a Google account, (b) their phone number by SMS and (c) their personal details through the state DAN e-ID system (sso.gov.mn). The details received from DAN (name, register number, address) are stored encrypted. One citizen can verify only one account."
       },
       "privacy": {
         "title": "4. Data protection",
@@ -539,13 +540,24 @@
   },
   "verification": {
     "intro": {
-      "badge": "KYC · 2 steps · ~2 minutes",
+      "badge": "KYC · 3 steps · ~3 minutes",
       "line1": "Every owner",
       "line2": "verified.",
-      "lead": "Wire is a financial service for taking payments. That is why every account opening includes phone and personal identity verification — <hl>it protects you and your customers</hl>."
+      "lead": "Wire is a financial service for taking payments. That is why every account opening includes email, phone and personal identity verification — <hl>it protects you and your customers</hl>."
+    },
+    "email": {
+      "chip": "Step 1 · Email",
+      "line1": "Email address.",
+      "line2": "One code.",
+      "copy": "Enter your address and a 6-digit code arrives — <hl>type it in and you are verified</hl>. If you signed in by email or Google, this step is already done.",
+      "bullets": {
+        "oneAccount": "One email address = one account",
+        "valid": "The code is valid for 10 minutes",
+        "notices": "Application answers and payment notifications go to this address"
+      }
     },
     "phone": {
-      "chip": "Step 1 · Phone",
+      "chip": "Step 2 · Phone",
       "line1": "Phone number.",
       "line2": "One SMS.",
       "copy": "Enter your number and <hl>send one SMS to the given short number — that verifies it</hl>. No code to remember and no app to install — the message sent from your own phone is the proof.",
@@ -556,7 +568,7 @@
       }
     },
     "dan": {
-      "chip": "Step 2 · DAN",
+      "chip": "Step 3 · DAN",
       "line1": "Identity verification.",
       "line2": "Through the state DAN e-ID.",
       "copy": "You move to DAN (sso.gov.mn), the state single sign-on, and sign in with your own consent. <hl>Wire never sees your password</hl> — only the verified result (name, register number) reaches us.",
@@ -565,6 +577,12 @@
         "once": "Once, ~1 minute — never repeated",
         "signed": "A signed channel — data cannot be altered in transit"
       }
+    },
+    "emailMock": {
+      "title": "Verify email",
+      "yourAddress": "Your address",
+      "code": "6-digit code",
+      "verified": "Verified"
     },
     "phoneMock": {
       "title": "Verify phone",
