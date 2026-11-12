@@ -27,12 +27,12 @@ export const PAGES: Record<PublicPath, PageCopy> = {
   "/guide": {
     title: "Getting started guide — from sign-up to taking payments",
     description:
-      "The full sequence on Wire: sign up, verify with phone + DAN, create a project and activate an operator connection — 20 steps with real screens.",
+      "The full sequence on Wire: sign up, verify with email, phone and DAN, create a project and activate an operator connection — 20 steps with real screens.",
   },
   "/verification": {
-    title: "Verification — phone + DAN (KYC)",
+    title: "Verification — email, phone and DAN (KYC)",
     description:
-      "On Wire every owner verifies their phone number by SMS and their personal details through DAN, the state e-ID system. The data is stored encrypted.",
+      "On Wire every owner verifies their email address with a one-time code, their phone number by SMS and their personal details through DAN, the state e-ID system. The data is stored encrypted.",
   },
   "/guides/online-payment": {
     title: "How to accept online payments on your website",

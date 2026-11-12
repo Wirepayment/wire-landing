@@ -26,12 +26,12 @@ export const PAGES: Record<PublicPath, PageCopy> = {
   "/guide": {
     title: "시작 가이드 — 가입부터 결제 수납까지",
     description:
-      "Wire 가입, 휴대폰 + DAN 인증, 프로젝트 생성, 결제 사업자 연결 활성화까지의 전체 과정 — 실제 화면과 함께하는 20단계.",
+      "Wire 가입, 이메일·휴대폰·DAN 인증, 프로젝트 생성, 결제 사업자 연결 활성화까지의 전체 과정 — 실제 화면과 함께하는 20단계.",
   },
   "/verification": {
-    title: "인증 — 휴대폰 + DAN(KYC)",
+    title: "인증 — 이메일, 휴대폰, DAN(KYC)",
     description:
-      "Wire에서는 모든 계정 소유자가 휴대폰 번호를 SMS로, 개인 정보를 정부 DAN 전자 신원 인증 시스템으로 인증합니다. 정보는 암호화되어 저장됩니다.",
+      "Wire에서는 모든 계정 소유자가 이메일 주소를 일회용 코드로, 휴대폰 번호를 SMS로, 개인 정보를 정부 DAN 전자 신원 인증 시스템으로 인증합니다. 정보는 암호화되어 저장됩니다.",
   },
   "/guides/online-payment": {
     title: "웹사이트에서 온라인 결제를 받는 방법",

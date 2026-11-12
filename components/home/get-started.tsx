@@ -97,13 +97,14 @@ export async function GetStarted() {
             title={t("signup.title")}
             desc={t("signup.desc")}
             visual={
-              <div className="absolute inset-x-8 top-8">
+              <div className="absolute inset-x-8 top-6">
                 <TimeChip unit={t("minutes")}>3</TimeChip>
-                <div className="screen-card space-y-2 p-4">
+                <div className="screen-card space-y-1.5 p-4">
                   <p className="flex items-center gap-1.5 text-[11px] font-bold">
                     <ShieldCheck className="size-3.5 text-[var(--color-primary)]" />
                     {t("signup.heading")}
                   </p>
+                  <MiniRow label={t("signup.email")} done />
                   <MiniRow label={t("signup.phone")} done />
                   <MiniRow label={t("signup.dan")} done />
                   <div className="rounded-lg bg-[var(--color-primary-soft)] px-3 py-2 text-center text-[10px] font-semibold text-[var(--color-primary)]">

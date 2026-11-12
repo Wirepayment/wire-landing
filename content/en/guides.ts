@@ -18,7 +18,7 @@ const SETTLEMENT_ANSWER =
 const ACCOUNT_STEPS: GuideStep[] = [
   {
     title: "Sign up and verify once",
-    body: "Sign in at app.wire.mn and verify the owner's phone and DAN (state e-ID). It is done once — however many businesses or projects you open later, you are not asked again.",
+    body: "Sign in at app.wire.mn and verify the owner's email, phone and DAN (state e-ID). It is done once — however many businesses or projects you open later, you are not asked again.",
   },
   {
     title: "Activate an operator",
@@ -151,7 +151,7 @@ export const GUIDES: Guide[] = [
     steps: [
       {
         title: "Sign up and verify once",
-        body: "Sign in at app.wire.mn and verify the owner's phone and DAN (state e-ID).",
+        body: "Sign in at app.wire.mn and verify the owner's email, phone and DAN (state e-ID).",
       },
       {
         title: "Choose the card payment channel",
@@ -372,12 +372,12 @@ export const GUIDES: Guide[] = [
     line1: "How to accept online",
     line2: "payments in Mongolia",
     answer:
-      "Wire is a payment gateway for Mongolia. A business or individual seller in Mongolia signs up at app.wire.mn, verifies the owner's phone and DAN (state e-ID) once, activates the payment operators it wants, and then takes payments through hosted checkout, payment links or a REST API. Buyers pay with bank apps, e-wallets, QR, cards or buy-now-pay-later, and the money goes to the business's own account.",
+      "Wire is a payment gateway for Mongolia. A business or individual seller in Mongolia signs up at app.wire.mn, verifies the owner's email, phone and DAN (state e-ID) once, activates the payment operators it wants, and then takes payments through hosted checkout, payment links or a REST API. Buyers pay with bank apps, e-wallets, QR, cards or buy-now-pay-later, and the money goes to the business's own account.",
     stepsTitle: "From sign-up to the first payment",
     steps: [
       {
         title: "Sign up and verify once",
-        body: "Sign in at app.wire.mn and verify the owner's phone and DAN (state e-ID). It is done once, however many businesses or projects you open later.",
+        body: "Sign in at app.wire.mn and verify the owner's email, phone and DAN (state e-ID). It is done once, however many businesses or projects you open later.",
       },
       {
         title: "Activate an operator",

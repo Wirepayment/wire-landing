@@ -5,6 +5,7 @@ import {
   Ban,
   Check,
   Lock,
+  Mail,
   MessageSquare,
   ShieldCheck,
   UserCheck,
@@ -70,6 +71,37 @@ function StepHead({
           </li>
         ))}
       </ul>
+    </div>
+  );
+}
+
+/* mock: the one-time email code */
+async function EmailMock() {
+  const t = await getTranslations("verification.emailMock");
+  return (
+    <div className="screen-card mx-auto w-full max-w-sm p-5">
+      <p className="flex items-center gap-1.5 text-[12px] font-bold">
+        <Mail className="size-3.5 text-[var(--color-primary)]" />
+        {t("title")}
+      </p>
+      <div className="mt-3 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]/60 p-3">
+        <p className="text-[10px] text-[var(--color-faint)]">
+          {t("yourAddress")}
+        </p>
+        <p className="text-[16px] font-bold">na**@shop.mn</p>
+      </div>
+      <div className="mt-2.5 rounded-xl border border-[var(--color-border)] p-3">
+        <p className="text-[10px] text-[var(--color-faint)]">{t("code")}</p>
+        <p className="tabular text-[16px] font-bold tracking-[0.3em]">482913</p>
+      </div>
+      <div className="mt-3 flex items-center gap-2 rounded-xl bg-[var(--color-primary-soft)] px-3 py-2.5">
+        <span className="flex size-5 items-center justify-center rounded-full bg-[var(--color-primary)] text-white">
+          <Check className="size-3" strokeWidth={3.5} />
+        </span>
+        <span className="text-[12px] font-semibold text-[var(--color-primary-deep)]">
+          {t("verified")}
+        </span>
+      </div>
     </div>
   );
 }
@@ -147,8 +179,9 @@ async function DanMock() {
   );
 }
 
-/** Verification — why and how Wire verifies every owner: phone (SMS) first,
- *  then citizen identity through the government SSO (ДАН). */
+/** Verification — why and how Wire verifies every owner, in the order the
+ *  dashboard asks (wire-api portal.proofOrder): email (one-time code), then
+ *  phone (SMS), then citizen identity through the government SSO (ДАН). */
 export default async function VerificationPage({
   params,
 }: {
@@ -166,10 +199,33 @@ export default async function VerificationPage({
         lead={t.rich("intro.lead", RICH)}
       />
 
-      {/* step 1 — phone */}
+      {/* step 1 — email */}
       <section className="bg-[var(--color-background)]">
         <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-5 py-14 lg:grid-cols-2 lg:gap-16">
           <Reveal>
+            <StepHead
+              chip={t("email.chip")}
+              icon={Mail}
+              line1={t("email.line1")}
+              line2={t("email.line2")}
+              copy={t.rich("email.copy", RICH)}
+              bullets={[
+                t("email.bullets.oneAccount"),
+                t("email.bullets.valid"),
+                t("email.bullets.notices"),
+              ]}
+            />
+          </Reveal>
+          <Reveal delay={120}>
+            <EmailMock />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* step 2 — phone */}
+      <section className="bg-[var(--color-background)]">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-5 py-14 lg:grid-cols-2 lg:gap-16">
+          <Reveal className="lg:order-2">
             <StepHead
               chip={t("phone.chip")}
               icon={MessageSquare}
@@ -183,16 +239,16 @@ export default async function VerificationPage({
               ]}
             />
           </Reveal>
-          <Reveal delay={120}>
+          <Reveal delay={120} className="lg:order-1">
             <PhoneMock />
           </Reveal>
         </div>
       </section>
 
-      {/* step 2 — DAN */}
+      {/* step 3 — DAN */}
       <section className="bg-[var(--color-background)]">
         <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-5 py-14 lg:grid-cols-2 lg:gap-16">
-          <Reveal className="lg:order-2">
+          <Reveal>
             <StepHead
               chip={t("dan.chip")}
               icon={ShieldCheck}
@@ -206,7 +262,7 @@ export default async function VerificationPage({
               ]}
             />
           </Reveal>
-          <Reveal delay={120} className="lg:order-1">
+          <Reveal delay={120}>
             <DanMock />
           </Reveal>
         </div>

@@ -58,7 +58,7 @@ uses older forms (Latin "connector" and "dashboard", "Орлого хүлээн 
 | payment page | Төлбөрийн хуудас | Payment page / hosted checkout | 支付页面 | 결제 페이지 | The hosted page on pay.wire.mn. |
 | dashboard | Хяналтын самбар | Dashboard | 管理后台 | 대시보드 | app.wire.mn. |
 | KYC | Баталгаажуулалт (KYC) / бизнесийн мэдээлэл | KYC / business verification | KYC（企业信息核验） | KYC(사업자 정보 확인) | |
-| verification | Баталгаажуулалт | Verification | 身份验证 | 인증 | Phone and DAN proofs of the owner. |
+| verification | Баталгаажуулалт | Verification | 身份验证 | 인증 | Email, phone and DAN proofs of the owner, in that order. |
 | ДАН | ДАН | DAN (state e-ID) | DAN（蒙古国政府电子身份认证） | DAN(몽골 정부 전자 신원 인증) | Spell out on first use per page, then "DAN". |
 | agreement | Гэрээ | Agreement | 协议 | 계약 | Signed electronically; the Mongolian text is binding. |
 | API key | API түлхүүр | API key | API 密钥 | API 키 | `sk_live_…` stays as is. |
