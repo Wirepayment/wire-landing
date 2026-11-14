@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { JsonLd } from "@/components/json-ld";
+import { pageJsonLd } from "@/lib/structured-data";
 import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import { KeyRound, PlugZap, ShieldCheck, Workflow } from "lucide-react";
@@ -128,6 +130,7 @@ export default async function GuidePage({
   const t = await getTranslations("guide");
   return (
     <>
+      <JsonLd data={pageJsonLd(locale, "/guide")} />
       <PageIntro
         badge={t("intro.badge")}
         line1={t("intro.line1")}

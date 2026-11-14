@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { JsonLd } from "@/components/json-ld";
+import { pageJsonLd } from "@/lib/structured-data";
 import { pageMetadata } from "@/lib/seo";
 import {
   Ban,
@@ -192,6 +194,7 @@ export default async function VerificationPage({
   const t = await getTranslations("verification");
   return (
     <>
+      <JsonLd data={pageJsonLd(locale, "/verification")} />
       <PageIntro
         badge={t("intro.badge")}
         line1={t("intro.line1")}

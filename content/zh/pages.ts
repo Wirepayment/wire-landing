@@ -6,7 +6,7 @@ export const PAGES: Record<PublicPath, PageCopy> = {
   "/": {
     title: "Wire——一站式支付网关",
     description:
-      "所有支付，尽在一个网关。QPay、PayLink（银行卡）、Toki、MonPay、StorePay、Pocket Zero——二维码、银行卡、电子钱包、分期付款，一个连接全部接入。现成链接或 API，收入尽在一个管理后台。蒙古国一站式支付网关。",
+      "所有支付，尽在一个网关：QPay、PayLink（银行卡）、Toki、MonPay、StorePay、Pocket Zero。二维码、银行卡、电子钱包、分期付款，一个连接；现成链接或 API，一个管理后台。",
   },
   "/features": {
     title: "功能——一个连接，多种渠道",

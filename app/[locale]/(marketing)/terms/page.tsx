@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { JsonLd } from "@/components/json-ld";
+import { pageJsonLd } from "@/lib/structured-data";
 import { pageMetadata } from "@/lib/seo";
 import { FileText } from "lucide-react";
 import { CONTACT } from "@/lib/company";
@@ -39,6 +41,7 @@ export default async function TermsPage({
   const legalNotice = t("legalNotice");
   return (
     <section className="bg-[var(--color-background)]">
+      <JsonLd data={pageJsonLd(locale, "/terms")} />
       <div className="mx-auto w-full max-w-2xl px-5 py-14 text-center sm:py-16">
         {legalNotice ? (
           <p className="mx-auto mb-6 max-w-md rounded-xl border border-[var(--color-border)] bg-white px-4 py-2.5 text-[13px] text-[var(--color-muted)]">
