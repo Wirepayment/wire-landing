@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Logo } from "@/components/logo";
+import { JsonLd } from "@/components/json-ld";
+import { pageJsonLd } from "@/lib/structured-data";
 import { pageMetadata } from "@/lib/seo";
 import { CONTACT } from "@/lib/company";
 import { Link } from "@/i18n/navigation";
@@ -117,6 +119,7 @@ export default async function StatusPage({
 
   return (
     <div className="flex min-h-dvh flex-col">
+      <JsonLd data={pageJsonLd(locale, "/status")} />
       <header className="border-b border-[var(--color-border)]">
         <div className="mx-auto flex h-16 max-w-2xl items-center justify-between px-5">
           <Link href="/" aria-label={nav("homeAria")}>

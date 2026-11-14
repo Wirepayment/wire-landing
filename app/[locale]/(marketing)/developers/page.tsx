@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { JsonLd } from "@/components/json-ld";
+import { pageJsonLd } from "@/lib/structured-data";
 import { pageMetadata } from "@/lib/seo";
 import {
   ArrowRight,
@@ -47,6 +49,7 @@ export default async function DevelopersPage({
   const t = await getTranslations("developers");
   return (
     <>
+      <JsonLd data={pageJsonLd(locale, "/developers")} />
       <PageIntro
         badge={t("intro.badge")}
         line1={t("intro.line1")}

@@ -16,7 +16,7 @@ import robots from "@/app/robots";
 import { ALLOWED_CRAWLERS } from "@/lib/crawlers";
 import { displayLength } from "./display-length";
 import { llmsTxt } from "@/lib/llms";
-import { homeJsonLd } from "@/lib/structured-data";
+import { homeJsonLd, pageJsonLd } from "@/lib/structured-data";
 import { faqsFor } from "@/lib/faq";
 import { brandNames } from "./brand-names";
 
@@ -40,6 +40,19 @@ function pageRoutes(dir = appDir): { route: string; file: string }[] {
 }
 
 describe("public page registry", () => {
+  // Search and AI answers read structured data, not layout: a page without
+  // any (28 of 60 URLs until 2026-11-15) is described to them by nothing.
+  it("gives every page structured data for itself", () => {
+    for (const { route, file } of pageRoutes()) {
+      const src = readFileSync(file, "utf8");
+      const own =
+        src.includes(`pageJsonLd(locale, "${route}")`) ||
+        src.includes("homeJsonLd(locale)") ||
+        src.includes(`<GuidePage locale={locale} slug="${route}"`);
+      expect(own, `${route} renders no JSON-LD`).toBe(true);
+    }
+  });
+
   it("lists every page.tsx, and every page uses pageMetadata", () => {
     const routes = pageRoutes();
     expect(routes.map((r) => r.route).sort()).toEqual(
@@ -185,6 +198,28 @@ describe.each(LOCALES)("home JSON-LD (%s)", (locale) => {
       "Service",
       "FAQPage",
     ]);
+  });
+
+  it("describes a plain page as a WebPage under the home page, in every language", () => {
+    for (const l of LOCALES) {
+      const graph = pageJsonLd(l, "/features")["@graph"];
+      const page = graph.find((n) => n["@type"] === "WebPage") as {
+        url: string;
+        name: string;
+        description: string;
+        inLanguage: string;
+      };
+      expect(page.name).toBe(pagesFor(l)["/features"].title);
+      expect(page.description).toBe(pagesFor(l)["/features"].description);
+      expect(page.url).toMatch(/\/features$/);
+      const crumbs = graph.find((n) => n["@type"] === "BreadcrumbList") as {
+        itemListElement: { position: number; item: string }[];
+      };
+      expect(crumbs.itemListElement.map((c) => c.position)).toEqual([1, 2]);
+      expect(crumbs.itemListElement[1]!.item).toBe(page.url);
+      // No FAQ on the page, so none claimed.
+      expect(graph.some((n) => n["@type"] === "FAQPage")).toBe(false);
+    }
   });
 
   it("FAQPage matches the visible FAQ exactly", () => {

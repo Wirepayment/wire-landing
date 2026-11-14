@@ -12,7 +12,7 @@ export const PAGES: Record<PublicPath, PageCopy> = {
   "/features": {
     title: "Features — one connection, many channels",
     description:
-      "QR, bank apps, cards, e-wallets and installments — QPay, PayLink, Toki, MonPay, StorePay and Pocket Zero through one API. Real-time notifications, reports and full MNT support.",
+      "QR, bank apps, cards, e-wallets and installments — QPay, PayLink, Toki, MonPay, StorePay and Pocket Zero through one API, with real-time notifications and reports.",
   },
   "/developers": {
     title: "For developers — API · SDK · webhook",
@@ -25,14 +25,14 @@ export const PAGES: Record<PublicPath, PageCopy> = {
       "Create a payment link in the dashboard and share it in chat, social posts or email. QR code and image previews — easy for anyone.",
   },
   "/guide": {
-    title: "Getting started guide — from sign-up to taking payments",
+    title: "Getting started — sign-up to your first payment",
     description:
       "The full sequence on Wire: sign up, verify with email, phone and DAN, create a project and switch on a payment channel — 19 steps with real screens.",
   },
   "/verification": {
     title: "Verification — email, phone and DAN (KYC)",
     description:
-      "On Wire every owner verifies their email address with a one-time code, their phone number by SMS and their personal details through DAN, the state e-ID system. The data is stored encrypted.",
+      "Every Wire owner verifies their email with a one-time code, their phone by SMS and their identity through DAN, the state e-ID system. Data is stored encrypted.",
   },
   "/guides/online-payment": {
     title: "How to accept online payments on your website",
@@ -55,12 +55,12 @@ export const PAGES: Record<PublicPath, PageCopy> = {
       "A QR code and bank-app deeplinks for every payment. Accept QR payments from Mongolia's payment operators through one connection.",
   },
   "/guides/payment-gateway": {
-    title: "What is a payment gateway — many operators, one connection",
+    title: "What is a payment gateway — one API, many channels",
     description:
       "How a payment gateway works and how it differs from connecting to each operator separately. One API, one dashboard, one webhook.",
   },
   "/guides/platform": {
-    title: "Payments for many merchants on platforms and marketplaces, one API",
+    title: "Platform payments — many merchants, one API",
     description:
       "Register your merchants through the API and create payments on their behalf. Each merchant is paid straight into its own account.",
   },

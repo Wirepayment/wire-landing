@@ -31,7 +31,7 @@ export const PAGES: Record<PublicPath, PageCopy> = {
   "/verification": {
     title: "인증 — 이메일, 휴대폰, DAN(KYC)",
     description:
-      "Wire에서는 모든 계정 소유자가 이메일 주소를 일회용 코드로, 휴대폰 번호를 SMS로, 개인 정보를 정부 DAN 전자 신원 인증 시스템으로 인증합니다. 정보는 암호화되어 저장됩니다.",
+      "Wire에서는 모든 소유자가 이메일을 일회용 코드로, 휴대폰을 SMS로, 개인 정보를 정부 DAN 전자 신원 시스템으로 인증합니다. 정보는 암호화되어 저장됩니다.",
   },
   "/guides/online-payment": {
     title: "웹사이트에서 온라인 결제를 받는 방법",
@@ -59,7 +59,7 @@ export const PAGES: Record<PublicPath, PageCopy> = {
       "결제 게이트웨이의 작동 방식과 결제 사업자마다 따로 연동하는 방식과의 차이. 하나의 API, 하나의 대시보드, 하나의 Webhook.",
   },
   "/guides/platform": {
-    title: "플랫폼·마켓플레이스의 여러 가맹점 결제를 하나의 API로",
+    title: "플랫폼·마켓플레이스 가맹점 결제를 하나의 API로",
     description:
       "가맹점을 API로 등록하고 가맹점을 대신하여 결제를 생성하십시오. 각 가맹점은 결제 대금을 자체 계좌로 직접 받습니다.",
   },

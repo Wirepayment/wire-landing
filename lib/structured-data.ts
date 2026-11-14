@@ -9,6 +9,7 @@ import {
   pagesFor,
   publicPage,
   siteFor,
+  type PublicPath,
 } from "@/lib/seo";
 import { HTML_LANG, LOCALES, type Locale } from "@/i18n/locales";
 
@@ -125,6 +126,48 @@ export function guideJsonLd(locale: Locale, g: Guide) {
           "@type": "Question",
           name: f.q,
           acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      },
+    ],
+  };
+}
+
+/** A plain public page (features, developers, links, the guide, verification,
+ *  terms, status): the page itself and where it sits under the home page.
+ *  No FAQPage here — these pages show no FAQ, and structured data only
+ *  restates what a visitor can read. */
+export function pageJsonLd(locale: Locale, path: PublicPath) {
+  const page = publicPage(path);
+  const copy = pagesFor(locale)[path];
+  const url = absoluteUrl(localizedPath(locale, path));
+  const crumbs = [
+    {
+      name: siteFor(locale).homeCrumb,
+      url: absoluteUrl(localizedPath(locale, "/")),
+    },
+    { name: copy.title, url },
+  ];
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": url,
+        url,
+        name: copy.title,
+        description: copy.description,
+        inLanguage: HTML_LANG[locale],
+        isPartOf: { "@id": `${SITE_URL}/#website` },
+        publisher: { "@id": ORG_ID },
+        dateModified: page.updated,
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: crumbs.map((c, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: c.name,
+          item: c.url,
         })),
       },
     ],
