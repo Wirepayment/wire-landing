@@ -22,12 +22,18 @@ import { brandNames } from "./brand-names";
 
 const appDir = path.resolve(import.meta.dirname, "../app");
 
-/** Every `page.tsx` under app/, as its public route ("/features"). */
-function pageRoutes(dir = appDir): { route: string; file: string }[] {
+/** Every `page.tsx` under app/ with a fixed route ("/features"). A dynamic
+ *  segment ("/blog/[slug]") is not one page: its pages are registered
+ *  elsewhere (lib/blog.ts) and guarded by their own test (blog.test.ts). */
+function pageRoutes(): { route: string; file: string }[] {
+  return allPageRoutes().filter((r) => !r.route.includes("["));
+}
+
+function allPageRoutes(dir = appDir): { route: string; file: string }[] {
   const out: { route: string; file: string }[] = [];
   for (const name of readdirSync(dir)) {
     const full = path.join(dir, name);
-    if (statSync(full).isDirectory()) out.push(...pageRoutes(full));
+    if (statSync(full).isDirectory()) out.push(...allPageRoutes(full));
     else if (name === "page.tsx") {
       const segs = path
         .relative(appDir, dir)
@@ -38,6 +44,17 @@ function pageRoutes(dir = appDir): { route: string; file: string }[] {
   }
   return out;
 }
+
+describe("dynamic routes", () => {
+  // A new dynamic route would otherwise escape every page guard above.
+  it("are only the blog posts", () => {
+    expect(
+      allPageRoutes()
+        .map((r) => r.route)
+        .filter((r) => r.includes("[")),
+    ).toEqual(["/blog/[slug]"]);
+  });
+});
 
 describe("public page registry", () => {
   // Search and AI answers read structured data, not layout: a page without

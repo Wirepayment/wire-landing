@@ -3,18 +3,22 @@ import { readFileSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
 import { LOCALE_NAMES, type Locale } from "@/i18n/locales";
 import { COMPANY } from "@/lib/company";
+import * as mnBlog from "@/content/mn/blog";
 import * as mnConnectors from "@/content/mn/connectors";
 import * as mnFaq from "@/content/mn/faq";
 import * as mnGuides from "@/content/mn/guides";
 import * as mnPages from "@/content/mn/pages";
+import * as enBlog from "@/content/en/blog";
 import * as enConnectors from "@/content/en/connectors";
 import * as enFaq from "@/content/en/faq";
 import * as enGuides from "@/content/en/guides";
 import * as enPages from "@/content/en/pages";
+import * as zhBlog from "@/content/zh/blog";
 import * as zhConnectors from "@/content/zh/connectors";
 import * as zhFaq from "@/content/zh/faq";
 import * as zhGuides from "@/content/zh/guides";
 import * as zhPages from "@/content/zh/pages";
+import * as koBlog from "@/content/ko/blog";
 import * as koConnectors from "@/content/ko/connectors";
 import * as koFaq from "@/content/ko/faq";
 import * as koGuides from "@/content/ko/guides";
@@ -33,24 +37,28 @@ const root = path.resolve(import.meta.dirname, "..");
 type Module = Record<string, unknown>;
 const CONTENT: Record<Locale, Record<string, Module>> = {
   mn: {
+    blog: mnBlog,
     connectors: mnConnectors,
     faq: mnFaq,
     guides: mnGuides,
     pages: mnPages,
   },
   en: {
+    blog: enBlog,
     connectors: enConnectors,
     faq: enFaq,
     guides: enGuides,
     pages: enPages,
   },
   zh: {
+    blog: zhBlog,
     connectors: zhConnectors,
     faq: zhFaq,
     guides: zhGuides,
     pages: zhPages,
   },
   ko: {
+    blog: koBlog,
     connectors: koConnectors,
     faq: koFaq,
     guides: koGuides,

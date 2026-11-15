@@ -38,6 +38,8 @@ const MN_URLS_FROZEN = [
   // "/en" — now the English home page (the en twin of "/").
   // "/en/payments-in-mongolia" — now the en twin of the line below.
   "/payments-in-mongolia",
+  // Added 2026-11-15: the blog index (its posts are in lib/blog.ts).
+  "/blog",
   "/terms",
   "/status",
 ].sort();

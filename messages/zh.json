@@ -8,7 +8,8 @@
     "developers": "开发者",
     "status": "状态",
     "terms": "服务条款",
-    "docs": "文档"
+    "docs": "文档",
+    "blog": "博客"
   },
   "nav": {
     "homeAria": "Wire 首页",
@@ -639,5 +640,15 @@
     "stepsBadge": "步骤",
     "faqBadge": "帮助",
     "faqHeading": "常见问题。"
+  },
+  "blog": {
+    "badge": "博客",
+    "line1": "Wire 的新动态。",
+    "line2": "简短，只讲事实。",
+    "lead": "新上线的功能，以及在蒙古国收款的简明说明。这里写到的内容都已经上线。",
+    "read": "阅读",
+    "back": "全部文章",
+    "updated": "更新于",
+    "more": "更多文章"
   }
 }

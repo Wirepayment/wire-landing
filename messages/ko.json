@@ -8,7 +8,8 @@
     "developers": "개발자",
     "status": "서비스 상태",
     "terms": "이용약관",
-    "docs": "문서"
+    "docs": "문서",
+    "blog": "블로그"
   },
   "nav": {
     "homeAria": "Wire 홈",
@@ -639,5 +640,15 @@
     "stepsBadge": "단계",
     "faqBadge": "도움말",
     "faqHeading": "자주 묻는 질문."
+  },
+  "blog": {
+    "badge": "블로그",
+    "line1": "Wire의 새 소식.",
+    "line2": "짧고 사실만.",
+    "lead": "새로 나온 기능과 몽골에서 결제를 받는 방법에 대한 쉬운 설명. 여기에 적힌 내용은 모두 이미 운영 중입니다.",
+    "read": "읽기",
+    "back": "모든 글",
+    "updated": "수정",
+    "more": "다른 글"
   }
 }
