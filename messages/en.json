@@ -8,7 +8,8 @@
     "developers": "Developers",
     "status": "Status",
     "terms": "Terms of service",
-    "docs": "Docs"
+    "docs": "Docs",
+    "blog": "Blog"
   },
   "nav": {
     "homeAria": "Wire home",
@@ -639,5 +640,15 @@
     "stepsBadge": "Steps",
     "faqBadge": "Help",
     "faqHeading": "Frequently asked questions."
+  },
+  "blog": {
+    "badge": "Blog",
+    "line1": "What is new at Wire.",
+    "line2": "Short and factual.",
+    "lead": "New features and plain explanations of taking payments in Mongolia. Everything written here is already live.",
+    "read": "Read",
+    "back": "All posts",
+    "updated": "updated",
+    "more": "More posts"
   }
 }

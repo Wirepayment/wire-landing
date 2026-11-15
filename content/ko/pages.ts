@@ -68,6 +68,11 @@ export const PAGES: Record<PublicPath, PageCopy> = {
     description:
       "가입하고 한 번 인증한 뒤 결제 사업자를 활성화하십시오. 결제 페이지, 결제 링크 또는 Wire REST API로 몽골 투그릭(MNT) 결제를 받습니다.",
   },
+  "/blog": {
+    title: "블로그 — Wire의 새 기능과 설명",
+    description:
+      "Wire의 새 기능과 몽골에서 온라인 결제를 받는 방법을 다루는 짧은 글: 결제 채널, 결제 페이지, API. 이미 운영 중인 내용만 씁니다.",
+  },
   "/terms": {
     title: "서비스 이용약관",
     description:

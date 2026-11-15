@@ -11,6 +11,7 @@ const ITEMS = [
   { href: "/", label: "home" },
   { href: "/features", label: "features" },
   { href: "/links", label: "links" },
+  { href: "/blog", label: "blog" },
 ] as const;
 
 /** MobileNav — the marketing menu for small screens (the inline NavLinks hide
@@ -53,7 +54,9 @@ export function MobileNav() {
           <LanguageLinks className="mx-auto max-w-6xl border-b border-[var(--color-border)] px-8 pt-4 pb-3 text-[15px] text-[var(--color-muted)]" />
           <nav className="mx-auto max-w-6xl px-5 py-3">
             {ITEMS.map((item) => {
-              const active = pathname === item.href;
+              const active =
+                pathname === item.href ||
+                (item.href !== "/" && pathname.startsWith(`${item.href}/`));
               return (
                 <Link
                   key={item.href}

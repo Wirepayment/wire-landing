@@ -69,6 +69,11 @@ export const PAGES: Record<PublicPath, PageCopy> = {
     description:
       "Sign up, verify once, activate an operator and take payments in MNT with hosted checkout, payment links or the Wire REST API.",
   },
+  "/blog": {
+    title: "Blog — what is new at Wire",
+    description:
+      "Short, factual posts about new Wire features and taking online payments in Mongolia: payment channels, the pay page and the API.",
+  },
   "/terms": {
     title: "Terms of service",
     description:

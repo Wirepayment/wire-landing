@@ -49,6 +49,8 @@ export const PUBLIC_PAGES = [
   { path: "/guides/payment-gateway", priority: 0.8, updated: "2026-11-14" },
   { path: "/guides/platform", priority: 0.7, updated: "2026-11-14" },
   { path: "/payments-in-mongolia", priority: 0.7, updated: "2026-11-12" },
+  // The blog index. Its posts are registered in lib/blog.ts.
+  { path: "/blog", priority: 0.7, updated: "2026-11-15" },
   { path: "/terms", priority: 0.4, updated: "2026-11-12" },
   { path: "/status", priority: 0.3, updated: "2026-07-30" },
 ] as const satisfies readonly PublicPage[];
@@ -99,7 +101,7 @@ export function publicPage(path: PublicPath): PublicPage {
 // The share card from app/opengraph-image.tsx. A page that sets its own
 // `openGraph` replaces the root's wholesale, file-based image included, so
 // every page names it explicitly.
-const SHARE_IMAGE = {
+export const SHARE_IMAGE = {
   url: "/opengraph-image",
   width: 1200,
   height: 630,
@@ -122,7 +124,7 @@ export function absoluteUrl(path: string): string {
 export { localizedPath };
 
 /** hreflang map for a page: every language, x-default = the Mongolian URL. */
-function languageAlternates(path: string): Record<string, string> {
+export function languageAlternates(path: string): Record<string, string> {
   const out: Record<string, string> = {};
   for (const l of LOCALES)
     out[HTML_LANG[l]] = absoluteUrl(localizedPath(l, path));

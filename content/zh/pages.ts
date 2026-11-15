@@ -68,6 +68,11 @@ export const PAGES: Record<PublicPath, PageCopy> = {
     description:
       "注册并完成一次验证，然后启用服务商。通过支付页面、支付链接或 Wire REST API，以蒙古图格里克（MNT）收款。",
   },
+  "/blog": {
+    title: "博客 — Wire 的新功能与说明",
+    description:
+      "关于 Wire 新功能和在蒙古国接受在线支付的简短文章：支付渠道、支付页面和 API，只讲已经上线的内容。",
+  },
   "/terms": {
     title: "服务条款",
     description:

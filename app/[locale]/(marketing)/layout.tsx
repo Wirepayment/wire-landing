@@ -121,6 +121,11 @@ export default async function MarketingLayout({
                     {common("guide")}
                   </Link>
                 </li>
+                <li>
+                  <Link href="/blog" className={FOOTER_LINK}>
+                    {common("blog")}
+                  </Link>
+                </li>
               </ul>
             </div>
 

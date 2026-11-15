@@ -7,6 +7,7 @@ const ITEMS = [
   { href: "/", label: "home" },
   { href: "/features", label: "features" },
   { href: "/links", label: "links" },
+  { href: "/blog", label: "blog" },
 ] as const;
 
 /** NavLinks — the marketing header menu with the current page highlighted
@@ -18,7 +19,9 @@ export function NavLinks() {
   return (
     <>
       {ITEMS.map((item) => {
-        const active = pathname === item.href;
+        const active =
+          pathname === item.href ||
+          (item.href !== "/" && pathname.startsWith(`${item.href}/`));
         const visibility = "hidden md:inline-flex";
         return (
           <Link

@@ -1,6 +1,7 @@
 import { COMPANY, CONTACT } from "@/lib/company";
 import { connectorModesFor, connectorsFor } from "@/lib/connectors";
 import { faqsFor } from "@/lib/faq";
+import { blogPostPath, postsFor } from "@/lib/blog";
 import { guidesFor } from "@/lib/guides";
 import {
   DOCS_SITE_URL,
@@ -26,6 +27,7 @@ const HEADINGS = {
     connection: "Холболт",
     pages: "Хуудсууд",
     answers: "Товч хариултууд",
+    blog: "Блог",
     more: "Дэлгэрэнгүй",
     faq: "Түгээмэл асуултууд",
   },
@@ -34,6 +36,7 @@ const HEADINGS = {
     connection: "Connection",
     pages: "Pages (English)",
     answers: "Short answers (English)",
+    blog: "Blog (English)",
     more: "More",
     faq: "Frequently asked questions (English)",
   },
@@ -90,6 +93,21 @@ function answers(locale: LlmsLocale): string[] {
   ];
 }
 
+/** The blog posts: title, date and the opening paragraph, with the URL. */
+function blog(locale: LlmsLocale): string[] {
+  const h = HEADINGS[locale];
+  return [
+    `## ${h.blog}`,
+    "",
+    ...postsFor(locale).flatMap((p) => [
+      `### ${p.title} (${p.published})`,
+      "",
+      `${p.lead} ${h.more}: ${absoluteUrl(localizedPath(locale, blogPostPath(p.slug)))}`,
+      "",
+    ]),
+  ];
+}
+
 function faq(locale: LlmsLocale): string[] {
   return [
     `## ${HEADINGS[locale].faq}`,
@@ -109,6 +127,7 @@ export function llmsTxt(): string {
     ...channels("mn"),
     ...pages("mn"),
     ...answers("mn"),
+    ...blog("mn"),
     "## Хөгжүүлэгчийн баримт бичиг",
     "",
     `- [Wire Docs](${DOCS_SITE_URL}/docs): API, SDK, webhook, гарын авлага (Монгол).`,
@@ -135,6 +154,7 @@ export function llmsTxt(): string {
     ...channels("en"),
     ...pages("en"),
     ...answers("en"),
+    ...blog("en"),
     ...faq("en"),
   ].join("\n");
 }
