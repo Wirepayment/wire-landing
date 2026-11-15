@@ -22,24 +22,60 @@ import { POSTS as KO } from "@/content/ko/blog";
 // Posts state only what is already live or already public elsewhere on
 // wire.mn — no announcements of things that have not shipped.
 
-/** One post: its URL slug and dates (YYYY-MM-DD). Bump `updated` when the
- *  post's words change; `published` never moves. */
+/** One post: its URL slug and dates (YYYY-MM-DD), newest first. Bump
+ *  `updated` when the post's words change. The dates are the owner's
+ *  editorial dates (2026-11-15: spread over June to October), not the day
+ *  the file was written. */
 export const BLOG_POSTS = [
   {
     slug: "change-payment-method",
-    published: "2026-11-15",
-    updated: "2026-11-15",
-  },
-  {
-    slug: "six-channels-one-integration",
-    published: "2026-11-15",
-    updated: "2026-11-15",
+    published: "2026-10-26",
+    updated: "2026-10-26",
   },
   {
     slug: "automatic-failover",
-    published: "2026-11-15",
-    updated: "2026-11-15",
+    published: "2026-10-19",
+    updated: "2026-10-19",
   },
+  {
+    slug: "six-channels-one-integration",
+    published: "2026-10-12",
+    updated: "2026-10-12",
+  },
+  {
+    slug: "payments-for-platforms",
+    published: "2026-10-05",
+    updated: "2026-10-05",
+  },
+  { slug: "who-is-wire-for", published: "2026-09-28", updated: "2026-09-28" },
+  {
+    slug: "first-payment-in-ten-minutes",
+    published: "2026-09-14",
+    updated: "2026-09-14",
+  },
+  {
+    slug: "payments-are-not-lost",
+    published: "2026-08-31",
+    updated: "2026-08-31",
+  },
+  { slug: "one-dashboard", published: "2026-08-17", updated: "2026-08-17" },
+  { slug: "no-monthly-fee", published: "2026-08-03", updated: "2026-08-03" },
+  {
+    slug: "start-in-three-steps",
+    published: "2026-07-20",
+    updated: "2026-07-20",
+  },
+  {
+    slug: "accept-payments-without-website",
+    published: "2026-07-06",
+    updated: "2026-07-06",
+  },
+  {
+    slug: "how-your-data-is-protected",
+    published: "2026-06-22",
+    updated: "2026-06-22",
+  },
+  { slug: "what-is-wire", published: "2026-06-08", updated: "2026-06-08" },
 ] as const;
 
 export type BlogSlug = (typeof BLOG_POSTS)[number]["slug"];
