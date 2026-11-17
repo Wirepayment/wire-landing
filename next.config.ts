@@ -1,5 +1,5 @@
 import type { NextConfig } from "next";
-import { withSentryConfig } from "@sentry/nextjs";
+import { withSentryConfig } from "@sentry/nextjs/config";
 import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
@@ -44,5 +44,5 @@ export default withSentryConfig(withNextIntl(nextConfig), {
   tunnelRoute: "/monitoring",
   silent: !process.env.CI,
   widenClientFileUpload: true,
-  disableLogger: true,
+  bundleSizeOptimizations: { excludeDebugStatements: true },
 });
