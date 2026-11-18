@@ -2,6 +2,50 @@ import type { BlogPostCopy, BlogSlug } from "@/lib/blog";
 
 // Chinese blog posts, mirroring content/mn/blog.ts section for section.
 export const POSTS: Record<BlogSlug, BlogPostCopy> = {
+  "expired-pay-links": {
+    title: "过期的支付链接现在会明确提示",
+    description: "已经过期或订单已取消的支付页面，现在不再显示渠道选择，而是明确提示链接已过期。",
+    lead: "以前买家打开旧的支付链接时，页面仍会显示渠道选择，等到付款时才报错。现在页面会直接说明链接已经过期，买家不必再做无效的尝试，也不会看到难以理解的错误信息。",
+    sections: [
+      { heading: "有哪些变化", body: ["如果付款已经过期或订单已被取消，支付页面不再显示渠道选择和二维码，而是显示链接已过期的提示。"], },
+      { heading: "为什么需要", body: ["旧链接会留在聊天记录和邮件里。买家几天后打开并尝试付款时，只会看到无法理解的错误。现在可以立刻明白发生了什么。"], },
+      { heading: "对商户有什么影响", body: ["无需任何操作。"], items: ["有效的链接和支付页面照常工作。", "买家看到过期提示后，会向您索取新的链接。", "可重复使用的支付链接不变：每次付款都会打开新的页面。"], },
+    ],
+    links: [{ label: "支付链接", href: "/links" }, { label: "功能", href: "/features" }],
+  },
+  "wire-in-four-languages": {
+    title: "Wire 现在支持四种语言",
+    description: "wire.mn 提供蒙古语、英语、中文和韩语，控制台提供蒙古语和英语。本文说明如何选择语言，以及哪些内容已经翻译。",
+    lead: "wire.mn 现在可以用蒙古语、英语、中文和韩语四种语言阅读。控制台提供蒙古语和英语。在页面顶部选择语言后，下次访问时网站会以该语言打开，无需再次选择。",
+    sections: [
+      { heading: "翻译了哪些内容", body: ["网站的所有页面在四种语言中内容一致：功能、入门指南、常见问题和博客。"], },
+      { heading: "如何选择语言", body: ["在页面顶部的语言切换器中选择。选择会被记住，下次访问时网站会以该语言打开。蒙古语页面的地址没有变化。"], },
+      { heading: "适合谁", body: ["在蒙古国经营的外国人，以及与海外伙伴合作的团队，可以用自己的语言了解 Wire 并注册。开发者文档提供蒙古语和英语。协议文本仍为蒙古语。"], },
+    ],
+    links: [{ label: "功能", href: "/features" }, { label: "Docs", href: "https://docs.wire.mn/en/docs" }],
+  },
+  "connect-your-own-channel": {
+    title: "在控制台连接您自己签约的渠道",
+    description: "把您与 Toki、MonPay、StorePay 或 Pocket Zero 签订的协议和密钥在 Wire 控制台中连接，与其他渠道一起收款。",
+    lead: "如果您已经与 Toki、MonPay、StorePay 或 Pocket Zero 签订了自己的协议，只需在 Wire 控制台中输入密钥，即可直接连接该渠道。资金进入您在服务商的账户，Wire 不经手资金。",
+    sections: [
+      { heading: "如何连接", body: ["共三个步骤："], items: ["与服务商签订协议并获取密钥。", "在控制台的渠道页面输入密钥。", "Wire 校验密钥后，渠道即被激活。"], },
+      { heading: "资金进入哪里", body: ["付款直接进入您在服务商的账户。Wire 不经手资金：只负责创建付款并把结果通知您。"], },
+      { heading: "哪些内容合在一起", body: ["自己签约的渠道与其他渠道一样工作。买家在支付页面上同时看到所有渠道，您在同一个控制台查看全部交易。密钥以加密方式存储。"], },
+    ],
+    links: [{ label: "功能", href: "/features" }, { label: "入门指南", href: "/guide" }],
+  },
+  "channel-amount-limits": {
+    title: "付款人可以提前看到渠道的金额限制",
+    description: "有些支付渠道设有最低或最高金额。Wire 支付页面会把不适用的渠道连同原因一起显示，付款人可以直接改选其他渠道。",
+    lead: "有些支付渠道只接受高于或低于一定金额的付款。Wire 会在创建付款之前进行检查，并在支付页面上把不适用的渠道连同原因一起显示出来，付款人不会等到付款时才遇到错误。",
+    sections: [
+      { heading: "付款人看到什么", body: ["如果金额不在某个渠道的限制范围内，该渠道在支付页面上显示为不可用，并说明它适用的金额。付款人无需遇到错误即可改选其他渠道。"], },
+      { heading: "商户看到什么", body: ["创建支付链接时，如果金额超出某个渠道的限制，控制台会给出提醒。自己签约的渠道的限制显示在该渠道的页面上。"], },
+      { heading: "如果使用 API", body: ["未指定渠道的付款会自动路由到金额符合限制的渠道。如果您自己指定了渠道而金额不符合，API 会返回明确的错误代码。"], },
+    ],
+    links: [{ label: "开发者", href: "/developers" }, { label: "API 参考", href: "https://docs.wire.mn/en/docs/api" }],
+  },
   "what-is-wire": {
     title: "Wire 是什么：所有付款走一个网关",
     description: "Wire 是一个支付网关，一次接入即可接受二维码、银行卡、电子钱包和分期付款。本文用通俗的方式说明它做什么、如何运作。",
