@@ -2,6 +2,50 @@ import type { BlogPostCopy, BlogSlug } from "@/lib/blog";
 
 // English blog posts, mirroring content/mn/blog.ts section for section.
 export const POSTS: Record<BlogSlug, BlogPostCopy> = {
+  "expired-pay-links": {
+    title: "An expired payment link now says so clearly",
+    description: "A pay page whose time has run out, or whose order was canceled, now shows a clear expired notice instead of a choice of channels.",
+    lead: "When a buyer opened an old payment link, the page used to show the choice of channels and then fail when they tried to pay. Now the page says straight away that it has expired.",
+    sections: [
+      { heading: "What changed", body: ["If the payment has expired or the order was canceled, the pay page shows no choice of channels and no QR code. It shows a notice that the link has expired instead."], },
+      { heading: "Why it matters", body: ["Old links stay behind in chats and emails. A buyer who opened one days later and tried to pay got an error that explained nothing. Now they understand at once what happened."], },
+      { heading: "What changes for merchants", body: ["Nothing to do."], items: ["Valid links and pay pages work as before.", "A buyer who sees the expired notice asks you for a new link.", "Reusable payment links are the same: every payment opens a new page."], },
+    ],
+    links: [{ label: "Payment links", href: "/links" }, { label: "Features", href: "/features" }],
+  },
+  "wire-in-four-languages": {
+    title: "Wire is now in four languages",
+    description: "wire.mn is available in Mongolian, English, Chinese and Korean, and the dashboard in Mongolian and English. How to choose a language and what is translated.",
+    lead: "wire.mn can now be read in four languages: Mongolian, English, Chinese and Korean. The dashboard is in Mongolian and English. Choose a language at the top of the page and the site opens in it next time.",
+    sections: [
+      { heading: "What is translated", body: ["Every page of the site has the same content in all four languages: features, the getting started guide, the FAQ and the blog."], },
+      { heading: "How to choose a language", body: ["Pick it from the language switcher at the top of the page. The choice is remembered and the site opens in that language next time. The addresses of the Mongolian pages have not changed."], },
+      { heading: "Who it is for", body: ["Foreign nationals doing business in Mongolia, and teams working with partners abroad, can read about Wire and sign up in their own language. Developer documentation is in Mongolian and English. Agreement texts remain in Mongolian."], },
+    ],
+    links: [{ label: "Features", href: "/features" }, { label: "Docs", href: "https://docs.wire.mn/en/docs" }],
+  },
+  "connect-your-own-channel": {
+    title: "Connect a channel you have your own agreement with",
+    description: "Connect your own agreement and keys with Toki, MonPay, StorePay or Pocket Zero from the Wire dashboard and take those payments alongside your other channels.",
+    lead: "If you have your own agreement with Toki, MonPay, StorePay or Pocket Zero, enter your keys in the Wire dashboard and that channel is connected directly. The money goes to your operator account; Wire never holds it.",
+    sections: [
+      { heading: "How to connect", body: ["In three steps:"], items: ["Sign an agreement with the operator and get your keys.", "Enter the keys in the Channels section of the dashboard.", "Wire checks the keys and the channel is activated."], },
+      { heading: "Where the money goes", body: ["A payment goes straight to your operator account. Wire never holds the money: it creates the payment and tells you the result."], },
+      { heading: "What comes together", body: ["A channel with your own agreement works like any other. The buyer sees all channels together on the pay page, and you see every transaction in one dashboard. The keys are stored encrypted."], },
+    ],
+    links: [{ label: "Features", href: "/features" }, { label: "Getting started guide", href: "/guide" }],
+  },
+  "channel-amount-limits": {
+    title: "Payers see a channel's amount limits up front",
+    description: "Some payment channels have a minimum or maximum amount. The Wire pay page shows a channel that does not fit, with the reason, so the payer picks another straight away.",
+    lead: "Some payment channels accept only payments above or below a certain amount. Wire checks this before a payment is created and shows a channel that does not fit on the pay page, with the reason.",
+    sections: [
+      { heading: "What the payer sees", body: ["If the amount is outside a channel's limits, that channel is shown as unavailable on the pay page and says which amounts it works for. The payer picks another channel without hitting an error."], },
+      { heading: "What the merchant sees", body: ["When you create a payment link, the dashboard warns you if the amount is outside a channel's limits. The limits of a channel with your own agreement are shown on that channel's page."], },
+      { heading: "If you use the API", body: ["A payment that names no channel is routed automatically to one whose limits it fits. If you name the channel yourself and the amount does not fit, the API answers with a specific error code."], },
+    ],
+    links: [{ label: "For developers", href: "/developers" }, { label: "API reference", href: "https://docs.wire.mn/en/docs/api" }],
+  },
   "what-is-wire": {
     title: "What is Wire: every payment through one gateway",
     description: "Wire is a gateway for accepting QR, card, e-wallet and installment payments through one integration. A plain explanation of what it does and how it works.",

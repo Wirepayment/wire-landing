@@ -24,9 +24,26 @@ import { POSTS as KO } from "@/content/ko/blog";
 
 /** One post: its URL slug and dates (YYYY-MM-DD), newest first. Bump
  *  `updated` when the post's words change. The dates are the owner's
- *  editorial dates (2026-11-15: spread over June to October), not the day
- *  the file was written. */
+ *  editorial dates: the first thirteen posts were spread over June to
+ *  October (decided 2026-11-15); posts from November on carry the date the
+ *  feature went live (decided 2026-11-18). */
 export const BLOG_POSTS = [
+  { slug: "expired-pay-links", published: "2026-11-17", updated: "2026-11-17" },
+  {
+    slug: "wire-in-four-languages",
+    published: "2026-11-10",
+    updated: "2026-11-10",
+  },
+  {
+    slug: "connect-your-own-channel",
+    published: "2026-11-08",
+    updated: "2026-11-08",
+  },
+  {
+    slug: "channel-amount-limits",
+    published: "2026-11-05",
+    updated: "2026-11-05",
+  },
   {
     slug: "change-payment-method",
     published: "2026-10-26",
