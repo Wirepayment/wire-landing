@@ -2,6 +2,17 @@ import type { BlogPostCopy, BlogSlug } from "@/lib/blog";
 
 // English blog posts, mirroring content/mn/blog.ts section for section.
 export const POSTS: Record<BlogSlug, BlogPostCopy> = {
+  "smart-insights": {
+    title: "The dashboard now draws conclusions from your payments",
+    description: "Besides charts, the Wire dashboard now shows short findings drawn from your own payments: how revenue changed, which channel converts better, and when most payments come in.",
+    lead: "The Overview page of the dashboard has a new Insights section. It turns your own payments in the chosen period into a few short sentences, so you know what changed without reading it off the charts.",
+    sections: [
+      { heading: "What it tells you", body: ["It shows only what applies to the period:"], items: ["How much revenue rose or fell compared with the period before.", "Which channel's payments are paid more often.", "Which payment link brought most of the revenue.", "Which day of the week and which hours bring the most payments.", "The share of people who opened the pay page and left without choosing a channel."], },
+      { heading: "How it is worked out", body: ["Every finding comes from your own payments, from exactly the numbers the charts use. Nothing is compared with other merchants' data. With few payments it stays silent, so a handful of payments never produces a wrong conclusion."], },
+      { heading: "Where to find it", body: ["On the Overview page of the dashboard, under the revenue chart. Change the period and the findings follow it. No setup is needed."], },
+    ],
+    links: [{ label: "Features", href: "/features" }, { label: "Sign up", href: "https://app.wire.mn" }],
+  },
   "expired-pay-links": {
     title: "An expired payment link now says so clearly",
     description: "A pay page whose time has run out, or whose order was canceled, now shows a clear expired notice instead of a choice of channels.",

@@ -2,6 +2,17 @@ import type { BlogPostCopy, BlogSlug } from "@/lib/blog";
 
 // Chinese blog posts, mirroring content/mn/blog.ts section for section.
 export const POSTS: Record<BlogSlug, BlogPostCopy> = {
+  "smart-insights": {
+    title: "控制台现在会根据您的交易给出结论",
+    description: "除了图表之外，Wire 控制台现在还会显示根据您自己的交易得出的简短结论：收入如何变化、哪个渠道更成功、什么时候付款最多。",
+    lead: "控制台的概览页面新增了洞察板块。它把所选时间段内您自己的交易归纳成几句简短的话，让您不必从图表中推算，就能知道发生了哪些变化，以及下一步值得关注什么。",
+    sections: [
+      { heading: "它会告诉您什么", body: ["只显示与所选时间段相关的内容："], items: ["收入比上一时间段上升或下降了多少。", "哪个渠道发起的付款成功率更高。", "哪个支付链接带来了大部分收入。", "一周中哪一天、哪个时段付款最多。", "打开支付页面却没有选择渠道就离开的人所占的比例。"], },
+      { heading: "如何计算", body: ["每条结论都来自您自己的交易，使用的数字与图表完全相同。不会与其他商户的数据进行比较。交易较少时不会给出结论，因此不会从少量付款中得出错误的判断。"], },
+      { heading: "在哪里查看", body: ["在控制台的概览页面，收入图表的下方。更改时间段后，结论会随之更新。无需任何设置。"], },
+    ],
+    links: [{ label: "功能", href: "/features" }, { label: "注册", href: "https://app.wire.mn" }],
+  },
   "expired-pay-links": {
     title: "过期的支付链接现在会明确提示",
     description: "已经过期或订单已取消的支付页面，现在不再显示渠道选择，而是明确提示链接已过期。",

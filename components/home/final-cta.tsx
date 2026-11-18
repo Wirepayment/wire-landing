@@ -43,7 +43,7 @@ const COLUMNS: Item[][] = [
     { label: "routing" },
     { label: "cards" },
     { label: "export" },
-    { label: "insights", roadmap: true },
+    { label: "insights" },
   ],
 ];
 
