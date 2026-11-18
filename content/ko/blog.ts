@@ -2,6 +2,17 @@ import type { BlogPostCopy, BlogSlug } from "@/lib/blog";
 
 // Korean blog posts, mirroring content/mn/blog.ts section for section.
 export const POSTS: Record<BlogSlug, BlogPostCopy> = {
+  "smart-insights": {
+    title: "대시보드가 이제 거래에서 결론을 뽑아 줍니다",
+    description: "Wire 대시보드는 이제 차트 외에도 가맹점 자신의 거래에서 뽑은 짧은 결론을 보여 줍니다: 매출이 어떻게 변했는지, 어느 채널이 더 잘 되는지, 언제 결제가 가장 많은지.",
+    lead: "대시보드의 개요 페이지에 인사이트 영역이 새로 생겼습니다. 선택한 기간의 가맹점 자신의 거래를 짧은 문장 몇 개로 정리해, 차트를 읽지 않아도 무엇이 달라졌는지 알려 줍니다.",
+    sections: [
+      { heading: "무엇을 알려 주나", body: ["기간에 해당하는 내용만 보여 줍니다:"], items: ["매출이 이전 기간보다 얼마나 늘거나 줄었는지.", "어느 채널로 시작한 결제가 더 많이 결제되는지.", "어떤 결제 링크가 매출의 대부분을 가져왔는지.", "어느 요일, 어느 시간대에 결제가 가장 많은지.", "결제 페이지를 열고 채널을 고르지 않은 채 나간 사람의 비율."], },
+      { heading: "어떻게 계산하나", body: ["모든 결론은 가맹점 자신의 거래에서, 차트와 똑같은 숫자로 만들어집니다. 다른 가맹점의 데이터와 비교하지 않습니다. 거래가 적을 때는 결론을 내지 않으므로 적은 결제에서 잘못된 결론이 나오지 않습니다."], },
+      { heading: "어디서 보나", body: ["대시보드의 개요 페이지, 매출 차트 아래에 있습니다. 기간을 바꾸면 결론도 그 기간에 맞게 바뀝니다. 별도의 설정은 필요 없습니다."], },
+    ],
+    links: [{ label: "기능", href: "/features" }, { label: "가입하기", href: "https://app.wire.mn" }],
+  },
   "expired-pay-links": {
     title: "만료된 결제 링크는 이제 분명하게 안내합니다",
     description: "기한이 지났거나 주문이 취소된 결제 페이지는 이제 채널 선택 대신 링크가 만료되었다는 안내를 분명하게 보여 줍니다.",

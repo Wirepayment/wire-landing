@@ -28,6 +28,7 @@ import { POSTS as KO } from "@/content/ko/blog";
  *  October (decided 2026-11-15); posts from November on carry the date the
  *  feature went live (decided 2026-11-18). */
 export const BLOG_POSTS = [
+  { slug: "smart-insights", published: "2026-11-18", updated: "2026-11-18" },
   { slug: "expired-pay-links", published: "2026-11-17", updated: "2026-11-17" },
   {
     slug: "wire-in-four-languages",
