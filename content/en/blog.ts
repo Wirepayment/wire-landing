@@ -2,6 +2,19 @@ import type { BlogPostCopy, BlogSlug } from "@/lib/blog";
 
 // English blog posts, mirroring content/mn/blog.ts section for section.
 export const POSTS: Record<BlogSlug, BlogPostCopy> = {
+  "aml-agent": {
+    title: "Wire's AML agent: income only to the owner's own account",
+    description: "The Wire platform's AML agent checks every business's registration and receiving account against DAN, so income cannot be routed to someone else's account. If you register for someone else, the real owner confirms with DAN.",
+    lead: "Wire now runs an AML agent. It checks each business's registration and receiving bank account against DAN to make sure the money goes only to the business's real owner.",
+    sections: [
+      { heading: "What the AML agent checks", body: ["Every registration and account is checked for three things:"], items: ["For a sole trader, the receiving account is in the owner's own DAN-verified name.", "For an organisation, the account is in the organisation's name.", "The owner named in the registration (a person's register, an organisation's director) matches the DAN of the person registering."] },
+      { heading: "Registering on someone else's behalf", body: ["You may register a family member's or partner's business, but the real owner named in the registration must confirm it: Wire gives you a secret link to send them. They do not need a Wire account or a sign-in; they only confirm with DAN. When the register matches, the business passes to the real owner and you keep running it as a team member. Anyone else who opens the link is rejected."] },
+      { heading: "Running a business as a team", body: ["Several people can run one business. Team members work like the owner, except deleting (projects, accounts, links, keys, members), which is the owner's alone. The owner and members add people with an invite link."] },
+      { heading: "Fixing a wrong account", body: ["Add your account in your own name on the dashboard's Accounts page: it becomes the default at once and income starts landing there. The old account in someone else's name is locked: its payment history is kept, but it can never again be made the default or chosen for a payment."] },
+      { heading: "Why it is needed", body: ["Under anti-money-laundering and counter-terrorist-financing requirements, a payment service provider must know a business's real owner and keep income from passing through accounts in other people's names. The AML agent does this check automatically, to the same standard for every registration."] },
+    ],
+    links: [{ label: "Features", href: "/features" }, { label: "Sign up", href: "https://app.wire.mn" }],
+  },
   "smart-insights": {
     title: "The dashboard now draws conclusions from your payments",
     description: "Besides charts, the Wire dashboard now shows short findings drawn from your own payments: how revenue changed, which channel converts better, and when most payments come in.",
