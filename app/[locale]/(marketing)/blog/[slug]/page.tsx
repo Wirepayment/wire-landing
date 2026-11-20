@@ -133,17 +133,45 @@ export default async function Page({ params }: { params: Params }) {
             aria-label={t("more")}
             className="mt-14 border-t border-[var(--color-border)] pt-8"
           >
-            <p className="text-[13px] font-semibold text-[var(--color-faint)]">
-              {t("more")}
-            </p>
-            <ul className="mt-3 space-y-3">
-              {others.map((p) => (
+            <div className="flex items-baseline justify-between gap-4">
+              <p className="text-[13px] font-semibold text-[var(--color-faint)]">
+                {t("more")}
+              </p>
+              <Link
+                href="/blog"
+                className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[var(--color-primary-deep)] hover:underline"
+              >
+                {t("back")}
+                <ArrowRight className="size-3.5" />
+              </Link>
+            </div>
+            {/* The three newest other posts as cards — a title, a line of what
+                it says and its date — instead of every title in one run that
+                read as a single long sentence. The full list is one click
+                away. */}
+            <ul className="mt-4 grid gap-3 sm:grid-cols-3">
+              {others.slice(0, 3).map((p) => (
                 <li key={p.slug}>
                   <Link
                     href={blogPostPath(p.slug)}
-                    className="display text-[18px] leading-snug transition-colors hover:text-[var(--color-primary-deep)]"
+                    className="group flex h-full flex-col rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4 transition-colors hover:border-[var(--color-primary-deep)]"
                   >
-                    {p.title}
+                    <time
+                      dateTime={p.published}
+                      className="tabular text-[12px] text-[var(--color-faint)]"
+                    >
+                      {p.published}
+                    </time>
+                    <span className="display mt-2 text-[16px] leading-snug transition-colors group-hover:text-[var(--color-primary-deep)]">
+                      {p.title}
+                    </span>
+                    <span className="mt-2 line-clamp-3 text-[13px] leading-relaxed text-[var(--color-muted)]">
+                      {p.description}
+                    </span>
+                    <span className="mt-auto inline-flex items-center gap-1.5 pt-3 text-[13px] font-semibold text-[var(--color-primary-deep)]">
+                      {t("read")}
+                      <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
+                    </span>
                   </Link>
                 </li>
               ))}
