@@ -32,4 +32,8 @@ export const FAQS: Faq[] = [
     q: "Is my data safe?",
     a: "Personal data is stored encrypted with AES-256 and not shared with third parties. Every webhook carries a signature so you can verify each notification.",
   },
+  {
+    q: "Can I receive income on someone else's behalf?",
+    a: "No. The Wire platform's AML agent accepts income only into an account in the business owner's own name: for a person, their own DAN-verified name; for an organisation, the organisation's name. If you register someone else's business, that person confirms with DAN and becomes its owner, and you run it as a team member. Using an account in someone else's name, or collecting income on someone else's behalf, is not allowed under anti-money-laundering requirements.",
+  },
 ];
