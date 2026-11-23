@@ -18,7 +18,7 @@ const SETTLEMENT_ANSWER =
 const ACCOUNT_STEPS: GuideStep[] = [
   {
     title: "Sign up and verify once",
-    body: "Sign in at app.wire.mn and verify the owner's email, phone and DAN (state e-ID). It is done once — however many businesses or projects you open later, you are not asked again.",
+    body: "Sign in at app.wire.mn and verify the owner's email, phone and DAN (state e-ID). It is done once — however many projects you open later, you are not asked again.",
   },
   {
     title: "Activate an operator",
@@ -366,6 +366,70 @@ export const GUIDES: Guide[] = [
     cta: { label: "Contact us", href: `mailto:${CONTACT.email}` },
   },
   {
+    slug: "/guides/business-ownership",
+    label: "Whose name to register in",
+    badge: "AML guide",
+    line1: "Your business and account:",
+    line2: "whose name do they go in?",
+    answer:
+      "On Wire a business is registered by its real owner, and income goes only to an account in the owner's own name: for an individual the DAN-verified name, for a company the company's name. If you look after someone else's business, the owner signs up and invites you as a team member. Several shops of one owner are separate projects in one business.",
+    stepsTitle: "Find your case",
+    steps: [
+      {
+        title: "Your own business",
+        body: "Register with your own DAN and connect an account in your own name. For a company, connect an account in the company's name.",
+      },
+      {
+        title: "Someone else's business",
+        body: "If you are a developer, employee or relative, the owner signs up and invites you under Team. You run the projects and connections, and income goes to the owner's account.",
+      },
+      {
+        title: "Several shops",
+        body: "Don't open a new business. Add a project per shop and receive payments into another account in your name.",
+      },
+      {
+        title: "Another company",
+        body: "A company with its own register is a separate business. One legal entity has one business.",
+      },
+    ],
+    points: {
+      title: "Not allowed",
+      items: [
+        "Taking income through an account of a relative, friend or employee",
+        "Collecting income on someone's behalf and passing it on later",
+        "Registering a business with another person's DAN",
+        "Opening a new business in place of a blocked one to keep taking payments",
+      ],
+    },
+    faqs: [
+      {
+        q: "What if I already registered on someone's behalf?",
+        a: "The real owner named in the registration confirms with DAN through Wire's link and becomes the business owner. You can keep running it as a team member.",
+      },
+      {
+        q: "What happens on an account mismatch?",
+        a: "New payments pause. Add an account in the owner's name and payments resume automatically. Completed transactions are not affected.",
+      },
+      {
+        q: "How many businesses can one person register?",
+        a: "One business per register: one in your own name and one for each company with its own register. Your next shop is a project, not a new business.",
+      },
+      {
+        q: "What can a team member do?",
+        a: "Run projects, connections and keys just like the owner. Deletions are the owner's alone.",
+      },
+      {
+        q: "Can a platform register its merchants?",
+        a: "Yes. Even when registered through a platform, each merchant's owner verifies with DAN and income goes to that merchant's own account.",
+      },
+    ],
+    related: [
+      { label: "Platform payments", href: "/guides/platform" },
+      { label: "Developer guide", href: `${DOCS_URL}/docs/guides/business-ownership` },
+    ],
+    cta: SIGNUP,
+  },
+  {
     slug: "/payments-in-mongolia",
     label: "Accept payments in Mongolia",
     badge: "Guide",
@@ -377,7 +441,7 @@ export const GUIDES: Guide[] = [
     steps: [
       {
         title: "Sign up and verify once",
-        body: "Sign in at app.wire.mn and verify the owner's email, phone and DAN (state e-ID). It is done once, however many businesses or projects you open later.",
+        body: "Sign in at app.wire.mn and verify the owner's email, phone and DAN (state e-ID). It is done once, however many projects you open later.",
       },
       {
         title: "Activate an operator",

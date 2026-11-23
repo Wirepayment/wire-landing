@@ -35,6 +35,7 @@ const MN_URLS_FROZEN = [
   "/guides/qr-payments",
   "/guides/payment-gateway",
   "/guides/platform",
+  "/guides/business-ownership",
   // "/en" — now the English home page (the en twin of "/").
   // "/en/payments-in-mongolia" — now the en twin of the line below.
   "/payments-in-mongolia",

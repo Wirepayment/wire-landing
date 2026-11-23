@@ -63,6 +63,11 @@ export const PAGES: Record<PublicPath, PageCopy> = {
     description:
       "通过 API 注册您的商户，并代其创建付款。每个商户的款项都直接进入其自有账户。",
   },
+  "/guides/business-ownership": {
+    title: "企业和账户应登记在谁名下 — AML 指南",
+    description:
+      "收入只能进入所有人本人名下的账户。代他人操作请以团队成员身份加入，多家店铺请使用项目。",
+  },
   "/payments-in-mongolia": {
     title: "如何在蒙古国接受在线支付",
     description:

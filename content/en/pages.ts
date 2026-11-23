@@ -64,6 +64,11 @@ export const PAGES: Record<PublicPath, PageCopy> = {
     description:
       "Register your merchants through the API and create payments on their behalf. Each merchant is paid straight into its own account.",
   },
+  "/guides/business-ownership": {
+    title: "Whose name to register a business and account in — AML guide",
+    description:
+      "Income goes only to an account in the owner's own name. Working for someone else? Join as a team member. Several shops? Use projects.",
+  },
   "/payments-in-mongolia": {
     title: "How to accept online payments in Mongolia",
     description:
