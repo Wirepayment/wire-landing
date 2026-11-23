@@ -63,6 +63,11 @@ export const PAGES: Record<PublicPath, PageCopy> = {
     description:
       "가맹점을 API로 등록하고 가맹점을 대신하여 결제를 생성하십시오. 각 가맹점은 결제 대금을 자체 계좌로 직접 받습니다.",
   },
+  "/guides/business-ownership": {
+    title: "사업자와 계좌를 누구 명의로 등록할까 — AML 안내",
+    description:
+      "수익은 소유자 본인 명의 계좌로만 입금됩니다. 다른 사람의 일을 맡았다면 팀 멤버로, 매장이 여러 개라면 프로젝트로 운영하세요.",
+  },
   "/payments-in-mongolia": {
     title: "몽골에서 온라인 결제를 받는 방법",
     description:

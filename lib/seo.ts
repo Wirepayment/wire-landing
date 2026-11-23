@@ -48,6 +48,7 @@ export const PUBLIC_PAGES = [
   { path: "/guides/qr-payments", priority: 0.8, updated: "2026-11-12" },
   { path: "/guides/payment-gateway", priority: 0.8, updated: "2026-11-14" },
   { path: "/guides/platform", priority: 0.7, updated: "2026-11-14" },
+  { path: "/guides/business-ownership", priority: 0.8, updated: "2026-11-23" },
   { path: "/payments-in-mongolia", priority: 0.7, updated: "2026-11-12" },
   // The blog index. Its posts are registered in lib/blog.ts.
   { path: "/blog", priority: 0.7, updated: "2026-11-15" },
